@@ -315,7 +315,9 @@
           "time": "2026-10-26T02:52:10+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 815,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_2192029901748185",
@@ -387,7 +389,9 @@
           "time": "2026-10-26T02:51:58+0000",
           "text": "dạ vâng happyhome con rất mong chờ được đón cô ạ"
         }
-      ]
+      ],
+      "frt_minutes": 90,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1105425788895369",
@@ -471,7 +475,9 @@
           "time": "2026-10-26T02:51:40+0000",
           "text": "dạ vâng ạ, có gì cô cứ bảo con ạ"
         }
-      ]
+      ],
+      "frt_minutes": 301,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_950061127828100",
@@ -488,7 +494,7 @@
         "Phòng & Ăn uống",
         "SĐT: 0387328869"
       ],
-      "phone": "0387328869",
+      "phone": null,
       "messages": [
         {
           "from": "HappyHome Đồng Bèn",
@@ -556,7 +562,9 @@
           "time": "2026-10-25T06:20:44+0000",
           "text": "Nếu cần hỗ trợ nhanh hơn, mình có thể gọi hotline 0387328869 bất cứ lúc nào giúp em nhé ạ."
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1070393156041805",
@@ -622,7 +630,9 @@
           "time": "2026-10-25T05:39:48+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1640384797666342",
@@ -670,7 +680,9 @@
           "time": "2026-10-25T05:39:24+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 24,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1473151868016238",
@@ -736,7 +748,9 @@
           "time": "2026-10-25T05:39:13+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1814146053124023",
@@ -802,7 +816,9 @@
           "time": "2026-10-25T05:39:10+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_951846547628387",
@@ -838,7 +854,9 @@
           "time": "2026-10-25T05:39:04+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 77,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1094532640023062",
@@ -916,7 +934,9 @@
           "time": "2026-10-25T05:38:47+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1744361300014623",
@@ -958,7 +978,9 @@
           "time": "2026-10-25T05:38:31+0000",
           "text": "Con gửi cô ạ"
         }
-      ]
+      ],
+      "frt_minutes": 96,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1425081053076608",
@@ -1006,7 +1028,9 @@
           "time": "2026-10-25T05:38:12+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 119,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1082842494571870",
@@ -1066,7 +1090,9 @@
           "time": "2026-10-25T05:38:03+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_2122202028394070",
@@ -1114,7 +1140,9 @@
           "time": "2026-10-25T05:37:55+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 126,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1157581936945740",
@@ -1192,7 +1220,9 @@
           "time": "2026-10-25T05:37:50+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1129141456186288",
@@ -1240,7 +1270,9 @@
           "time": "2026-10-25T05:37:37+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 194,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1167488948964572",
@@ -1300,7 +1332,9 @@
           "time": "2026-10-25T05:37:31+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 197,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_936718659296014",
@@ -1354,7 +1388,9 @@
           "time": "2026-10-25T05:37:21+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1430498989228411",
@@ -1414,7 +1450,9 @@
           "time": "2026-10-25T05:37:15+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1687585176328924",
@@ -1468,7 +1506,9 @@
           "time": "2026-10-25T05:37:03+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 234,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1770508147583969",
@@ -1528,7 +1568,9 @@
           "time": "2026-10-25T05:36:47+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_958011574046121",
@@ -1588,7 +1630,9 @@
           "time": "2026-10-25T05:36:29+0000",
           "text": "Cháu gửi cô lịch Trình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 255,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1675380510963619",
@@ -1690,7 +1734,9 @@
           "time": "2026-10-25T05:35:58+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1862290191568911",
@@ -1726,7 +1772,9 @@
           "time": "2026-10-25T05:35:41+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 269,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1130306932785146",
@@ -1798,7 +1846,9 @@
           "time": "2026-10-25T05:35:34+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1118838837748205",
@@ -1840,7 +1890,9 @@
           "time": "2026-10-25T05:35:25+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 282,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_861138437062278",
@@ -1900,7 +1952,9 @@
           "time": "2026-10-25T05:35:21+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_4681932548795450",
@@ -1966,7 +2020,9 @@
           "time": "2026-10-25T05:35:07+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1814455166258446",
@@ -2026,7 +2082,9 @@
           "time": "2026-10-25T05:34:56+0000",
           "text": "Cháu xin phép gửi lịch trình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 291,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1120894450690339",
@@ -2092,7 +2150,9 @@
           "time": "2026-10-25T05:34:18+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 305,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1811777260133041",
@@ -2158,7 +2218,9 @@
           "time": "2026-10-25T05:34:11+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1099813902896325",
@@ -2206,7 +2268,9 @@
           "time": "2026-10-25T05:34:06+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 367,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1089676727181975",
@@ -2278,7 +2342,9 @@
           "time": "2026-10-25T05:33:55+0000",
           "text": "Dạ em xin phép tư vấn chị như trên ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_28269834132650535",
@@ -2326,7 +2392,9 @@
           "time": "2026-10-25T05:33:37+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 317,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_2357621601311955",
@@ -2386,7 +2454,9 @@
           "time": "2026-10-25T05:33:31+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_3513785075448505",
@@ -2434,7 +2504,9 @@
           "time": "2026-10-25T05:33:25+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 350,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1130327222778534",
@@ -2500,7 +2572,9 @@
           "time": "2026-10-25T05:33:19+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_939682002303533",
@@ -2548,7 +2622,9 @@
           "time": "2026-10-25T05:33:09+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 392,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1035186001553285",
@@ -2656,7 +2732,9 @@
           "time": "2026-10-25T05:33:02+0000",
           "text": "Cháu gửi cô 1 số ảnh phòng ạ"
         }
-      ]
+      ],
+      "frt_minutes": 3,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1166634936025312",
@@ -2704,7 +2782,9 @@
           "time": "2026-10-25T05:32:33+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 408,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_28812939335015803",
@@ -2758,7 +2838,9 @@
           "time": "2026-10-25T05:32:25+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 410,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1778577013394852",
@@ -2812,7 +2894,9 @@
           "time": "2026-10-25T05:31:59+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên cháu đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1105488639040801",
@@ -2860,7 +2944,9 @@
           "time": "2026-10-25T05:31:29+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên em là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 510,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1484239606906844",
@@ -2920,7 +3006,9 @@
           "time": "2026-10-25T05:31:21+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên em là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1420836906433448",
@@ -2968,7 +3056,9 @@
           "time": "2026-10-25T05:31:11+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên em là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 837,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_2206205716937584",
@@ -3059,7 +3149,9 @@
           "time": "2026-10-25T05:30:58+0000",
           "text": "Dạ không biết đoàn mình dự kiến đi bao nhiêu người để cháu tư vấn tốt hơn ạ?"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Đã để lại SĐT"
     },
     {
       "id": "t_1153953283868133",
@@ -3100,7 +3192,9 @@
           "time": "2026-10-25T05:30:37+0000",
           "text": "Dạ không biết đoàn mình dự kiến đi bao nhiêu người để cháu tư vấn tốt hơn ạ?"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1135976076039464",
@@ -3142,7 +3236,9 @@
           "time": "2026-10-25T05:30:10+0000",
           "text": "Hiện bên cháu đang chạy combo\nGiá bên em là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 1550,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1145293364743606",
@@ -3195,7 +3291,9 @@
           "time": "2026-10-25T05:29:49+0000",
           "text": "Dạ không biết là mình dự kiến đi bao nhiêu người để cháu tư vấn tốt hơn ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1613457900322197",
@@ -3255,7 +3353,9 @@
           "time": "2026-10-25T05:29:36+0000",
           "text": "Không biết đoàn mình dự kiến đi bao nhiêu người để cháu tư vấn tốt hơn ạ"
         }
-      ]
+      ],
+      "frt_minutes": 1693,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1611589976550387",
@@ -3363,7 +3463,9 @@
           "time": "2026-10-25T03:46:43+0000",
           "text": "Dạ bên con sẽ đón ở bigc cổng tú mỡ ạ"
         }
-      ]
+      ],
+      "frt_minutes": 540,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_2167561287160998",
@@ -3404,7 +3506,9 @@
           "time": "2026-10-25T03:43:29+0000",
           "text": "Vâng con xin phép tư vấn ông qua Zalo ạ"
         }
-      ]
+      ],
+      "frt_minutes": 11,
+      "dropoff_reason": "Đã để lại SĐT"
     },
     {
       "id": "t_1906700423829279",
@@ -3434,7 +3538,9 @@
           "time": "2026-10-25T00:46:38+0000",
           "text": "địa chỉ ở đâu vậy"
         }
-      ]
+      ],
+      "frt_minutes": null,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1479955220668635",
@@ -3462,7 +3568,9 @@
           "time": "2026-10-24T23:59:54+0000",
           "text": "Dạ em thấy mình có quan tâm tới gói đi du ngoạn đền Ứng Thiên và nghỉ dưỡng tại HappyHome bên em ạ. Không biết nhà mình dự định đi bao nhiêu người và đi vào ngày nào ạ để em có thể sắp xếp lịch trình phù hợp cho đoàn mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": null,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1649098236684132",
@@ -3490,7 +3598,9 @@
           "time": "2026-10-24T23:33:29+0000",
           "text": "Dạ em thấy mình có quan tâm tới gói đi du ngoạn đền Ứng Thiên và nghỉ dưỡng tại HappyHome bên em ạ. Không biết nhà mình dự định đi bao nhiêu người và đi vào ngày nào ạ để em có thể sắp xếp lịch trình phù hợp cho đoàn mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": null,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1168943892238308",
@@ -3538,7 +3648,9 @@
           "time": "2026-10-24T12:08:58+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 378,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_4474692082771288",
@@ -3622,7 +3734,9 @@
           "time": "2026-10-24T12:08:16+0000",
           "text": "Dạ em xin phép gửi anh chị thông tin ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_27090744260623768",
@@ -3688,7 +3802,9 @@
           "time": "2026-10-24T11:56:45+0000",
           "text": "Dạ đã bao gồm rồi ạ"
         }
-      ]
+      ],
+      "frt_minutes": 94,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1128152909689692",
@@ -3795,7 +3911,9 @@
           "time": "2026-10-24T08:17:11+0000",
           "text": "Dạ bên em sẽ có lịch đi cố định hàng tuần vào thứ 3 và chủ nhật, xe sẽ đón tại BigC Thăng Long ạ. Không biết mình có thể đi được vào ngày nào để em sắp xếp cho anh/chị ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1039571365769186",
@@ -3835,7 +3953,9 @@
           "time": "2026-10-24T06:49:26+0000",
           "text": "Dạ bên em sẽ có lịch đi cố định hàng tuần vào thứ 3 và chủ nhật, xe sẽ đón tại BigC Thăng Long ạ. Không biết mình có thể đi được vào ngày nào để em sắp xếp cho anh/chị ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_2350168975730190",
@@ -3883,7 +4003,9 @@
           "time": "2026-10-24T02:10:04+0000",
           "text": "Bạn có thể gọi cho Nguyễn Khắc Tuấn trong 7 ngày tới."
         }
-      ]
+      ],
+      "frt_minutes": null,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_28823285407338877",
@@ -3931,7 +4053,9 @@
           "time": "2026-10-24T00:52:42+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 465,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1158413070203271",
@@ -3979,7 +4103,9 @@
           "time": "2026-10-24T00:52:22+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 460,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1830820441392209",
@@ -4075,7 +4201,9 @@
           "time": "2026-10-24T00:51:42+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1619228276308608",
@@ -4135,7 +4263,9 @@
           "time": "2026-10-24T00:50:49+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_954277227332932",
@@ -4219,7 +4349,9 @@
           "time": "2026-10-24T00:50:24+0000",
           "text": "Bên em sẽ có xe đón ở BigC Thăng Long vào thứ 3 và Chủ nhật hàng tuần nhé ạ, không biết mình đi bao nhiêu người và dự định đi vào hôm nào để em sắp xếp lịch cho mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1428909819358098",
@@ -4273,7 +4405,9 @@
           "time": "2026-10-24T00:48:40+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1917857092508246",
@@ -4333,7 +4467,9 @@
           "time": "2026-10-24T00:47:40+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1498342278797452",
@@ -4369,7 +4505,9 @@
           "time": "2026-10-24T00:47:27+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 381,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_29482942151336572",
@@ -4417,7 +4555,9 @@
           "time": "2026-10-24T00:47:09+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 362,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1515163990444217",
@@ -4495,7 +4635,9 @@
           "time": "2026-10-24T00:46:50+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1426106802943836",
@@ -4597,7 +4739,9 @@
           "time": "2026-10-24T00:46:26+0000",
           "text": "Dạ bể bơi bên con là bể bơi nước mát ạ"
         }
-      ]
+      ],
+      "frt_minutes": 13,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1738256380566742",
@@ -4681,7 +4825,9 @@
           "time": "2026-10-23T22:33:55+0000",
           "text": "Dạ bên em sẽ có lịch đi cố định hàng tuần vào thứ 3 và chủ nhật, xe sẽ đón tại BigC Thăng Long ạ. Không biết mình có thể đi được vào ngày nào để em sắp xếp cho anh/chị ạ"
         }
-      ]
+      ],
+      "frt_minutes": 39,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_2998622840501078",
@@ -4696,7 +4842,7 @@
         "Xe đưa đón HN",
         "SĐT: 0556056363"
       ],
-      "phone": "0556056363",
+      "phone": null,
       "messages": [
         {
           "from": "HappyHome Đồng Bèn",
@@ -4710,7 +4856,9 @@
           "time": "2026-10-23T19:35:45+0000",
           "text": "Dạ em thấy mình có quan tâm tới gói đi du ngoạn đền Ứng Thiên và nghỉ dưỡng tại HappyHome bên em ạ. Không biết nhà mình dự định đi bao nhiêu người và đi vào ngày nào ạ để em có thể sắp xếp lịch trình phù hợp cho đoàn mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": null,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1033204856462023",
@@ -4738,7 +4886,9 @@
           "time": "2026-10-23T17:13:22+0000",
           "text": "Dạ bên em sẽ có lịch đi cố định hàng tuần vào thứ 3 và chủ nhật, xe sẽ đón tại BigC Thăng Long ạ. Không biết mình có thể đi được vào ngày nào để em sắp xếp cho anh/chị ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1120807257283327",
@@ -4846,7 +4996,9 @@
           "time": "2026-10-23T15:46:11+0000",
           "text": "Cháu gửi cô ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1080205798219402",
@@ -4894,7 +5046,9 @@
           "time": "2026-10-23T15:22:52+0000",
           "text": "Cháu gửi cô ạ"
         }
-      ]
+      ],
+      "frt_minutes": 266,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1695152198942340",
@@ -4940,7 +5094,9 @@
           "time": "2026-10-23T15:22:45+0000",
           "text": "Anh cho em xin số lượng đoàn để em tư vấn anh tốt hơn"
         }
-      ]
+      ],
+      "frt_minutes": 253,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_2296851924486382",
@@ -5000,7 +5156,9 @@
           "time": "2026-10-23T15:22:24+0000",
           "text": "Cháu gửi cô ạ"
         }
-      ]
+      ],
+      "frt_minutes": 243,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_934757089493556",
@@ -5048,7 +5206,9 @@
           "time": "2026-10-23T15:22:06+0000",
           "text": "Cháu gửi cô ạ"
         }
-      ]
+      ],
+      "frt_minutes": 238,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_3136156566716127",
@@ -5084,7 +5244,9 @@
           "time": "2026-10-23T15:21:59+0000",
           "text": "Cháu gửi cô ạ"
         }
-      ]
+      ],
+      "frt_minutes": 213,
+      "dropoff_reason": "Rep chậm (>30p)"
     },
     {
       "id": "t_1737603707782559",
@@ -5192,7 +5354,9 @@
           "time": "2026-10-23T15:21:47+0000",
           "text": "Giá bên cháu combo đợt này là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ\n- Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn\n- Gói dịch vụ ăn 3 bữa\n+ Bữa sáng bánh mì ruốc\n+ Bữa trưa lẩu thái\n+ Bữa xế cháo thịt băm/cháo bí đỏ\n- Phòng nghỉ phù hợp theo số lượng khách\n- Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,...\n- Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,.\n- Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn \n- Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_29452065787733602",
@@ -5268,7 +5432,9 @@
           "time": "2026-10-23T15:06:48+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 2,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1595750205054774",
@@ -5371,7 +5537,9 @@
           "time": "2026-10-23T13:58:45+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Đã để lại SĐT"
     },
     {
       "id": "t_1047212591713614",
@@ -5431,7 +5599,9 @@
           "time": "2026-10-23T10:20:52+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_2408775359859366",
@@ -5497,7 +5667,9 @@
           "time": "2026-10-23T10:16:26+0000",
           "text": "Dạ bên em đi cũng không xa nên mọi người đi ngắn ngày rất hay lựa chọn bên em cho những chuyến trong ngày và 1-2 đêm ạ, nếu chị cần thêm thông tin gì thì cứ nhắn em nhé ạ"
         }
-      ]
+      ],
+      "frt_minutes": 8,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_1102780779199658",
@@ -5513,7 +5685,7 @@
         "Phòng & Ăn uống",
         "SĐT: 0387328869"
       ],
-      "phone": "0387328869",
+      "phone": null,
       "messages": [
         {
           "from": "HappyHome Đồng Bèn",
@@ -5569,7 +5741,9 @@
           "time": "2026-10-23T10:09:58+0000",
           "text": "Dạ chị liên hệ qua số điện thoại 0387328869 giúp em nhé ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1133553252482979",
@@ -5653,7 +5827,9 @@
           "time": "2026-10-23T09:45:05+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     },
     {
       "id": "t_29760222463575459",
@@ -5683,7 +5859,9 @@
           "time": "2026-10-23T09:39:39+0000",
           "text": "Giá bên con là 500.000đ/người đã bao gồm các dịch vụ đầy đủ ạ - Xe đưa đón đoàn mình tại Hà Nội đi đến nơi về đến chốn - Gói dịch vụ ăn 3 bữa + Bữa sáng bánh mì + Bữa trưa lẩu thái + Bữa xế cháo thịt băm/cháo bí đỏ - Phòng nghỉ phù hợp theo số lượng khách - Miễn phí toàn bộ tiện ích nội khu Happyhome như bể bơi, bi-a, đạp xe,... - Tặng kèm dịch vụ ngâm chân thảo mộc người Mường giúp thải độc, giảm mỏi,. - Miễn phí dẫn đoàn và chụp ảnh, trả ảnh cho đoàn - Thăm quan trải nghiệm Đền Ứng Thiên linh thiêng"
         }
-      ]
+      ],
+      "frt_minutes": 10,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_2235507110693465",
@@ -5779,7 +5957,9 @@
           "time": "2026-10-23T09:39:21+0000",
           "text": "Dạ bên em sẽ có lịch đi cố định hàng tuần vào thứ 3 và chủ nhật, xe sẽ đón tại BigC Thăng Long ạ. Không biết mình có thể đi được vào ngày nào để em sắp xếp cho anh/chị ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1529300729232275",
@@ -5851,7 +6031,9 @@
           "time": "2026-10-23T09:27:58+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1438888721780823",
@@ -5935,7 +6117,9 @@
           "time": "2026-10-23T09:27:13+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1053225690831703",
@@ -6031,7 +6215,9 @@
           "time": "2026-10-23T09:26:46+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1349313783802908",
@@ -6067,7 +6253,9 @@
           "time": "2026-10-23T09:26:31+0000",
           "text": "Không biết đoàn mình dự kiến sẽ đi ngày nào và có bao nhiêu người để bên em có thể sắp xếp lịch phù hợp cho nhà mình ạ"
         }
-      ]
+      ],
+      "frt_minutes": 11,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1598461265360979",
@@ -6151,7 +6339,9 @@
           "time": "2026-10-23T09:26:19+0000",
           "text": "nếu mình cần thêm thông tin gì thì chị cứ nhắn em nhé ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_1125293929886382",
@@ -6210,7 +6400,9 @@
           "time": "2026-10-23T09:24:36+0000",
           "text": "Dạ Đồng Bèn ở Yên Xuân, Quốc Oai, Hà Nội, cách trung tâm thành phố chỉ hơn 30 phút di chuyển thôi ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_3219624878229499",
@@ -6248,7 +6440,9 @@
           "time": "2026-10-23T09:23:49+0000",
           "text": "Dạ Đồng Bèn ở Yên Xuân, Quốc Oai, Hà Nội, cách trung tâm thành phố chỉ hơn 30 phút di chuyển thôi ạ"
         }
-      ]
+      ],
+      "frt_minutes": 6,
+      "dropoff_reason": "Chưa cung cấp SĐT"
     },
     {
       "id": "t_3198075213735674",
@@ -6288,7 +6482,9 @@
           "time": "2026-10-23T09:22:35+0000",
           "text": "Dạ bên em sẽ có lịch đi cố định hàng tuần vào thứ 3 và chủ nhật, xe sẽ đón tại BigC Thăng Long ạ. Không biết mình có thể đi được vào ngày nào để em sắp xếp cho anh/chị ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_1139042405467171",
@@ -6328,7 +6524,9 @@
           "time": "2026-10-23T09:20:03+0000",
           "text": "Dạ bên em sẽ có lịch đi cố định hàng tuần vào thứ 3 và chủ nhật, xe sẽ đón tại BigC Thăng Long ạ. Không biết mình có thể đi được vào ngày nào để em sắp xếp cho anh/chị ạ"
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
     },
     {
       "id": "t_3446898758815620",
@@ -6394,7 +6592,9 @@
           "time": "2026-10-23T09:17:09+0000",
           "text": ""
         }
-      ]
+      ],
+      "frt_minutes": 0,
+      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
     }
   ]
 }
