@@ -65,29 +65,30 @@
           <p class="text-xs text-slate-500" id="metaLine"></p>
         </div>
       </div>
-      
-      <div class="flex items-center gap-2 flex-wrap">
-        <div class="flex items-center bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-xl text-xs text-emerald-800 shadow-sm">
+      <div class="flex items-center gap-2">
+
+        <div class="flex items-center bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-xl text-xs text-emerald-800 shadow-sm">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-2"></span>
           <span class="font-semibold mr-1">24/7 Live:</span>
           <span id="autoRefreshCountdown" class="num font-mono font-bold">05:00</span>
         </div>
-        <button onclick="location.reload()" class="px-3 py-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl hover:bg-emerald-100 transition flex items-center shadow-sm cursor-pointer">
+        <button onclick="location.reload()" class="px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl hover:bg-emerald-100 transition flex items-center shadow-sm cursor-pointer">
           <i class="fa-solid fa-rotate mr-1.5"></i>Làm mới
         </button>
+        <button onclick="lockDashboard()" title="Khóa Dashboard" class="px-2.5 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition border border-slate-200 cursor-pointer"><i class="fa-solid fa-lock"></i></button>
+  
         <div id="statusBadge" class="hidden md:flex items-center bg-amber-50 border border-amber-200 px-3 py-2 rounded-xl text-xs text-amber-900">
           <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-2"></i><span id="statusText"></span>
         </div>
-        <button onclick="exportData()" class="px-3 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 shadow-sm cursor-pointer"><i class="fa-solid fa-file-arrow-down mr-1"></i>Xuất JSON</button>
-        <a href="https://adsmanager.facebook.com/" target="_blank" rel="noopener" class="px-3 py-2 text-xs font-semibold text-white bg-emerald-600 rounded-xl hover:bg-emerald-700 shadow-sm"><i class="fa-brands fa-facebook mr-1"></i>Ads Manager</a>
-        <button onclick="lockDashboard()" title="Khóa Dashboard" class="px-2.5 py-2 text-xs font-medium text-slate-500 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition border border-slate-200 cursor-pointer"><i class="fa-solid fa-lock"></i></button>
+        <button onclick="exportData()" class="px-3 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50"><i class="fa-solid fa-file-arrow-down mr-1"></i>Xuất JSON</button>
+        <a href="https://adsmanager.facebook.com/" target="_blank" rel="noopener" class="px-3 py-2 text-xs font-semibold text-white bg-emerald-600 rounded-xl hover:bg-emerald-700"><i class="fa-brands fa-facebook mr-1"></i>Ads Manager</a>
       </div>
-</div>
+    </div>
     <nav class="flex gap-1 overflow-x-auto text-sm font-medium scroll" id="tabs">
       <button data-tab="overview" class="tab-btn active px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-gauge mr-1.5"></i>Tổng quan</button>
       <button data-tab="daily" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-chart-line mr-1.5"></i>Theo ngày</button>
       <button data-tab="segments" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-layer-group mr-1.5"></i>Chiến dịch & phân khúc</button>
-      <button data-tab="creatives" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-photo-film mr-1.5"></i>Mẫu quảng cáo</button>
+      <button data-tab="creatives" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-film mr-1.5"></i>Mẫu quảng cáo</button>
       <button data-tab="crm" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-comments mr-1.5"></i>Khách nhắn tin</button>
       <button data-tab="monthly" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-calendar-days mr-1.5"></i>Lịch sử tháng</button>
       <button data-tab="actions" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-list-check mr-1.5"></i>Đề xuất</button>
@@ -138,23 +139,48 @@
 
   <!-- TAB: DAILY -->
   <section id="tab-daily" class="tab-content hidden space-y-6">
-    
-    <!-- DROPOFF ANALYSIS -->
-    <div class="card p-6 bg-gradient-to-br from-white to-rose-50/30 border-rose-100">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 pb-3 border-b border-slate-200">
+    <div class="card p-6 space-y-5" id="dayCard">
+      <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-0.5 rounded-lg bg-rose-100 text-rose-800 text-xs font-bold uppercase"><i class="fa-solid fa-user-xmark mr-1"></i>Phân Tích Lý Do Chưa Chốt Đơn</span>
-            <span class="text-xs text-slate-500">(100 hội thoại thực tế)</span>
-          </div>
-          <p class="text-xs text-slate-500 mt-1">Xác định điểm nghẽn chính khiến khách hàng dừng lại sau khi nhắn tin</p>
+          <h2 class="font-bold text-slate-900">Phân tích từng ngày</h2>
+          <p class="text-xs text-slate-500 mt-0.5" id="dayMeta"></p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="dayPrev" class="w-8 h-8 rounded-lg border border-slate-300 bg-white hover:bg-slate-50" title="Ngày trước">‹</button>
+          <select id="daySel" class="text-sm border border-slate-300 rounded-lg px-3 py-1.5 num bg-white"></select>
+          <button id="dayNext" class="w-8 h-8 rounded-lg border border-slate-300 bg-white hover:bg-slate-50" title="Ngày sau">›</button>
+          <div class="flex gap-1 text-xs ml-2" id="dayCamp"></div>
         </div>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="dropoffReasonCards">
-        <!-- Injected by JS -->
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3" id="dayKpis"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div class="p-4 rounded-xl border border-slate-200">
+          <h3 class="text-sm font-bold text-slate-900">Phễu trong ngày</h3>
+          <div id="dayFunnel" class="space-y-2.5 mt-3"></div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200">
+          <h3 class="text-sm font-bold text-slate-900">Vì sao chi phí/tin khác trung bình kỳ</h3>
+          <p class="text-[11px] text-slate-500">Chi phí/tin = CPM ÷ (1.000 × CTR liên kết × CVR). Mỗi thanh là phần chênh do một yếu tố gây ra.</p>
+          <div id="dayDecomp" class="space-y-2.5 mt-3"></div>
+        </div>
+        <div class="p-4 rounded-xl border border-slate-200">
+          <h3 class="text-sm font-bold text-slate-900">Video trong ngày</h3>
+          <p class="text-[11px] text-slate-500">Đường đậm: ngày đã chọn · nét đứt: trung bình kỳ (% người xem 3 giây còn xem tiếp)</p>
+          <div id="dayVideo" class="grid grid-cols-2 gap-2 mt-3"></div>
+          <div class="h-36 mt-3"><canvas id="dayRetChart"></canvas></div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+        <div class="lg:col-span-3 p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <h3 class="text-sm font-bold text-slate-900">Kết luận cho ngày này</h3>
+          <ul id="dayInsights" class="mt-2 space-y-1.5 text-sm text-slate-700 list-disc pl-5"></ul>
+        </div>
+        <div class="lg:col-span-2 p-4 rounded-xl border border-slate-200 overflow-x-auto scroll">
+          <h3 class="text-sm font-bold text-slate-900 mb-2">Hai chiến dịch trong ngày</h3>
+          <table class="w-full text-xs num"><tbody id="dayCampTable" class="divide-y divide-slate-100"></tbody></table>
+        </div>
       </div>
     </div>
-
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="card p-6 lg:col-span-2">
         <h2 class="font-bold text-slate-900">Tin nhắn theo ngày (cột) và chi phí mỗi tin (đường)</h2>
@@ -167,31 +193,11 @@
         <div id="phases" class="space-y-3"></div>
       </div>
     </div>
-    <!-- SINGLE DAY DEEP DIVE INTERACTIVE PICKER -->
-    <div class="card p-6 bg-gradient-to-br from-white to-slate-50 border-emerald-200 shadow-sm">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-slate-200">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-calendar-check mr-1"></i>Trực quan từng ngày</span>
-            <h3 class="font-bold text-slate-900 text-base">Phân Tích Chi Tiết Theo Ngày</h3>
-          </div>
-          <p class="text-xs text-slate-500 mt-1">Chọn ngày bất kỳ để xem toàn bộ chỉ số chi tiêu, tin nhắn, CTR và so sánh với bình quân</p>
-        </div>
-        <div class="flex items-center gap-2 w-full sm:w-auto">
-          <label class="text-xs font-semibold text-slate-600 whitespace-nowrap"><i class="fa-regular fa-calendar mr-1"></i>Chọn ngày:</label>
-          <select id="singleDaySelect" onchange="renderSingleDayDeepDive(this.value)" class="w-full sm:w-64 bg-white border-2 border-emerald-500 rounded-xl px-3 py-2 text-xs font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none shadow-sm cursor-pointer num text-emerald-800">
-          </select>
-        </div>
-      </div>
-      <div id="singleDayKpiRow" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-4"></div>
-      <div id="singleDayBreakdown" class="p-4 rounded-xl bg-white border border-slate-200 text-xs"></div>
-    </div>
-
     <div class="card overflow-hidden">
       <div class="p-5 border-b border-slate-200 flex flex-wrap justify-between items-center gap-3">
         <div>
           <h3 class="font-bold text-slate-900">Chi tiết từng ngày</h3>
-          <p class="text-xs text-slate-500">Tiếp cận theo ngày cộng lại sẽ lớn hơn tiếp cận cả kỳ (một người có thể thấy nhiều ngày)</p>
+          <p class="text-xs text-slate-500">Bấm vào một ngày để xem phân tích chi tiết ở trên. Tiếp cận theo ngày cộng lại sẽ lớn hơn tiếp cận cả kỳ (một người có thể thấy nhiều ngày)</p>
         </div>
         <div class="flex gap-1 text-xs" id="campFilter"></div>
       </div>
@@ -239,41 +245,48 @@
     </div>
   </section>
 
-  
-  <!-- TAB: CREATIVES (MẪU QUẢNG CÁO) -->
+  <!-- TAB: CREATIVES -->
   <section id="tab-creatives" class="tab-content hidden space-y-6">
-    <div class="card p-6 bg-gradient-to-r from-emerald-50 via-white to-blue-50 border-emerald-200">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-video mr-1"></i>Creative Intelligence</span>
-          <h2 class="text-lg font-bold text-slate-900 mt-1">Phân Tích Chi Tiết Từng Mẫu Quảng Cáo</h2>
-          <p class="text-xs text-slate-600 mt-0.5">So sánh hiệu quả giữ chân video (Video Retention), CTR, tỷ lệ xem 3s và xếp hạng từ Meta</p>
-        </div>
-        <div class="text-xs text-slate-500 bg-white/80 backdrop-blur px-3 py-2 rounded-xl border border-slate-200">
-          <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Định dạng Video Reels & Feed 9:16
-        </div>
+    <div class="p-4 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900" id="crNote"></div>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3" id="crKpis"></div>
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <div class="card p-6 lg:col-span-3">
+        <h2 class="font-bold text-slate-900">Đường giữ chân người xem</h2>
+        <p class="text-xs text-slate-500 mt-0.5 mb-3">% người đã xem 3 giây còn xem tới từng mốc của video (trục ngang: giây)</p>
+        <div class="h-72"><canvas id="crRetChart"></canvas></div>
+      </div>
+      <div class="card p-6 lg:col-span-2">
+        <h2 class="font-bold text-slate-900">Chẩn đoán và đề xuất</h2>
+        <p class="text-xs text-slate-500 mt-0.5">Tính tự động từ số liệu, ngưỡng tham khảo ghi trong ngoặc</p>
+        <ul class="mt-3 space-y-2.5 text-sm text-slate-700" id="crDiag"></ul>
       </div>
     </div>
-
-    <!-- Creatives Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="creativesGrid">
-      <!-- Injected by JS -->
+    <div class="card overflow-hidden">
+      <div class="p-5 border-b border-slate-200">
+        <h3 class="font-bold text-slate-900">Bảng chỉ số mẫu quảng cáo</h3>
+        <p class="text-xs text-slate-500">Màu xanh: mẫu tốt hơn ở chỉ số đó. Tỷ lệ xem các mốc tính trên lượt xem 3 giây.</p>
+      </div>
+      <div class="overflow-x-auto scroll">
+        <table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="crHead"></tr></thead><tbody id="crBody" class="divide-y divide-slate-100"></tbody></table>
+      </div>
     </div>
-
-    <!-- Creative Retention Funnel Comparison -->
     <div class="card p-6">
-      <div class="flex justify-between items-center mb-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h3 class="font-bold text-slate-900">Biểu Đồ Phễu Giữ Chân Người Xem Video (Retention Drop-off)</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Tỷ lệ người xem tiếp tục xem video qua các mốc Hook 3s → 25% → 50% → 75% → 100%</p>
+          <h3 class="font-bold text-slate-900">Chỉ số mẫu quảng cáo theo ngày</h3>
+          <p class="text-xs text-slate-500">Theo dõi mẫu có bị mỏi không (tỷ lệ dừng xem, giữ chân, CTR giảm dần)</p>
         </div>
+        <select id="crMetric" class="text-sm border border-slate-300 rounded-lg px-3 py-1.5 bg-white"></select>
       </div>
-      <div class="h-80"><canvas id="retentionChart"></canvas></div>
-      <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
-        <p><b>Nhận xét & Đề xuất tối ưu Video:</b></p>
-        <p>• <b>Tỷ lệ Hook 3 giây đầu:</b> Cả 2 mẫu đều đạt ~50% (rất tốt). Người xem bị thu hút bởi cảnh đền Ứng Thiên và không gian xanh Đồng Bèn.</p>
-        <p>• <b>Tỷ lệ rơi rụng ở 50%:</b> Lượng người xem giảm từ 50% xuống 14% do video kéo dài. Nên cắt thêm các phiên bản ngắn <b>15 - 20 giây</b> tập trung vào: <i>Cảnh ăn lẩu thái + Bể bơi + Giá 500k</i>.</p>
-        <p>• <b>Xếp hạng chất lượng:</b> Mẫu "Goi nguoi gia" bị xếp 20% cuối do text trên thumbnail nhiều. Cần giảm chữ và tăng khung hình người thật cười vui vẻ.</p>
+      <div class="h-72 mt-3"><canvas id="crDailyChart"></canvas></div>
+    </div>
+    <div class="card overflow-hidden">
+      <div class="p-5 border-b border-slate-200">
+        <h3 class="font-bold text-slate-900">Mẫu quảng cáo theo vị trí hiển thị</h3>
+        <p class="text-xs text-slate-500">Cộng cả hai quảng cáo. Dòng nhạt: dưới 100 lượt hiển thị, không đủ để kết luận.</p>
+      </div>
+      <div class="overflow-x-auto scroll">
+        <table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="crPlcHead"></tr></thead><tbody id="crPlcBody" class="divide-y divide-slate-100"></tbody></table>
       </div>
     </div>
   </section>
@@ -458,7 +471,7 @@ function renderDaily() {
   document.getElementById('dailyHead').innerHTML = H.map((h, i) => th(h, i > 0)).join('');
   const avg = TK.cpr;
   const body = rows.map(r => { const k = kpis(r); const tag = k.cpr < avg * 0.75 ? 'text-emerald-700 font-bold' : k.cpr > avg * 1.4 ? 'text-rose-600 font-bold' : '';
-    return `<tr class="hover:bg-slate-50">${td(dayLabel(r.date), 'font-semibold')}${td(vnd(r.spend), 'text-right')}${td(r.results, 'text-right font-bold')}${td(vnd(k.cpr), 'text-right ' + tag)}${td(fmt(r.reach), 'text-right')}${td(fmt(r.impressions), 'text-right')}${td(fmt(k.freq, 2), 'text-right')}${td(vnd(k.cpm), 'text-right')}${td(pct(k.ctrAll, 2), 'text-right')}${td(r.link_clicks, 'text-right')}${td(pct(k.ctr, 2), 'text-right')}${td(vnd(k.cpc), 'text-right')}${td(pct(k.cvr, 0), 'text-right')}</tr>`; });
+    return `<tr data-d="${r.date}" class="hover:bg-emerald-50 cursor-pointer ${r.date === daySel ? 'bg-emerald-50/60' : ''}" title="Bấm để phân tích ngày này">${td(dayLabel(r.date), 'font-semibold')}${td(vnd(r.spend), 'text-right')}${td(r.results, 'text-right font-bold')}${td(vnd(k.cpr), 'text-right ' + tag)}${td(fmt(r.reach), 'text-right')}${td(fmt(r.impressions), 'text-right')}${td(fmt(k.freq, 2), 'text-right')}${td(vnd(k.cpm), 'text-right')}${td(pct(k.ctrAll, 2), 'text-right')}${td(r.link_clicks, 'text-right')}${td(pct(k.ctr, 2), 'text-right')}${td(vnd(k.cpc), 'text-right')}${td(pct(k.cvr, 0), 'text-right')}</tr>`; });
   const t = {}; ['spend', 'results', 'impressions', 'clicks', 'link_clicks'].forEach(k => t[k] = sum(rows, k)); const k = kpis(t);
   body.push(`<tr class="bg-amber-50 font-semibold">${td('Tổng')}${td(vnd(t.spend), 'text-right')}${td(t.results, 'text-right')}${td(vnd(k.cpr), 'text-right')}${td('', '')}${td(fmt(t.impressions), 'text-right')}${td('', '')}${td(vnd(k.cpm), 'text-right')}${td(pct(k.ctrAll, 2), 'text-right')}${td(t.link_clicks, 'text-right')}${td(pct(k.ctr, 2), 'text-right')}${td(vnd(k.cpc), 'text-right')}${td(pct(k.cvr, 0), 'text-right')}</tr>`);
   document.getElementById('dailyBody').innerHTML = body.join('');
@@ -466,7 +479,140 @@ function renderDaily() {
     `<button data-c="${id}" class="px-3 py-1.5 rounded-lg border ${campSel === id ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white border-slate-200 text-slate-700'}">${l}</button>`).join('');
   document.querySelectorAll('#campFilter button').forEach(b => b.onclick = () => { campSel = b.dataset.c; renderDaily(); });
 }
-renderDaily();
+
+// ---------- video helpers (dữ liệu mẫu quảng cáo từ Insights API cấp quảng cáo) ----------
+const CR = A.creatives || null;
+const VLEN = CR ? CR.meta.video_length_s : null;
+const VK = ['spend', 'impressions', 'reach', 'clicks', 'link_clicks', 'results', 'depth2', 'engagement', 'reactions', 'comments', 'video_3s', 'plays', 'thruplay', 'p25', 'p50', 'p75', 'p95', 'p100', 'v30s'];
+function vsum(rows) {
+  const o = {}; VK.forEach(k => o[k] = sum(rows, k));
+  const pl = sum(rows, 'plays'); o.avg_watch = pl ? rows.reduce((s, r) => s + (r.avg_watch || 0) * (r.plays || 0), 0) / pl : null; // TB có trọng số theo lượt phát
+  return o;
+}
+function vk(r) {
+  return { hook: r.video_3s / r.impressions, tpRate: r.thruplay / r.impressions, hold: r.thruplay / r.video_3s, avg: r.avg_watch, avgPct: r.avg_watch / VLEN,
+    comp: r.p100 / r.video_3s, r25: r.p25 / r.video_3s, r50: r.p50 / r.video_3s, r75: r.p75 / r.video_3s, r95: r.p95 != null ? r.p95 / r.video_3s : null,
+    cpTp: r.spend / r.thruplay, cpkV: r.spend / r.video_3s * 1000, msgPerKV: r.results / r.video_3s * 1000, eng: (r.reactions + r.comments) / r.impressions * 1000,
+    lcShare: r.link_clicks / r.clicks, d2: r.depth2 / r.results };
+}
+const retPoints = r => [[3, 1], [15, r.thruplay / r.video_3s], [VLEN * .25, r.p25 / r.video_3s], [VLEN * .5, r.p50 / r.video_3s], [VLEN * .75, r.p75 / r.video_3s],
+  ...(r.p95 != null ? [[VLEN * .95, r.p95 / r.video_3s]] : []), [VLEN, r.p100 / r.video_3s]].map(([x, y]) => ({ x: +x.toFixed(1), y: +(y * 100).toFixed(1) }));
+const CAMP_BUDGET = 150000; // cả hai chiến dịch 150.000 đ/ngày
+
+// ---------- phân tích từng ngày ----------
+let daySel = DATES.at(-1), dayCampSel = 'ALL', dayRetChart = null;
+const rowsFor = (camp, d) => CD.filter(r => (camp === 'ALL' || r.camp === camp) && (!d || r.date === d));
+const aggr = rs => { const o = {}; ['spend', 'results', 'impressions', 'clicks', 'link_clicks', 'reach'].forEach(k => o[k] = sum(rs, k)); return o; };
+const vRowsFor = (camp, d) => CR ? CR.daily.filter(r => (camp === 'ALL' || r.camp === camp) && (!d || r.date === d)) : [];
+const phaseOf = d => d <= '2026-10-18' ? '15-18/10 · chỉ 1510 chạy' : d <= '2026-10-22' ? '19-22/10 · 1910 mới bật' : '23-25/10 · có T7-CN';
+function dayDates(camp) { return DATES.filter(d => rowsFor(camp, d).length); }
+
+function renderDay() {
+  const dates = dayDates(dayCampSel);
+  if (!dates.includes(daySel)) daySel = dates.at(-1);
+  const i = dates.indexOf(daySel), prevD = dates[i - 1] || null;
+  document.getElementById('daySel').innerHTML = dates.map(d => `<option value="${d}" ${d === daySel ? 'selected' : ''}>${dayLabel(d)}</option>`).join('');
+  document.getElementById('dayPrev').disabled = i <= 0; document.getElementById('dayNext').disabled = i >= dates.length - 1;
+  document.getElementById('dayPrev').classList.toggle('opacity-40', i <= 0); document.getElementById('dayNext').classList.toggle('opacity-40', i >= dates.length - 1);
+  document.getElementById('dayCamp').innerHTML = [['ALL', 'Tổng'], ...A.campaigns.map(c => [c.id, c.id])].map(([id, l]) =>
+    `<button data-c="${id}" class="px-3 py-1.5 rounded-lg border ${dayCampSel === id ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white border-slate-200 text-slate-700'}">${l}</button>`).join('');
+  document.querySelectorAll('#dayCamp button').forEach(b => b.onclick = () => { dayCampSel = b.dataset.c; renderDay(); });
+
+  const cur = aggr(rowsFor(dayCampSel, daySel)), k = kpis(cur);
+  const prev = prevD ? aggr(rowsFor(dayCampSel, prevD)) : null, kp = prev ? kpis(prev) : null;
+  const allRows = rowsFor(dayCampSel), per = aggr(allRows), ka = kpis(per), nDays = dates.length;
+  const activeCamps = new Set(rowsFor(dayCampSel, daySel).map(r => r.camp)).size;
+  const budget = CAMP_BUDGET * activeCamps;
+  const isWeekend = [0, 6].includes(new Date(daySel + 'T00:00:00').getDay());
+  document.getElementById('dayMeta').textContent = `${dayLabel(daySel)} · ${phaseOf(daySel)} · ${activeCamps} chiến dịch chạy · ngân sách ${fmt(budget)} đ${isWeekend ? ' · cuối tuần' : ''}. So sánh với ngày trước${prevD ? ' (' + dayLabel(prevD) + ')' : ''} và trung bình kỳ ${nDays} ngày.`;
+
+  // KPI cards: [nhãn, giá trị hôm nay, hôm trước, TB kỳ (theo ngày cho số đếm, theo tổng cho tỷ lệ), định dạng, cao hơn là tốt?]
+  const C = [
+    ['Chi tiêu', cur.spend, prev?.spend, per.spend / nDays, vnd, null], ['Tin nhắn', cur.results, prev?.results, per.results / nDays, v => fmt(v, v % 1 ? 1 : 0), true],
+    ['Chi phí / tin', k.cpr, kp?.cpr, ka.cpr, vnd, false], ['Hiển thị', cur.impressions, prev?.impressions, per.impressions / nDays, v => fmt(v), null],
+    ['Tiếp cận', cur.reach, prev?.reach, per.reach / nDays, v => fmt(v), null], ['Tần suất', k.freq, kp?.freq, null, v => fmt(v, 2), false],
+    ['CPM', k.cpm, kp?.cpm, ka.cpm, vnd, false], ['CTR tất cả', k.ctrAll, kp?.ctrAll, ka.ctrAll, v => pct(v, 2), true],
+    ['CTR liên kết', k.ctr, kp?.ctr, ka.ctr, v => pct(v, 2), true], ['CPC liên kết', k.cpc, kp?.cpc, ka.cpc, vnd, false],
+    ['CVR click → tin', k.cvr, kp?.cvr, ka.cvr, v => pct(v, 1), true], ['Tin / 1.000 hiển thị', k.mpm, kp?.mpm, ka.mpm, v => fmt(v, 1), true]];
+  const delta = (v, ref, up) => {
+    if (ref == null || !isFinite(ref) || !ref) return '<span class="text-slate-300">-</span>';
+    const d = v / ref - 1, good = up == null ? null : (up ? d >= 0 : d <= 0);
+    const cls = Math.abs(d) < 0.03 || good == null ? 'text-slate-500' : good ? 'text-emerald-600' : 'text-rose-600';
+    return `<span class="${cls}">${d >= 0 ? '▲' : '▼'} ${fmt(Math.abs(d) * 100, 0)}%</span>`;
+  };
+  document.getElementById('dayKpis').innerHTML = C.map(([l, v, p, a, f, up]) => `
+    <div class="p-3 rounded-xl border border-slate-200"><div class="text-[11px] text-slate-500 font-semibold">${l}</div>
+    <div class="text-base font-extrabold text-slate-900 num mt-0.5">${f(v)}</div>
+    <div class="flex justify-between text-[10px] mt-1 num"><span title="So với ngày trước">Hôm trước ${delta(v, p, up)}</span><span title="So với trung bình kỳ">TB ${delta(v, a, up)}</span></div></div>`).join('');
+
+  // Phễu
+  const st = [['Hiển thị', cur.impressions], ['Click (tất cả)', cur.clicks], ['Click liên kết', cur.link_clicks], ['Tin nhắn', cur.results]];
+  const rates = [null, ['CTR tất cả', k.ctrAll, ka.ctrAll], ['Click LK / click', cur.link_clicks / cur.clicks, per.link_clicks / per.clicks], ['CVR', k.cvr, ka.cvr]];
+  document.getElementById('dayFunnel').innerHTML = st.map(([n, v], j) => `
+    <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-600">${n}</span><span class="font-bold num">${fmt(v)}</span></div>
+    <div class="h-4 bg-slate-100 rounded overflow-hidden"><div class="h-full ${j === 3 ? 'bg-emerald-600' : 'bg-slate-400'}" style="width:${Math.max(v / cur.impressions * 100, 1)}%"></div></div>
+    ${rates[j + 1] ? `<div class="text-[11px] text-slate-500 mt-1 num"><i class="fa-solid fa-arrow-down mr-1 text-slate-300"></i>${rates[j + 1][0]} ${pct(rates[j + 1][1], 1)} <span class="text-slate-400">(TB ${pct(rates[j + 1][2], 1)})</span></div>` : ''}</div>`).join('');
+
+  // Phân rã chi phí/tin: CPR_d/CPR_tb = (CPM_d/CPM_tb) × (CTR_tb/CTR_d) × (CVR_tb/CVR_d)
+  const fx = [['CPM (giá hiển thị)', k.cpm / ka.cpm], ['CTR liên kết', ka.ctr / k.ctr], ['CVR click → tin', ka.cvr / k.cvr]];
+  const ratio = k.cpr / ka.cpr, maxAbs = Math.max(...fx.map(([, r]) => Math.abs(Math.log(r))), 0.01);
+  document.getElementById('dayDecomp').innerHTML = `<div class="text-xs num mb-2">Chi phí/tin <b>${vnd(k.cpr)}</b> so với TB <b>${vnd(ka.cpr)}</b>: <b class="${ratio <= 1 ? 'text-emerald-700' : 'text-rose-600'}">${ratio <= 1 ? 'rẻ hơn' : 'đắt hơn'} ${fmt(Math.abs(ratio - 1) * 100, 0)}%</b></div>` +
+    fx.map(([n, r]) => { const l = Math.log(r), w = Math.abs(l) / maxAbs * 50, good = l <= 0;
+      return `<div><div class="flex justify-between text-xs"><span class="text-slate-600">${n}</span><span class="num font-semibold ${good ? 'text-emerald-700' : 'text-rose-600'}">${r >= 1 ? '+' : '-'}${fmt(Math.abs(r - 1) * 100, 0)}% chi phí</span></div>
+      <div class="relative h-3 bg-slate-100 rounded mt-1"><div class="absolute top-0 bottom-0 left-1/2 w-px bg-slate-300"></div>
+      <div class="absolute top-0 bottom-0 rounded ${good ? 'bg-emerald-500' : 'bg-rose-400'}" style="${good ? `right:50%` : `left:50%`};width:${w}%"></div></div></div>`; }).join('') +
+    `<p class="text-[11px] text-slate-400 mt-2">Xanh: kéo chi phí xuống · đỏ: đẩy chi phí lên. Ba hệ số nhân với nhau ra đúng mức chênh.</p>`;
+
+  // Video
+  const vD = vsum(vRowsFor(dayCampSel, daySel)), vA = vsum(vRowsFor(dayCampSel)), kv = vk(vD), kva = vk(vA);
+  const vbox = (l, v, a, f, tip) => `<div class="p-2 rounded-lg bg-slate-50" title="${tip}"><div class="text-[10px] text-slate-500">${l}</div><div class="text-sm font-bold num">${f(v)}</div><div class="text-[10px] text-slate-400 num">TB ${f(a)}</div></div>`;
+  document.getElementById('dayVideo').innerHTML = CR ? [
+    vbox('Lượt xem 3 giây', vD.video_3s, vA.video_3s / nDays, v => fmt(v), 'Số lượt xem từ 3 giây'),
+    vbox('Tỷ lệ dừng xem', kv.hook, kva.hook, v => pct(v, 1), 'Lượt xem 3 giây / hiển thị'),
+    vbox('Giữ tới 15 giây', kv.hold, kva.hold, v => pct(v, 1), 'ThruPlay / lượt xem 3 giây'),
+    vbox('Xem TB (giây)', kv.avg, kva.avg, v => fmt(v, 1) + 's', 'Thời gian xem trung bình mỗi lượt phát'),
+    vbox('Xem hết video', kv.comp, kva.comp, v => pct(v, 1), 'Xem 100% / lượt xem 3 giây'),
+    vbox('Tin / 1.000 lượt xem', kv.msgPerKV, kva.msgPerKV, v => fmt(v, 1), 'Tin nhắn trên 1.000 lượt xem 3 giây')].join('') : '<div class="text-xs text-slate-400">Chưa có dữ liệu video</div>';
+  if (CR && charted.daily) drawDayRet(vD, vA);
+
+  // Kết luận theo quy tắc
+  const out = [], n = cur.results;
+  const ciLo = n ? cur.spend / (n + 1.96 * Math.sqrt(n)) : null, ciHi = n > 4 ? cur.spend / (n - 1.96 * Math.sqrt(n)) : null;
+  const main = fx.slice().sort((a, b) => Math.abs(Math.log(b[1])) - Math.abs(Math.log(a[1])))[0];
+  out.push(`Chi phí/tin ${vnd(k.cpr)}, ${ratio <= 1 ? 'rẻ hơn' : 'đắt hơn'} trung bình kỳ ${fmt(Math.abs(ratio - 1) * 100, 0)}%. Yếu tố tác động lớn nhất: <b>${main[0]}</b> (${main[1] >= 1 ? 'đẩy chi phí lên' : 'kéo chi phí xuống'} ${fmt(Math.abs(main[1] - 1) * 100, 0)}%).`);
+  if (n < 15) out.push(`Chỉ có ${n} tin nên số ngày này dao động mạnh: khoảng tin cậy 95% của chi phí/tin là ${vnd(ciLo)} - ${ciHi ? vnd(ciHi) : 'rất cao'}. Không nên tăng/giảm ngân sách chỉ vì một ngày.`);
+  if (cur.spend < budget * 0.6) out.push(`Chi tiêu chỉ ${pct(cur.spend / budget, 0)} ngân sách ngày: phân phối bị giới hạn (chạm trần chi 7 × ngân sách/tuần hoặc lỗi phân phối).`);
+  else if (cur.spend > budget * 1.25) out.push(`Chi tiêu ${pct(cur.spend / budget, 0)} ngân sách ngày (Meta được chi vượt tới 75% trong ngày, bù lại các ngày sau trong tuần).`);
+  if (k.cpm > ka.cpm * 1.15) out.push(`CPM cao hơn TB ${fmt((k.cpm / ka.cpm - 1) * 100, 0)}%: đấu giá đắt hơn${isWeekend ? ' (cuối tuần)' : ''} hoặc mẫu bị đánh giá chất lượng thấp. Kiểm tra lại khi có thêm ngày.`);
+  if (k.cvr < ka.cvr * 0.85) out.push(`CVR ${pct(k.cvr)} thấp hơn TB (${pct(ka.cvr)}): nhiều người mở Messenger nhưng không gửi tin. Kiểm tra lời chào, câu hỏi gợi ý và giờ trực tin hôm đó.`);
+  else if (k.cvr > ka.cvr * 1.15) out.push(`CVR ${pct(k.cvr)} cao hơn TB (${pct(ka.cvr)}): người click hôm nay có ý định nhắn tin rõ hơn.`);
+  if (cur.link_clicks / cur.clicks < 0.25) out.push(`Chỉ ${pct(cur.link_clicks / cur.clicks, 0)} click là click mở Messenger, còn lại là xem video/ảnh, xem thêm: nút và lời kêu gọi nhắn tin chưa đủ nổi.`);
+  if (CR && kv.hook < kva.hook * 0.9) out.push(`Tỷ lệ dừng xem video giảm còn ${pct(kv.hook)} (TB ${pct(kva.hook)}): 3 giây đầu kém hấp dẫn hơn với nhóm được phân phối hôm nay, theo dõi dấu hiệu mỏi mẫu.`);
+  if (CR && kv.hold > kva.hold * 1.1) out.push(`Người xem giữ lại tới 15 giây nhiều hơn TB (${pct(kv.hold)} so với ${pct(kva.hold)}).`);
+  if (prev && kp) { const dc = k.cpr / kp.cpr - 1; if (Math.abs(dc) > 0.3) out.push(`So với ${dayLabel(prevD)}: chi phí/tin ${dc < 0 ? 'giảm' : 'tăng'} ${fmt(Math.abs(dc) * 100, 0)}% (${vnd(kp.cpr)} → ${vnd(k.cpr)}).`); }
+  document.getElementById('dayInsights').innerHTML = out.map(t => `<li>${t}</li>`).join('');
+
+  // Bảng hai chiến dịch trong ngày
+  const rs = A.campaigns.map(c => ({ id: c.id, r: CD.find(x => x.camp === c.id && x.date === daySel) }));
+  const met = [['Chi tiêu', r => vnd(r.spend)], ['Tin nhắn', r => fmt(r.results)], ['Chi phí / tin', r => vnd(r.spend / r.results)], ['CPM', r => vnd(kpis(r).cpm)],
+    ['CTR liên kết', r => pct(kpis(r).ctr, 2)], ['CVR', r => pct(kpis(r).cvr, 1)], ['Tần suất', r => fmt(kpis(r).freq, 2)]];
+  document.getElementById('dayCampTable').innerHTML = `<tr class="text-slate-500"><td class="py-1.5"></td>${rs.map(x => `<td class="py-1.5 text-right font-semibold">${x.id}</td>`).join('')}</tr>` +
+    met.map(([n, f]) => `<tr><td class="py-1.5 text-slate-600">${n}</td>${rs.map(x => `<td class="py-1.5 text-right">${x.r ? f(x.r) : '<span class="text-slate-300">chưa chạy</span>'}</td>`).join('')}</tr>`).join('');
+  renderDaily(); // tô sáng ngày đang chọn trong bảng
+}
+function drawDayRet(vD, vA) {
+  if (dayRetChart) dayRetChart.destroy();
+  dayRetChart = new Chart(document.getElementById('dayRetChart'), { type: 'line', data: { datasets: [
+    { label: 'Ngày chọn', data: vD.video_3s ? retPoints(vD) : [], borderColor: '#047857', backgroundColor: '#047857', pointRadius: 2, tension: 0.25 },
+    { label: 'TB kỳ', data: retPoints(vA), borderColor: '#94a3b8', borderDash: [4, 4], pointRadius: 0, tension: 0.25 }] },
+    options: { animation: false, responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: c => c[0].parsed.x + ' giây', label: c => c.dataset.label + ': ' + fmt(c.parsed.y, 1) + '%' } } },
+      scales: { x: { type: 'linear', min: 0, max: Math.ceil(VLEN), ticks: { callback: v => v + 's' } }, y: { min: 0, max: 100, ticks: { callback: v => v + '%' } } } } });
+}
+document.getElementById('daySel').addEventListener('change', e => { daySel = e.target.value; renderDay(); });
+document.getElementById('dayPrev').addEventListener('click', () => { const d = dayDates(dayCampSel); const i = d.indexOf(daySel); if (i > 0) { daySel = d[i - 1]; renderDay(); } });
+document.getElementById('dayNext').addEventListener('click', () => { const d = dayDates(dayCampSel); const i = d.indexOf(daySel); if (i < d.length - 1) { daySel = d[i + 1]; renderDay(); } });
+document.getElementById('dailyBody').addEventListener('click', e => { const tr = e.target.closest('tr[data-d]'); if (tr) { daySel = tr.dataset.d; renderDay(); document.getElementById('dayCard').scrollIntoView({ behavior: 'smooth' }); } });
+renderDay();
 
 // ---------- segments tables ----------
 (function () {
@@ -500,25 +646,123 @@ renderDaily();
     return `<tr>${td(g, 'font-semibold')}${td(vnd(s), 'text-right')}${td(r, 'text-right')}${td(r ? vnd(s / r) : '-', 'text-right')}${td(vnd(s / im * 1000), 'text-right')}${td(fmt(r / im * 1000, 1), 'text-right')}</tr>`; }).join('');
 })();
 
+// ---------- mẫu quảng cáo ----------
+// Ngưỡng tham khảo (kinh nghiệm thực hành cho video quảng cáo nhắn tin trên Facebook), chỉnh tại đây
+const CR_BENCH = { hook: 0.30, hold: 0.30, ctr: 0.01, avgPct: 0.25, comp: 0.10 };
+const CR_METRICS = [
+  ['hook', 'Tỷ lệ dừng xem (3 giây / hiển thị)', r => vk(r).hook, v => pct(v, 1)], ['hold', 'Giữ tới 15 giây (ThruPlay / xem 3 giây)', r => vk(r).hold, v => pct(v, 1)],
+  ['tpRate', 'ThruPlay / hiển thị', r => vk(r).tpRate, v => pct(v, 1)], ['avg', 'Thời gian xem TB (giây)', r => r.avg_watch, v => fmt(v, 1) + 's'],
+  ['comp', 'Xem hết video / xem 3 giây', r => vk(r).comp, v => pct(v, 1)], ['ctr', 'CTR liên kết', r => r.link_clicks / r.impressions, v => pct(v, 2)],
+  ['ctrAll', 'CTR tất cả', r => r.clicks / r.impressions, v => pct(v, 2)], ['cvr', 'CVR click → tin', r => r.results / r.link_clicks, v => pct(v, 1)],
+  ['cpr', 'Chi phí / tin', r => r.spend / r.results, vnd], ['cpm', 'CPM', r => r.spend / r.impressions * 1000, vnd], ['cpTp', 'Chi phí / ThruPlay', r => r.spend / r.thruplay, vnd]];
+const RANK_VI = { ABOVE_AVERAGE: 'Trên TB', AVERAGE: 'Trung bình', BELOW_AVERAGE_35: 'Dưới TB (35% cuối)', BELOW_AVERAGE_20: 'Dưới TB (20% cuối)', BELOW_AVERAGE_10: 'Dưới TB (10% cuối)', UNKNOWN: 'Chưa đủ dữ liệu' };
+let crCharts = {};
+(function renderCreatives() {
+  if (!CR) { document.getElementById('crNote').textContent = 'Chưa có dữ liệu mẫu quảng cáo trong analytics_data.json (mục creatives).'; return; }
+  const ads = CR.ads.map(a => ({ ...a, v: vk(a) })), T = vsum(CR.ads), tv = vk(T);
+  if (A.meta.reach_unique) T.reach = A.meta.reach_unique; // tiếp cận không trùng giữa 2 quảng cáo
+  document.getElementById('crNote').innerHTML = `<i class="fa-solid fa-circle-info mr-1"></i>${esc(CR.meta.note)} Nguồn: ${esc(CR.meta.source)}, kỳ ${esc(CR.meta.period)}. Định dạng: ${esc(CR.meta.format)} ${fmt(VLEN, 1)} giây, nút ${esc(CR.meta.cta)}.`;
+  const kp = [['Lượt xem 3 giây', fmt(T.video_3s)], ['Tỷ lệ dừng xem', pct(tv.hook, 1)], ['ThruPlay', fmt(T.thruplay)], ['Giữ tới 15 giây', pct(tv.hold, 1)],
+    ['Xem TB', fmt(T.avg_watch, 1) + 's / ' + fmt(VLEN, 0) + 's'], ['Xem hết video', pct(tv.comp, 1)], ['CTR liên kết', pct(T.link_clicks / T.impressions, 2)], ['Tin / 1.000 lượt xem', fmt(tv.msgPerKV, 1)]];
+  document.getElementById('crKpis').innerHTML = kp.map(([l, v]) => `<div class="card p-4"><div class="text-[11px] font-semibold uppercase tracking-wide text-slate-400">${l}</div><div class="text-lg font-extrabold text-slate-900 num mt-1">${v}</div></div>`).join('');
+
+  // Bảng chỉ số: [nhóm, tên, hàm giá trị, định dạng, cao hơn là tốt?]
+  const R = [
+    ['Phân phối', 'Chi tiêu', r => r.spend, vnd, null], ['', 'Hiển thị', r => r.impressions, v => fmt(v), null], ['', 'Tiếp cận', r => r.reach, v => fmt(v), null],
+    ['', 'Tần suất', r => r.impressions / r.reach, v => fmt(v, 2), false], ['', 'CPM', r => r.spend / r.impressions * 1000, vnd, false],
+    ['Thu hút (3 giây đầu)', 'Lượt phát video', r => r.plays, v => fmt(v), null], ['', 'Lượt xem 3 giây', r => r.video_3s, v => fmt(v), null],
+    ['', 'Tỷ lệ dừng xem (3 giây / hiển thị)', r => vk(r).hook, v => pct(v, 1), true], ['', 'Chi phí / 1.000 lượt xem 3 giây', r => vk(r).cpkV, vnd, false],
+    ['Giữ chân', 'ThruPlay (xem 15 giây hoặc hết)', r => r.thruplay, v => fmt(v), null], ['', 'ThruPlay / hiển thị', r => vk(r).tpRate, v => pct(v, 1), true],
+    ['', 'Giữ tới 15 giây (ThruPlay / 3 giây)', r => vk(r).hold, v => pct(v, 1), true], ['', 'Xem 25% video', r => vk(r).r25, v => pct(v, 1), true],
+    ['', 'Xem 50% video', r => vk(r).r50, v => pct(v, 1), true], ['', 'Xem 75% video', r => vk(r).r75, v => pct(v, 1), true], ['', 'Xem 95% video', r => vk(r).r95, v => pct(v, 1), true],
+    ['', 'Xem hết 100%', r => vk(r).comp, v => pct(v, 1), true], ['', 'Lượt xem từ 30 giây', r => r.v30s, v => fmt(v), null],
+    ['', 'Thời gian xem TB', r => r.avg_watch, v => fmt(v, 1) + 's (' + pct(v / VLEN, 0) + ')', true], ['', 'Chi phí / ThruPlay', r => vk(r).cpTp, vnd, false],
+    ['Click & tương tác', 'Click (tất cả)', r => r.clicks, v => fmt(v), null], ['', 'CTR tất cả', r => r.clicks / r.impressions, v => pct(v, 2), true],
+    ['', 'Click liên kết (mở Messenger)', r => r.link_clicks, v => fmt(v), null], ['', 'CTR liên kết', r => r.link_clicks / r.impressions, v => pct(v, 2), true],
+    ['', 'CPC liên kết', r => r.spend / r.link_clicks, vnd, false], ['', 'Click liên kết / tổng click', r => vk(r).lcShare, v => pct(v, 0), true],
+    ['', 'Cảm xúc + bình luận / 1.000 hiển thị', r => vk(r).eng, v => fmt(v, 1), true],
+    ['Chuyển đổi', 'Tin nhắn bắt đầu', r => r.results, v => fmt(v), null], ['', 'CVR click → tin', r => r.results / r.link_clicks, v => pct(v, 1), true],
+    ['', 'Tin / 1.000 lượt xem 3 giây', r => vk(r).msgPerKV, v => fmt(v, 1), true], ['', 'Chi phí / tin', r => r.spend / r.results, vnd, false],
+    ['', 'Khách gửi từ 2 tin trở lên', r => r.depth2, v => fmt(v), null], ['', 'Tỷ lệ gửi từ 2 tin / tin nhắn', r => vk(r).d2, v => pct(v, 0), true],
+    ['Xếp hạng Meta', 'Chất lượng', r => r.ranking ? RANK_VI[r.ranking[0]] || r.ranking[0] : '', v => esc(v), null],
+    ['', 'Tỷ lệ tương tác', r => r.ranking ? RANK_VI[r.ranking[1]] || r.ranking[1] : '', v => esc(v), null], ['', 'Tỷ lệ chuyển đổi', r => r.ranking ? RANK_VI[r.ranking[2]] || r.ranking[2] : '', v => esc(v), null]];
+  document.getElementById('crHead').innerHTML = [th('Nhóm'), th('Chỉ số'), ...ads.map(a => th(esc(a.camp + ' · ' + a.ad), true)), th('Tổng', true)].join('');
+  document.getElementById('crBody').innerHTML = R.map(([g, n, f, F, up]) => {
+    const vals = ads.map(a => f(a)); const tval = n.startsWith('Chất lượng') || n.startsWith('Tỷ lệ tương tác') || n.startsWith('Tỷ lệ chuyển đổi') ? '' : f(T);
+    const nums = vals.filter(v => typeof v === 'number' && isFinite(v)); const best = up == null || nums.length < 2 ? null : (up ? Math.max(...nums) : Math.min(...nums));
+    return `<tr class="hover:bg-slate-50 ${g ? 'border-t-2 border-slate-200' : ''}">${td(g ? `<b class="text-slate-800">${g}</b>` : '', 'text-xs')}${td(n, 'text-slate-700')}${vals.map(v => td(F(v), 'text-right ' + (best != null && v === best ? 'text-emerald-700 font-bold' : ''))).join('')}${td(tval === '' ? '' : F(tval), 'text-right font-semibold')}</tr>`;
+  }).join('');
+
+  // Vị trí hiển thị
+  const pls = [...new Set(CR.placements.map(p => p.placement))];
+  const pa = pls.map(p => { const rs = CR.placements.filter(r => r.placement === p); const o = vsum(rs); o.p95 = null; return { p, o }; }).sort((a, b) => b.o.impressions - a.o.impressions);
+  document.getElementById('crPlcHead').innerHTML = ['Vị trí', 'Chi tiêu', 'Hiển thị', 'Dừng xem', 'Giữ 15 giây', 'Xem 50%', 'Xem hết', 'Xem TB', 'CTR LK', 'Tin', 'Chi phí/tin'].map((h, i) => th(h, i > 0)).join('');
+  document.getElementById('crPlcBody').innerHTML = pa.map(({ p, o }) => { const v = vk(o), small = o.impressions < 100;
+    return `<tr class="${small ? 'text-slate-400' : ''}">${td(esc(p), 'font-semibold')}${td(vnd(o.spend), 'text-right')}${td(fmt(o.impressions), 'text-right')}${td(pct(v.hook, 1), 'text-right')}${td(pct(v.hold, 1), 'text-right')}${td(pct(v.r50, 1), 'text-right')}${td(pct(v.comp, 1), 'text-right')}${td(o.avg_watch != null ? fmt(o.avg_watch, 1) + 's' : '-', 'text-right')}${td(pct(o.link_clicks / o.impressions, 2), 'text-right')}${td(o.results, 'text-right')}${td(o.results ? vnd(o.spend / o.results) : '-', 'text-right')}</tr>`; }).join('');
+
+  // Chẩn đoán theo quy tắc
+  const reels = pa.find(x => x.p === 'Reels'), feed = pa.find(x => x.p === 'Bảng feed');
+  const lvl = (ok, warn) => ok ? '<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i>' : warn ? '<i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1.5"></i>' : '<i class="fa-solid fa-circle-xmark text-rose-500 mr-1.5"></i>';
+  const D = [];
+  D.push(`${lvl(tv.hook >= CR_BENCH.hook, true)}<b>3 giây đầu tốt:</b> ${pct(tv.hook, 0)} lượt hiển thị dừng lại xem từ 3 giây (tham khảo ≥ ${pct(CR_BENCH.hook, 0)}). Giữ nguyên cảnh mở đầu khi dựng bản mới.`);
+  D.push(`${lvl(tv.avgPct >= CR_BENCH.avgPct, true)}<b>Video quá dài so với thời gian xem:</b> xem trung bình ${fmt(T.avg_watch, 0)} giây trên ${fmt(VLEN, 0)} giây (${pct(tv.avgPct, 0)}); chỉ ${pct(tv.r50, 0)} người xem 3 giây xem tới nửa video và ${pct(tv.comp, 0)} xem hết. Giá 500k, quyền lợi chính và lời mời "nhắn tin để giữ chỗ" phải nằm trong 15 giây đầu; nên dựng thêm bản 15-30 giây.`);
+  D.push(`${lvl(T.link_clicks / T.impressions >= CR_BENCH.ctr, true)}<b>Click mở Messenger:</b> CTR liên kết ${pct(T.link_clicks / T.impressions, 2)} (tham khảo ≥ ${pct(CR_BENCH.ctr, 0)}), nhưng chỉ ${pct(tv.lcShare, 0)} tổng click là click mở Messenger: phần lớn người bấm để xem video/đọc thêm. Thêm chữ và giọng đọc kêu gọi bấm "Gửi tin nhắn" ở giây 5-10 và cuối video.`);
+  if (reels && feed) D.push(`${lvl(true)}<b>Reels giữ chân tốt hơn Feed:</b> xem TB ${fmt(reels.o.avg_watch, 0)}s so với ${fmt(feed.o.avg_watch, 0)}s, giữ tới 15 giây ${pct(vk(reels.o).hold, 0)} so với ${pct(vk(feed.o).hold, 0)}, chi phí/tin ${vnd(reels.o.spend / reels.o.results)} so với ${vnd(feed.o.spend / feed.o.results)}. Ưu tiên video dọc 9:16.`);
+  const low = ads.find(a => a.ranking && /BELOW/.test(a.ranking[0]));
+  if (low) D.push(`${lvl(false)}<b>"${esc(low.ad)}" bị xếp chất lượng ${RANK_VI[low.ranking[0]]}</b> dù tương tác và chuyển đổi trên TB. Nguyên nhân thường gặp: chữ dày trên video, cảm giác quá "quảng cáo", nhiều người ẩn/báo cáo. Chất lượng thấp làm CPM cao hơn.`);
+  D.push(`${lvl(false, true)}<b>Chưa so sánh được mẫu:</b> hai quảng cáo dùng chung một video, khác biệt giữa 1510 và 1910 đến từ đối tượng và chiến dịch chứ không phải nội dung. Muốn biết mẫu nào tốt, đặt 2-3 video khác nhau trong cùng một nhóm quảng cáo.`);
+  // Mỏi mẫu: so 3 ngày đầu và 3 ngày cuối của từng quảng cáo
+  ads.forEach(a => { const ds = CR.daily.filter(r => r.camp === a.camp).sort((x, y) => x.date.localeCompare(y.date)); if (ds.length < 6) return;
+    const h1 = vk(vsum(ds.slice(0, 3))).hook, h2 = vk(vsum(ds.slice(-3))).hook, c1 = vsum(ds.slice(0, 3)), c2 = vsum(ds.slice(-3));
+    const ctr1 = c1.link_clicks / c1.impressions, ctr2 = c2.link_clicks / c2.impressions;
+    const tired = h2 < h1 * 0.9 && ctr2 < ctr1 * 0.9;
+    D.push(`${lvl(!tired, true)}<b>${esc(a.camp)} mỏi mẫu?</b> Tỷ lệ dừng xem 3 ngày đầu ${pct(h1, 0)} → 3 ngày cuối ${pct(h2, 0)}, CTR liên kết ${pct(ctr1, 2)} → ${pct(ctr2, 2)}. ${tired ? 'Cả hai cùng giảm: chuẩn bị mẫu mới.' : 'Chưa có dấu hiệu mỏi.'}`); });
+  document.getElementById('crDiag').innerHTML = D.map(t => `<li class="leading-relaxed">${t}</li>`).join('');
+
+  document.getElementById('crMetric').innerHTML = CR_METRICS.map(([k, l]) => `<option value="${k}">${l}</option>`).join('');
+  document.getElementById('crMetric').addEventListener('change', drawCrDaily);
+})();
+function drawCrDaily() {
+  const key = document.getElementById('crMetric').value, m = CR_METRICS.find(x => x[0] === key);
+  const dates = [...new Set(CR.daily.map(r => r.date))].sort();
+  if (crCharts.daily) crCharts.daily.destroy();
+  crCharts.daily = new Chart(document.getElementById('crDailyChart'), { type: 'line', data: { labels: dates.map(dayLabel), datasets: CR.ads.map((a, i) => ({
+    label: a.camp + ' · ' + a.ad, data: dates.map(d => { const r = CR.daily.find(x => x.camp === a.camp && x.date === d); const v = r ? m[2](r) : null; return v != null && isFinite(v) ? v : null; }),
+    borderColor: i ? '#22c55e' : '#047857', backgroundColor: i ? '#22c55e' : '#047857', tension: 0.3, pointRadius: 3, spanGaps: false })) },
+    options: { animation: false, responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: { tooltip: { callbacks: { label: c => c.dataset.label + ': ' + m[3](c.parsed.y) } } }, scales: { y: { beginAtZero: true, ticks: { callback: v => m[3](v) } } } } });
+}
+
 // ---------- CRM (intent from customer messages only) ----------
 const convs = DATA.conversations;
 const custMsgs = c => c.messages.filter(m => !m.is_page && (m.text || '').trim());
 const tplCount = {}; convs.forEach(c => custMsgs(c).forEach(m => { const t = m.text.trim(); tplCount[t] = (tplCount[t] || 0) + 1; }));
 const TEMPLATES = new Set(Object.keys(tplCount).filter(t => tplCount[t] >= 5));
-const PHONE_RE = /(?:\+?84|0)(?:[\s.\-]?\d){9}/;
+// SĐT Việt Nam (di động 03/05/07/08/09, cố định 02), không dính vào dãy số dài hơn (ví dụ ID bình luận)
+const PHONE_RE_G = /(?<![\d])(?:\+?84|0)[235789](?:[\s.\-]?\d){8}(?![\d])/g;
+const normPhone = p => p.replace(/\D/g, '').replace(/^84/, '0');
+// Số do page gửi trước (hotline, số nhân viên...) không phải SĐT khách: loại khỏi mọi hội thoại
+const PAGE_PHONES = new Set();
+convs.forEach(c => {
+  const custSaid = new Set();
+  c.messages.slice().sort((a, b) => a.time.localeCompare(b.time)).forEach(m => (m.text || '').match(PHONE_RE_G)?.forEach(p => {
+    const n = normPhone(p); if (m.is_page) { if (!custSaid.has(n)) PAGE_PHONES.add(n); } else custSaid.add(n);
+  }));
+});
+const customerPhone = ms => { for (const m of ms) for (const p of (m.text.match(PHONE_RE_G) || [])) { const n = normPhone(p); if (!PAGE_PHONES.has(n)) return n; } return null; };
 const INTENTS = [
   ['Hỏi giá', /giá|bao nhiêu|bn\b|tiền|chi phí/i], ['Hỏi ghép đoàn', /ghép|đoàn|nhóm|hội|các bà/i], ['Hỏi lịch trình', /lịch trình|du ngoạn|đi chơi|đền|lễ/i],
   ['Hỏi phòng / ăn', /phòng|ăn|bữa/i], ['Hỏi ngày đi', /ngày|thứ|tháng|mùng|rằm|\d{1,2}\/\d{1,2}/i], ['Hỏi xe / điểm đón', /\bxe\b|đón|đưa/i]];
 convs.forEach(c => {
   const ms = custMsgs(c); const text = ms.map(m => m.text).join(' \n ');
   c._cust = ms; c._free = ms.filter(m => !TEMPLATES.has(m.text.trim()));
-  c._phone = c.phone || (text.match(PHONE_RE) || [null])[0];
+  c._phone = customerPhone(ms); // chỉ số khách tự gửi, bỏ trường phone tính sẵn (trước đây lẫn hotline của page)
   c._intents = INTENTS.filter(([, re]) => re.test(text)).map(([n]) => n);
   c._level = c._phone ? 'Có SĐT' : c._free.length >= 2 ? 'Trao đổi thật' : c._free.length === 1 ? 'Có hỏi thêm' : ms.length ? 'Chỉ bấm câu mẫu' : 'Không có tin khách';
 });
 (function () {
   const ts = convs.map(c => c.updated_time).sort();
-  document.getElementById('crmScope').textContent = `${convs.length} hội thoại gần nhất (${ts[0].slice(8, 10)}/${ts[0].slice(5, 7)} - ${ts.at(-1).slice(8, 10)}/${ts.at(-1).slice(5, 7)}), không phải toàn bộ ${TOT.results} tin nhắn từ quảng cáo. "Câu mẫu" = câu hỏi gợi ý xuất hiện từ 5 lần trở lên.`;
+  document.getElementById('crmScope').textContent = `${convs.length} hội thoại gần nhất (${ts[0].slice(8, 10)}/${ts[0].slice(5, 7)} - ${ts.at(-1).slice(8, 10)}/${ts.at(-1).slice(5, 7)}), không phải toàn bộ ${TOT.results} tin nhắn từ quảng cáo. "Câu mẫu" = câu hỏi gợi ý xuất hiện từ 5 lần trở lên. SĐT chỉ tính số do khách tự gửi${PAGE_PHONES.size ? `; đã loại ${PAGE_PHONES.size} số do page gửi (hotline, số liên hệ)` : ''}.`;
   const n = convs.length, steps = [
     ['Hội thoại', n], ['Khách có gửi tin', convs.filter(c => c._cust.length).length], ['Khách tự gõ câu hỏi (ngoài câu mẫu)', convs.filter(c => c._free.length).length],
     ['Trao đổi từ 2 câu tự gõ trở lên', convs.filter(c => c._free.length >= 2).length], ['Để lại số điện thoại', convs.filter(c => c._phone).length]];
@@ -599,8 +843,8 @@ document.getElementById('kpiTargetBody').innerHTML = TARGETS.map(([n, v, f, tg, 
 // ---------- charts (lazy per tab) ----------
 Chart.defaults.font.family = "'Be Vietnam Pro', system-ui, sans-serif"; Chart.defaults.font.size = 11; Chart.defaults.color = '#64748b';
 const CHARTS = {
-  creatives() { initRetentionChart(); },
   daily() {
+    if (CR) drawDayRet(vsum(vRowsFor(dayCampSel, daySel)), vsum(vRowsFor(dayCampSel)));
     const lab = DATES.map(dayLabel);
     const by = id => DATES.map(d => (CD.find(r => r.date === d && r.camp === id) || {}).results || 0);
     new Chart(document.getElementById('dailyChart'), { data: { labels: lab, datasets: [
@@ -608,6 +852,7 @@ const CHARTS = {
       { type: 'line', label: 'TB kỳ', data: DATES.map(() => Math.round(TK.cpr)), borderColor: '#94a3b8', borderDash: [5, 5], pointRadius: 0, yAxisID: 'y1' },
       ...A.campaigns.map((c, i) => ({ type: 'bar', label: 'Tin ' + c.id, data: by(c.id), backgroundColor: i ? '#86efac' : '#047857', stack: 's', yAxisID: 'y' }))] },
       options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        onClick: (e, els) => { if (els.length) { daySel = DATES[els[0].index]; if (dayCampSel !== 'ALL' && !rowsFor(dayCampSel, daySel).length) dayCampSel = 'ALL'; renderDay(); document.getElementById('dayCard').scrollIntoView({ behavior: 'smooth' }); } },
         scales: { y: { stacked: true, suggestedMax: 50, title: { display: true, text: 'Tin nhắn' } }, y1: { position: 'right', beginAtZero: true, grid: { drawOnChartArea: false }, ticks: { callback: v => fmt(v / 1000) + 'k' }, title: { display: true, text: 'đ / tin' } } } } });
   },
   segments() {
@@ -622,6 +867,16 @@ const CHARTS = {
       options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { afterLabel: c => `${fmt(pa[c.dataIndex].mpm, 1)} tin / 1.000 hiển thị` + (pa[c.dataIndex].res < 20 ? ' · mẫu nhỏ' : '') } } },
         scales: { x: { beginAtZero: true, ticks: { callback: v => fmt(v / 1000) + 'k' } } } } });
   },
+  creatives() {
+    if (!CR) return;
+    crCharts.ret = new Chart(document.getElementById('crRetChart'), { type: 'line', data: { datasets: [
+      ...CR.ads.map((a, i) => ({ label: a.camp + ' · ' + a.ad, data: retPoints(a), borderColor: i ? '#22c55e' : '#047857', backgroundColor: i ? '#22c55e' : '#047857', pointRadius: 4, tension: 0.25 })),
+      { label: 'Trung bình thời gian xem', data: [{ x: +vsum(CR.ads).avg_watch.toFixed(1), y: 0 }, { x: +vsum(CR.ads).avg_watch.toFixed(1), y: 100 }], borderColor: '#f59e0b', borderDash: [5, 5], pointRadius: 0 }] },
+      options: { animation: false, responsive: true, maintainAspectRatio: false, plugins: { tooltip: { callbacks: { title: c => c[0].parsed.x + ' giây', label: c => c.dataset.label + ': ' + fmt(c.parsed.y, 1) + '%' } } },
+        scales: { x: { type: 'linear', min: 0, max: Math.ceil(VLEN), title: { display: true, text: 'giây (3s · ThruPlay 15s · 25% · 50% · 75% · 95% · 100%)' }, ticks: { callback: v => v + 's' } },
+          y: { min: 0, max: 100, title: { display: true, text: '% người xem 3 giây' }, ticks: { callback: v => v + '%' } } } } });
+    drawCrDaily();
+  },
   monthly() {
     new Chart(document.getElementById('monthlyChart'), { type: 'bar', data: { labels: MONTHS.map(m => m.month), datasets: [{ label: 'Chi tiêu (đ)', data: MONTHS.map(m => m.spend), backgroundColor: MONTHS.map(m => m.messages ? '#047857' : '#94a3b8'), borderRadius: 6 }] },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => fmt(v / 1e6, 1) + ' tr' } } } } });
@@ -635,7 +890,7 @@ function exportData() {
 
 
 // ==========================================
-// PIN PROTECTION (2707)
+// PIN PROTECTION (2707) & LIVE TOOLS
 // ==========================================
 function quickUnlock() {
   const input = document.getElementById('pinInput');
@@ -686,7 +941,6 @@ function lockDashboard() {
 }
 
 function checkPinOnLoad() {
-  // Check URL param ?pin=2707 first
   try {
     const params = new URLSearchParams(window.location.search);
     if (params.get('pin') === '2707') {
@@ -696,7 +950,6 @@ function checkPinOnLoad() {
     }
   } catch (err) {}
 
-  // Check saved localStorage
   try {
     if (localStorage.getItem('hph_pin_auth') === '2707') {
       unlockDashboard();
@@ -704,11 +957,8 @@ function checkPinOnLoad() {
   } catch (err) {}
 }
 
-// ==========================================
-// 24/7 AUTO REFRESH COUNTDOWN
-// ==========================================
 (function startAutoRefreshTimer() {
-  let timeLeft = 300; // 5 minutes
+  let timeLeft = 300;
   const cdEl = document.getElementById('autoRefreshCountdown');
   setInterval(() => {
     timeLeft--;
@@ -724,282 +974,8 @@ function checkPinOnLoad() {
   }, 1000);
 })();
 
-// ==========================================
-// SINGLE DAY DEEP DIVE LOGIC
-// ==========================================
-function initSingleDayPicker() {
-  const sel = document.getElementById('singleDaySelect');
-  if (!sel || !DATES || !DATES.length) return;
-  sel.innerHTML = DATES.slice().reverse().map(d => {
-    const o = dayAgg.find(x => x.date === d) || {};
-    return `<option value="${d}">${dayLabel(d)} · ${vnd(o.spend || 0)} (${o.results || 0} tin)</option>`;
-  }).join('');
-  
-  // Default to 2026-10-25 or the latest day with spend
-  const defaultDay = DATES.includes('2026-10-25') ? '2026-10-25' : DATES[DATES.length - 1];
-  sel.value = defaultDay;
-  renderSingleDayDeepDive(defaultDay);
-}
-
-function renderSingleDayDeepDive(date) {
-  const dObj = dayAgg.find(r => r.date === date);
-  if (!dObj) return;
-
-  const k = kpis(dObj);
-  const avgCpr = TK.cpr || 1;
-  const diffCpr = ((k.cpr - avgCpr) / avgCpr) * 100;
-  const diffBadge = diffCpr < -15 
-    ? `<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800"><i class="fa-solid fa-arrow-down mr-1"></i>Rẻ hơn TB kỳ ${Math.abs(diffCpr).toFixed(0)}%</span>`
-    : diffCpr > 15 
-    ? `<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800"><i class="fa-solid fa-arrow-up mr-1"></i>Đắt hơn TB kỳ ${diffCpr.toFixed(0)}%</span>`
-    : `<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Tương đương TB kỳ</span>`;
-
-  const kpisHtml = [
-    { label: 'Chi tiêu ngày', val: vnd(dObj.spend), sub: 'Ngân sách thực tế', icon: 'fa-money-bill-wave', color: 'emerald' },
-    { label: 'Số tin nhắn', val: fmt(dObj.results), sub: 'Khách nhắn tin mới', icon: 'fa-comment-dots', color: 'blue' },
-    { label: 'Chi phí / tin', val: vnd(k.cpr), sub: diffBadge, icon: 'fa-tag', color: diffCpr < 0 ? 'emerald' : 'rose' },
-    { label: 'Lượt hiển thị', val: fmt(dObj.impressions), sub: 'CPM ' + vnd(k.cpm), icon: 'fa-eye', color: 'slate' },
-    { label: 'Lượt click', val: fmt(dObj.clicks), sub: (dObj.link_clicks || 0) + ' link clicks', icon: 'fa-arrow-pointer', color: 'purple' },
-    { label: 'Tỷ lệ CTR', val: pct(k.ctrAll), sub: 'Link CTR: ' + pct(k.ctr), icon: 'fa-percent', color: 'indigo' }
-  ].map(item => `
-    <div class="p-3 rounded-2xl bg-white border border-slate-200 shadow-sm">
-      <div class="flex items-center justify-between text-slate-400 mb-1">
-        <span class="text-[11px] font-semibold text-slate-500">${item.label}</span>
-        <i class="fa-solid ${item.icon} text-xs text-${item.color}-600"></i>
-      </div>
-      <div class="text-base font-bold text-slate-900 num">${item.val}</div>
-      <div class="text-[11px] text-slate-500 mt-0.5">${item.sub}</div>
-    </div>
-  `).join('');
-
-  const kpiRow = document.getElementById('singleDayKpiRow');
-  if (kpiRow) kpiRow.innerHTML = kpisHtml;
-
-  // Breakdown by campaign in this day
-  const dayRows = A.daily.filter(r => r.date === date);
-  const breakdownEl = document.getElementById('singleDayBreakdown');
-  if (breakdownEl) {
-    if (!dayRows.length) {
-      breakdownEl.innerHTML = '<span class="text-slate-400">Không có dữ liệu chiến dịch trong ngày này.</span>';
-    } else {
-      breakdownEl.innerHTML = `
-        <div class="font-bold text-slate-800 mb-2 flex items-center justify-between">
-          <span><i class="fa-solid fa-layer-group text-emerald-600 mr-1.5"></i>Chi tiết ${dayRows.length} mẫu quảng cáo chạy trong ngày ${dayLabel(date)}:</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-          ${dayRows.map(r => {
-            const rk = kpis(r);
-            return `
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center">
-                <div>
-                  <div class="font-bold text-slate-900 text-xs">${esc(r.ad_name || r.campaign_id)}</div>
-                  <div class="text-[11px] text-slate-500 mt-0.5">Chi tiêu: <b class="text-slate-800">${vnd(r.spend)}</b> · Hiển thị: <b class="text-slate-800">${fmt(r.impressions)}</b></div>
-                </div>
-                <div class="text-right">
-                  <div class="text-xs font-bold text-emerald-700">${fmt(r.results)} tin nhắn</div>
-                  <div class="text-[11px] text-slate-600 font-semibold">${vnd(rk.cpr)} / tin</div>
-                </div>
-              </div>
-            `;
-          }).join('')}
-        </div>
-      `;
-    }
-  }
-}
-
-// ==========================================
-// CREATIVES TAB (MẪU QUẢNG CÁO)
-// ==========================================
-let retentionChartInstance = null;
-
-function renderCreativesTab() {
-  const container = document.getElementById('creativesGrid');
-  const crList = Array.isArray(A.creatives) ? A.creatives : (A.creatives?.list || []);
-  if (!container || !crList.length) return;
-
-  container.innerHTML = crList.map(cr => `
-    <div class="card p-6 border-slate-200 hover:shadow-md transition">
-      <div class="flex items-start justify-between gap-3 pb-4 border-b border-slate-100">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase tracking-wider">Video 9:16</span>
-            <span class="text-xs text-slate-400 num">ID: ${cr.id}</span>
-          </div>
-          <h3 class="text-base font-bold text-slate-900 mt-1">${esc(cr.name)}</h3>
-        </div>
-        <div class="text-right">
-          <div class="text-sm font-bold text-emerald-700 num">${vnd(cr.cpr)}</div>
-          <div class="text-[11px] text-slate-400">Chi phí / tin nhắn</div>
-        </div>
-      </div>
-
-      <!-- Core metrics grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-4">
-        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-          <div class="text-[11px] text-slate-500">Chi tiêu</div>
-          <div class="text-sm font-bold text-slate-800 num mt-0.5">${vnd(cr.spend)}</div>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-          <div class="text-[11px] text-slate-500">Tin nhắn</div>
-          <div class="text-sm font-bold text-emerald-700 num mt-0.5">${fmt(cr.results)} tin</div>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-          <div class="text-[11px] text-slate-500">Tỷ lệ Click (CTR)</div>
-          <div class="text-sm font-bold text-slate-800 num mt-0.5">${pct(cr.ctr)}</div>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
-          <div class="text-[11px] text-slate-500">Hook Rate (3s)</div>
-          <div class="text-sm font-bold text-blue-700 num mt-0.5">${pct(cr.hook_rate)}</div>
-        </div>
-      </div>
-
-      <!-- Video Funnel Breakdown -->
-      <div class="p-4 rounded-xl bg-gradient-to-r from-slate-50 to-emerald-50/30 border border-slate-200 mb-4 text-xs">
-        <div class="font-bold text-slate-800 mb-2 flex items-center justify-between">
-          <span><i class="fa-solid fa-play-circle text-emerald-600 mr-1.5"></i>Tỷ lệ giữ chân người xem video:</span>
-          <span class="text-slate-500 text-[11px]">${fmt(cr.impressions)} lượt xem</span>
-        </div>
-        <div class="grid grid-cols-4 gap-2 text-center">
-          <div class="p-2 rounded-lg bg-white border border-slate-200">
-            <div class="text-[10px] text-slate-400 uppercase">25% video</div>
-            <div class="font-bold text-slate-800 num text-xs mt-0.5">${pct(cr.retention.p25)}</div>
-          </div>
-          <div class="p-2 rounded-lg bg-white border border-slate-200">
-            <div class="text-[10px] text-slate-400 uppercase">50% video</div>
-            <div class="font-bold text-slate-800 num text-xs mt-0.5">${pct(cr.retention.p50)}</div>
-          </div>
-          <div class="p-2 rounded-lg bg-white border border-slate-200">
-            <div class="text-[10px] text-slate-400 uppercase">75% video</div>
-            <div class="font-bold text-slate-800 num text-xs mt-0.5">${pct(cr.retention.p75)}</div>
-          </div>
-          <div class="p-2 rounded-lg bg-white border border-slate-200">
-            <div class="text-[10px] text-slate-400 uppercase">100% video</div>
-            <div class="font-bold text-emerald-700 num text-xs mt-0.5">${pct(cr.retention.p100)}</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Meta Official Rankings -->
-      <div class="space-y-1.5 mb-4 text-xs">
-        <div class="text-[11px] font-bold text-slate-600 mb-1">Xếp hạng đánh giá từ thuật toán Meta:</div>
-        <div class="flex items-center justify-between p-2 rounded-lg border ${cr.meta_rankings.quality_class}">
-          <span><i class="fa-solid fa-medal mr-1.5"></i>Chất lượng nội dung:</span>
-          <span class="font-bold">${cr.meta_rankings.quality}</span>
-        </div>
-        <div class="flex items-center justify-between p-2 rounded-lg border ${cr.meta_rankings.engagement_class}">
-          <span><i class="fa-solid fa-thumbs-up mr-1.5"></i>Tỷ lệ tương tác:</span>
-          <span class="font-bold">${cr.meta_rankings.engagement}</span>
-        </div>
-        <div class="flex items-center justify-between p-2 rounded-lg border ${cr.meta_rankings.conversion_class}">
-          <span><i class="fa-solid fa-bullseye mr-1.5"></i>Tỷ lệ chuyển đổi:</span>
-          <span class="font-bold">${cr.meta_rankings.conversion}</span>
-        </div>
-      </div>
-
-      <!-- AI Recommendation -->
-      <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-amber-900">
-        <i class="fa-solid fa-lightbulb text-amber-600 mr-1.5"></i><b>Khuyến nghị:</b> ${cr.recommendation}
-      </div>
-    </div>
-  `).join('');
-}
-
-function initRetentionChart() {
-  const canvas = document.getElementById('retentionChart');
-  if (!canvas || !A.creatives) return;
-  if (retentionChartInstance) retentionChartInstance.destroy();
-
-  const labels = ['Bắt đầu (100%)', 'Hook 3s đầu', 'Xem 25%', 'Xem 50%', 'Xem 75%', 'Xem hết 100%'];
-  const colors = ['#059669', '#2563eb'];
-
-  const crList = Array.isArray(A.creatives) ? A.creatives : (A.creatives?.list || []);
-  const datasets = crList.map((cr, idx) => ({
-    label: cr.name,
-    data: [100, Math.round(cr.hook_rate * 100), Math.round(cr.retention.p25 * 100), Math.round(cr.retention.p50 * 100), Math.round(cr.retention.p75 * 100), Math.round(cr.retention.p100 * 100)],
-    borderColor: colors[idx % colors.length],
-    backgroundColor: colors[idx % colors.length] + '20',
-    tension: 0.35,
-    fill: true,
-    pointRadius: 5,
-    pointHoverRadius: 7
-  }));
-
-  retentionChartInstance = new Chart(canvas, {
-    type: 'line',
-    data: { labels, datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'top' },
-        tooltip: {
-          callbacks: {
-            label: c => `${c.dataset.label}: ${c.parsed.y}% người xem`
-          }
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          ticks: { callback: v => v + '%' },
-          title: { display: true, text: 'Tỷ lệ người xem giữ lại (%)' }
-        }
-      }
-    }
-  });
-}
-
-// ==========================================
-// CRM DROPOFF ANALYSIS CARDS
-// ==========================================
-function renderDropoffAnalytics() {
-  const el = document.getElementById('dropoffReasonCards');
-  if (!el || !A.dropoff_summary || !A.dropoff_summary.stats) return;
-
-  const colorMap = {
-    amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-800', bar: 'bg-amber-500' },
-    blue: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-800', bar: 'bg-blue-500' },
-    slate: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-800', bar: 'bg-slate-500' },
-    purple: { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-800', bar: 'bg-purple-500' },
-    emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-800', bar: 'bg-emerald-500' }
-  };
-
-  el.innerHTML = A.dropoff_summary.stats.map(s => {
-    const c = colorMap[s.color] || colorMap.slate;
-    return `
-      <div class="p-3.5 rounded-2xl ${c.bg} border ${c.border} flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between text-xs mb-1.5">
-            <span class="font-bold ${c.text}"><i class="fa-solid ${s.icon} mr-1"></i>${s.label}</span>
-            <span class="text-xs font-bold num ${c.text}">${s.pct}%</span>
-          </div>
-          <div class="w-full bg-white/60 h-1.5 rounded-full overflow-hidden mb-2">
-            <div class="${c.bar} h-full rounded-full" style="width: ${s.pct}%"></div>
-          </div>
-          <div class="text-lg font-bold text-slate-900 num mb-1">${s.count} <span class="text-xs font-normal text-slate-500">khách</span></div>
-        </div>
-        <div class="text-[11px] text-slate-500 leading-tight">${s.desc}</div>
-      </div>
-    `;
-  }).join('');
-}
-
-// ==========================================
-// INITIALIZATION ON LOAD
-// ==========================================
 checkPinOnLoad();
-initSingleDayPicker();
-renderCreativesTab();
-renderDropoffAnalytics();
-
-document.addEventListener('DOMContentLoaded', () => {
-  checkPinOnLoad();
-  initSingleDayPicker();
-  renderCreativesTab();
-  renderDropoffAnalytics();
-});
+document.addEventListener('DOMContentLoaded', checkPinOnLoad);
 
 </script>
 </body>
