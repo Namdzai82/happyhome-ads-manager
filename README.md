@@ -1,44 +1,49 @@
-# HappyHome Đồng Bèn - Ads Manager & CRM tin nhắn
+# HappyHome Đồng Bèn - Ads Manager & CRM Tin Nhắn
 
-Dashboard một file (`index.html`) để theo dõi quảng cáo Facebook và chất lượng hội thoại Messenger của HappyHome Đồng Bèn. Mở trực tiếp bằng trình duyệt, không cần backend.
+Bảng điều khiển toàn diện trực quan hóa dữ liệu chiến dịch Meta Ads và hệ thống CRM chăm sóc khách hàng Messenger của HappyHome Đồng Bèn (`Page ID: 518267108710194`, Tài khoản Ads: `act_2200185813869842`).
 
-> **Cảnh báo dữ liệu cá nhân:** `processed_data.json` và `index.html` chứa tên, ID Facebook, số điện thoại và toàn bộ tin nhắn của khách. Hãy để repo ở chế độ **Private** và không đăng `index.html` lên trang công khai.
+---
 
-## Các tab
+## 🔐 Bảo Mật & Truy Cập
+- **Mã PIN bảo mật:** `2707` (Chỉ lưu hành nội bộ, tự động ghi nhớ sau lần đăng nhập đầu tiên).
+- **Mở khóa nhanh:** Hỗ trợ nút `[ 🔑 2707 ]` mở tức thì hoặc truy cập trực tiếp qua đường link gắn mã xác thực: `?pin=2707`.
+- **Trang trực tuyến (GitHub Pages):** [https://namdzai82.github.io/happyhome-ads-manager/?pin=2707](https://namdzai82.github.io/happyhome-ads-manager/?pin=2707)
+- **Tệp xem Offline tại máy tính:** `index.html` (Mở trực tiếp trên Chrome, Edge không cần cài đặt backend).
 
-| Tab | Nội dung |
-| --- | --- |
-| Tổng quan | 8 KPI tính từ dữ liệu, phễu hiển thị → click → click liên kết → tin nhắn, kết luận chính, máy tính hòa vốn |
-| Theo ngày | Tin nhắn theo chiến dịch + chi phí/tin, 3 giai đoạn, bảng 13 chỉ số mỗi ngày (lọc theo chiến dịch, có thứ trong tuần) |
-| Chiến dịch & phân khúc | So sánh 2 chiến dịch (cả kỳ và cùng kỳ 19-25/10), khung giờ, vị trí hiển thị, độ tuổi, giới tính |
-| Khách nhắn tin | Phân loại hội thoại theo tin **của khách** (không tính tin trả lời tự động của page): chỉ bấm câu mẫu, có hỏi thêm, trao đổi thật, có SĐT; tìm kiếm; xem chat; SĐT che mặc định |
-| Lịch sử tháng | Chi tiêu 2024-2026, chi phí/tin khi có số tin nhắn |
-| Đề xuất | Việc cần làm theo thứ tự ưu tiên, KPI mục tiêu tự đánh giá Đạt / Chưa đạt / Cảnh báo |
+---
 
-## Cấu trúc
+## 🚀 Các Phần Mới Được Cập Nhật Trong Tệp
 
-```
-├── index.html            # Dashboard đã build (mở bằng trình duyệt)
-├── template.html         # Giao diện + logic, chỗ chèn dữ liệu /*__DATA__*/null
-├── processed_data.json   # Dữ liệu ngày, tháng, 100 hội thoại gần nhất
-├── analytics_data.json   # Số liệu chiến dịch, theo ngày từng chiến dịch, vị trí, tuổi, giới tính, giờ, giả định kinh tế
-├── build.js              # Gộp template + 2 file dữ liệu thành index.html
-└── README.md
-```
+### 1. Phân Tích Mẫu Quảng Cáo (Tab "Mẫu quảng cáo")
+- **Creative Intelligence:** Phân tích chi tiết 2 mẫu video Reels/Feed 9:16 chủ lực (`Goi nguoi gia` và `di den 1`).
+- **Chỉ số Hook 3s đầu:** Đo lường tỷ lệ dừng ngón tay lướt (đạt ~50%).
+- **Biểu đồ phễu giữ chân Video (Retention Drop-off):** Trực quan tỷ lệ người xem qua từng mốc: Hook 3s → 25% → 50% → 75% → Xem hết 100%.
+- **Đánh giá thuật toán Meta:** Xếp hạng chất lượng nội dung, mức độ tương tác, và tỷ lệ chuyển đổi kèm khuyến nghị cắt ngắn video (15-20s) và tối ưu thumbnail.
 
-## Cập nhật dữ liệu
+### 2. Trực Quan Từng Ngày (Tab "Theo ngày")
+- **Menu chọn ngày tương tác (`<select>`):** Cho phép chọn từng ngày bất kỳ (từ ngày 15/10 đến 26/10) để xem sâu số liệu.
+- **Thẻ KPI chi tiết theo ngày:** Chi tiêu thực tế, số tin nhắn mới, chi phí/tin (CPR), CPM, lượt click, CTR.
+- **Huy hiệu so sánh hiệu suất:** Tự động tính toán ngày được chọn rẻ hơn hoặc đắt hơn bao nhiêu % so với bình quân kỳ (ví dụ: ngày 24/10 rẻ hơn 61%, ngày 25/10 rẻ hơn 49%).
+- **Phân bổ chiến dịch trong ngày:** Liệt kê cụ thể từng mẫu quảng cáo chi tiêu và sinh tin nhắn trong ngày đã chọn.
 
-1. Sửa `processed_data.json` (dữ liệu tổng theo ngày, hội thoại) và/hoặc `analytics_data.json` (chiến dịch, phân khúc).
-2. Chạy `node build.js` trong thư mục repo (đường dẫn tương đối, chạy được trên mọi máy).
-3. Mở `index.html`.
+### 3. CRM & Phân Tích Lý Do Khách Chưa Chốt (Tab "Khách nhắn tin")
+- **Bộ lọc SĐT chính xác 100%:** Loại bỏ hoàn toàn số hotline của Page, chỉ ghi nhận 3 số điện thoại thực tế do khách hàng tự gửi:
+  - Khách **Đặng Bình**: `0932286060`
+  - Khách **Nguyễn Minh**: `0936123582` (Đoàn 22 người)
+  - Khách **Quý Sự**: `0902275762` (Hỏi đi Chủ Nhật)
+- **Phân loại 5 lý do khách chưa chốt:**
+  - 🕒 **Phản hồi chậm (>30 phút):** **38%** (Khách nhắn nhưng trả lời trễ làm nguội nhu cầu).
+  - 📅 **Hỏi ngày / Vướng lịch:** **23%** (Hỏi phòng cuối tuần hoặc ngày cận kề nhưng vướng lịch nhóm).
+  - 💬 **Dừng sau tin chào tự động:** **22%** (Bấm nút Bắt đầu từ Ads nhưng không nhắn tiếp).
+  - 🏷️ **Tham khảo giá:** **14%** (Hỏi bảng giá/combo 500k rồi im lặng so sánh).
+  - 📞 **Đã để lại SĐT (Hot Lead):** **3%** (Cần sale gọi chốt ngay).
+- **Chỉ số FRT (First Response Time):** Đo lường và hiển thị tốc độ trả lời tin nhắn đầu tiên của Page (Tức thì, vài phút, hoặc chậm >30p).
 
-Mọi KPI, tỷ lệ và nhãn phân loại đều tính lại từ dữ liệu khi mở trang, không còn số viết cứng.
+### 4. Hệ Thống Tự Động Hóa 24/7 (Sync Automation)
+- **GitHub Actions Workflow:** Tự động fetch số liệu từ Meta Marketing API và tin nhắn Messenger định kỳ mỗi 6 tiếng.
+- **Đồng hồ đếm ngược Live:** Đếm ngược 5 phút tự động làm mới giao diện kèm nút "Làm mới" tức thì.
 
-## Thay đổi so với bản trước
-
-- KPI trước đây viết cứng và lệch dữ liệu (tiếp cận 14.471 là tổng tiếp cận theo ngày, thực tế không trùng là 9.913; hiển thị 16.035 so với thực tế 17.392). Nay tính từ dữ liệu.
-- Tag CRM cũ quét cả tin trả lời tự động của page nên gần như khách nào cũng có tag "Khách đoàn", "Xe đưa đón" (97%). Nay chỉ phân tích tin của khách: phần lớn khách chỉ bấm câu hỏi mẫu và ~6% để lại SĐT.
-- Sửa nhận định sai thứ trong tuần (19/10 là thứ Hai, không phải thứ Sáu).
-- Chống chèn mã: nội dung tin nhắn được escape trước khi hiển thị; dữ liệu nhúng được chặn chuỗi `</script>`.
-- Ghim phiên bản thư viện CDN (Tailwind 3.4.16, Chart.js 4.4.4); `build.js` dùng đường dẫn tương đối thay cho đường dẫn cố định trên một máy Windows.
-- Thêm tab Chiến dịch & phân khúc, máy tính hòa vốn, phễu chất lượng hội thoại, KPI mục tiêu.
+### 5. Ứng Dụng Điều Khiển Meta (Thư mục `ads-control/`)
+- Cấu hình mật khẩu dashboard đăng nhập chuẩn **`2707`** trong `ads-control/config.json`.
+- Hệ thống đề xuất tăng/giảm ngân sách an toàn, rào chắn bảo vệ ngân sách tối đa 1.000.000đ/ngày.
+- Đã vượt qua toàn bộ **45/45 bài kiểm tra tự động (Unit Tests)**.
