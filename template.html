@@ -20,8 +20,7 @@
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
-
-<!-- PIN GATE MODAL -->
+<!-- PIN GATE MODAL (2707) -->
 <div id="pinGate" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
   <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-8 text-center border border-slate-100 animate-in zoom-in-95 duration-200">
     <div class="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto shadow-lg shadow-emerald-600/30 mb-4">
@@ -45,6 +44,7 @@
   </div>
 </div>
 
+
 <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-wrap justify-between items-center gap-3 py-4">
@@ -55,6 +55,7 @@
           <p class="text-xs text-slate-500" id="metaLine"></p>
         </div>
       </div>
+      
       <div class="flex items-center gap-2 flex-wrap">
         <div class="flex items-center bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-xl text-xs text-emerald-800">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-2"></span>
@@ -62,7 +63,7 @@
           <span id="autoRefreshCountdown" class="num font-mono">05:00</span>
         </div>
         <button onclick="location.reload()" class="px-3 py-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl hover:bg-emerald-100 transition flex items-center shadow-sm">
-          <i class="fa-solid fa-rotate mr-1.5"></i>Làm mới ngay
+          <i class="fa-solid fa-rotate mr-1.5"></i>Làm mới
         </button>
         <div id="statusBadge" class="hidden md:flex items-center bg-amber-50 border border-amber-200 px-3 py-2 rounded-xl text-xs text-amber-900">
           <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-2"></i><span id="statusText"></span>
@@ -71,11 +72,12 @@
         <a href="https://adsmanager.facebook.com/" target="_blank" rel="noopener" class="px-3 py-2 text-xs font-semibold text-white bg-emerald-600 rounded-xl hover:bg-emerald-700"><i class="fa-brands fa-facebook mr-1"></i>Ads Manager</a>
         <button onclick="lockDashboard()" title="Khóa Dashboard" class="px-2.5 py-2 text-xs font-medium text-slate-500 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition border border-slate-200"><i class="fa-solid fa-lock"></i></button>
       </div>
-    </div>
+</div>
     <nav class="flex gap-1 overflow-x-auto text-sm font-medium scroll" id="tabs">
       <button data-tab="overview" class="tab-btn active px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-gauge mr-1.5"></i>Tổng quan</button>
       <button data-tab="daily" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-chart-line mr-1.5"></i>Theo ngày</button>
       <button data-tab="segments" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-layer-group mr-1.5"></i>Chiến dịch & phân khúc</button>
+      <button data-tab="creatives" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-photo-film mr-1.5"></i>Mẫu quảng cáo</button>
       <button data-tab="crm" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-comments mr-1.5"></i>Khách nhắn tin</button>
       <button data-tab="monthly" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-calendar-days mr-1.5"></i>Lịch sử tháng</button>
       <button data-tab="actions" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-list-check mr-1.5"></i>Đề xuất</button>
@@ -126,6 +128,23 @@
 
   <!-- TAB: DAILY -->
   <section id="tab-daily" class="tab-content hidden space-y-6">
+    
+    <!-- DROPOFF ANALYSIS -->
+    <div class="card p-6 bg-gradient-to-br from-white to-rose-50/30 border-rose-100">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 pb-3 border-b border-slate-200">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-rose-100 text-rose-800 text-xs font-bold uppercase"><i class="fa-solid fa-user-xmark mr-1"></i>Phân Tích Lý Do Chưa Chốt Đơn</span>
+            <span class="text-xs text-slate-500">(100 hội thoại thực tế)</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Xác định điểm nghẽn chính khiến khách hàng dừng lại sau khi nhắn tin</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="dropoffReasonCards">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="card p-6 lg:col-span-2">
         <h2 class="font-bold text-slate-900">Tin nhắn theo ngày (cột) và chi phí mỗi tin (đường)</h2>
@@ -138,6 +157,26 @@
         <div id="phases" class="space-y-3"></div>
       </div>
     </div>
+    <!-- SINGLE DAY DEEP DIVE INTERACTIVE PICKER -->
+    <div class="card p-6 bg-gradient-to-br from-white to-slate-50 border-emerald-200 shadow-sm">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-slate-200">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-calendar-check mr-1"></i>Trực quan từng ngày</span>
+            <h3 class="font-bold text-slate-900 text-base" id="singleDayTitle">Phân tích chi tiết ngày...</h3>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Chọn ngày bất kỳ để xem toàn bộ chỉ số, so sánh với trung bình toàn kỳ và phân rã chiến dịch</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <label class="text-xs font-semibold text-slate-700 whitespace-nowrap"><i class="fa-solid fa-filter mr-1 text-emerald-600"></i>Chọn ngày:</label>
+          <select id="singleDaySelect" onchange="renderSingleDayDeepDive(this.value)" class="text-xs font-bold py-2 px-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none shadow-sm cursor-pointer num text-emerald-800">
+          </select>
+        </div>
+      </div>
+      <div id="singleDayKpiRow" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-4"></div>
+      <div id="singleDayBreakdown" class="p-4 rounded-xl bg-white border border-slate-200 text-xs"></div>
+    </div>
+
     <div class="card overflow-hidden">
       <div class="p-5 border-b border-slate-200 flex flex-wrap justify-between items-center gap-3">
         <div>
@@ -190,6 +229,45 @@
     </div>
   </section>
 
+  
+  <!-- TAB: CREATIVES (MẪU QUẢNG CÁO) -->
+  <section id="tab-creatives" class="tab-content hidden space-y-6">
+    <div class="card p-6 bg-gradient-to-r from-emerald-50 via-white to-blue-50 border-emerald-200">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-video mr-1"></i>Creative Intelligence</span>
+          <h2 class="text-lg font-bold text-slate-900 mt-1">Phân Tích Chi Tiết Từng Mẫu Quảng Cáo</h2>
+          <p class="text-xs text-slate-600 mt-0.5">So sánh hiệu quả giữ chân video (Video Retention), CTR, tỷ lệ xem 3s và xếp hạng từ Meta</p>
+        </div>
+        <div class="text-xs text-slate-500 bg-white/80 backdrop-blur px-3 py-2 rounded-xl border border-slate-200">
+          <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Định dạng Video Reels & Feed 9:16
+        </div>
+      </div>
+    </div>
+
+    <!-- Creatives Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="creativesGrid">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Creative Retention Funnel Comparison -->
+    <div class="card p-6">
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <h3 class="font-bold text-slate-900">Biểu Đồ Phễu Giữ Chân Người Xem Video (Retention Drop-off)</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Tỷ lệ người xem tiếp tục xem video qua các mốc 25% → 50% → 75% → 100%</p>
+        </div>
+      </div>
+      <div class="h-80"><canvas id="retentionChart"></canvas></div>
+      <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
+        <p><b>Nhận xét & Đề xuất tối ưu Video:</b></p>
+        <p>• <b>Tỷ lệ Hook 3 giây đầu:</b> Cả 2 mẫu đều đạt ~50% (rất tốt). Người xem bị thu hút bởi cảnh đền Ứng Thiên và không gian xanh Đồng Bèn.</p>
+        <p>• <b>Tỷ lệ rơi rụng ở 50%:</b> Lượng người xem giảm từ 50% xuống 14% do video kéo dài. Nên cắt thêm các phiên bản ngắn <b>15 - 20 giây</b> tập trung vào: <i>Cảnh ăn lẩu thái + Bể bơi + Giá 500k</i>.</p>
+        <p>• <b>Xếp hạng chất lượng:</b> Mẫu "Goi nguoi gia" bị xếp 20% cuối do text trên thumbnail nhiều. Cần giảm chữ và tăng khung hình người thật cười vui vẻ.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- TAB: CRM -->
   <section id="tab-crm" class="tab-content hidden space-y-6">
     <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-900">
@@ -219,7 +297,7 @@
       <div class="overflow-x-auto scroll max-h-[600px]">
         <table class="w-full text-xs sm:text-sm">
           <thead class="sticky top-0 bg-slate-50 border-b border-slate-200 text-slate-500 z-10"><tr>
-            <th class="py-3 px-4 text-left">Khách hàng</th><th class="py-3 px-4 text-left">Nhu cầu (từ tin của khách)</th><th class="py-3 px-4 text-left">Tin gần nhất của khách</th><th class="py-3 px-4 text-center">Tin khách / tổng</th><th class="py-3 px-4 text-right">Cập nhật</th><th class="py-3 px-4"></th>
+            <th class="py-3 px-4 text-left">Khách hàng</th><th class="py-3 px-4 text-left">Lý do chưa chốt / Tốc độ rep</th><th class="py-3 px-4 text-left">Nhu cầu</th><th class="py-3 px-4 text-left">Tin gần nhất của khách</th><th class="py-3 px-4 text-center">Tin</th><th class="py-3 px-4 text-right">Cập nhật</th><th class="py-3 px-4"></th>
           </tr></thead>
           <tbody id="crmBody" class="divide-y divide-slate-100"></tbody>
         </table>
@@ -376,7 +454,10 @@ function renderDaily() {
   document.getElementById('dailyBody').innerHTML = body.join('');
   document.getElementById('campFilter').innerHTML = [['ALL', 'Tổng'], ...A.campaigns.map(c => [c.id, c.id])].map(([id, l]) =>
     `<button data-c="${id}" class="px-3 py-1.5 rounded-lg border ${campSel === id ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white border-slate-200 text-slate-700'}">${l}</button>`).join('');
-  document.querySelectorAll('#campFilter button').forEach(b => b.onclick = () => { campSel = b.dataset.c; renderDaily(); });
+  document.querySelectorAll('#campFilter button').forEach(b => b.onclick = () => { campSel = b.dataset.c; renderDaily();
+initSingleDayPicker();
+renderCreativesTab();
+renderDropoffAnalytics(); });
 }
 renderDaily();
 
@@ -455,13 +536,34 @@ function renderCrm() {
   const lvlColor = { 'Có SĐT': 'bg-amber-100 text-amber-800', 'Trao đổi thật': 'bg-emerald-100 text-emerald-800', 'Có hỏi thêm': 'bg-blue-100 text-blue-800', 'Chỉ bấm câu mẫu': 'bg-slate-100 text-slate-600', 'Không có tin khách': 'bg-slate-100 text-slate-400' };
   document.getElementById('crmBody').innerHTML = list.length ? list.map(c => {
     const last = c._cust.at(-1)?.text || '(chưa có tin)';
+    const dropReason = c.dropoff_reason || 'Chưa cung cấp SĐT';
+    const dropColor = dropReason.includes('SĐT') && !dropReason.includes('Chưa') ? 'bg-emerald-100 text-emerald-800 font-bold'
+      : dropReason.includes('Rep chậm') ? 'bg-rose-100 text-rose-800 font-semibold'
+      : dropReason.includes('khảo giá') ? 'bg-blue-100 text-blue-800'
+      : dropReason.includes('lịch') ? 'bg-amber-100 text-amber-800'
+      : 'bg-slate-100 text-slate-600';
+
+    const frtText = c.frt_minutes != null 
+      ? (c.frt_minutes < 1 ? '<span class="text-[10px] text-emerald-600 font-semibold"><i class="fa-solid fa-bolt mr-0.5"></i>Bot <1p</span>' 
+         : c.frt_minutes > 60 ? `<span class="text-[10px] text-rose-600 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-0.5"></i>Rep sau ${Math.round(c.frt_minutes/60)}h</span>`
+         : `<span class="text-[10px] text-slate-500">Rep ${c.frt_minutes}p</span>`)
+      : '<span class="text-[10px] text-slate-400">Chưa rep</span>';
+
     return `<tr class="hover:bg-slate-50">
-      <td class="py-2.5 px-4"><div class="font-semibold text-slate-900">${esc(c.customer_name)}</div><span class="inline-block mt-1 px-2 py-0.5 rounded text-[11px] ${lvlColor[c._level]}">${c._level}</span>${c._phone ? ` <span class="text-[11px] text-amber-700 num">${esc(maskPhone(c._phone))}</span>` : ''}</td>
+      <td class="py-2.5 px-4">
+        <div class="font-semibold text-slate-900">${esc(c.customer_name)}</div>
+        <span class="inline-block mt-1 px-2 py-0.5 rounded text-[11px] ${lvlColor[c._level]}">${c._level}</span>
+        ${c._phone ? ` <span class="text-[11px] text-emerald-700 font-bold num">${esc(maskPhone(c._phone))}</span>` : ''}
+      </td>
+      <td class="py-2.5 px-4 whitespace-nowrap">
+        <span class="inline-block px-2 py-0.5 rounded text-[11px] ${dropColor}">${dropReason}</span>
+        <div class="mt-0.5">${frtText}</div>
+      </td>
       <td class="py-2.5 px-4 whitespace-normal max-w-xs">${c._intents.map(t => `<span class="inline-block px-2 py-0.5 rounded text-[11px] bg-emerald-50 text-emerald-800 mr-1 mb-1">${t}</span>`).join('') || '<span class="text-xs text-slate-400">-</span>'}</td>
       <td class="py-2.5 px-4 max-w-sm truncate text-xs text-slate-600" title="${esc(last)}">${esc(last)}</td>
-      <td class="py-2.5 px-4 text-center num">${c._cust.length} / ${c.messages.length}</td>
+      <td class="py-2.5 px-4 text-center num text-xs font-semibold">${c._cust.length} / ${c.messages.length}</td>
       <td class="py-2.5 px-4 text-right text-xs text-slate-500">${new Date(c.updated_time).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</td>
-      <td class="py-2.5 px-4"><button data-id="${esc(c.id)}" class="openChat px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-xs"><i class="fa-solid fa-eye mr-1"></i>Xem</button></td></tr>`;
+      <td class="py-2.5 px-4"><button data-id="${esc(c.id)}" class="openChat px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-xs hover:bg-emerald-100 transition"><i class="fa-solid fa-eye mr-1"></i>Xem</button></td></tr>`;
   }).join('') : '<tr><td colspan="6" class="py-8 text-center text-slate-400">Không có hội thoại phù hợp</td></tr>';
   document.querySelectorAll('.openChat').forEach(b => b.onclick = () => openChat(b.dataset.id));
 }
@@ -511,6 +613,7 @@ document.getElementById('kpiTargetBody').innerHTML = TARGETS.map(([n, v, f, tg, 
 // ---------- charts (lazy per tab) ----------
 Chart.defaults.font.family = "'Be Vietnam Pro', system-ui, sans-serif"; Chart.defaults.font.size = 11; Chart.defaults.color = '#64748b';
 const CHARTS = {
+  creatives() { initRetentionChart(); },
   daily() {
     const lab = DATES.map(dayLabel);
     const by = id => DATES.map(d => (CD.find(r => r.date === d && r.camp === id) || {}).results || 0);
@@ -539,73 +642,10 @@ const CHARTS = {
   }
 };
 
-// Auto-refresh countdown (every 5 minutes)
-let refreshTimer = 300;
-setInterval(() => {
-  refreshTimer--;
-  if (refreshTimer <= 0) {
-    location.reload();
-  } else {
-    const m = String(Math.floor(refreshTimer / 60)).padStart(2, '0');
-    const s = String(refreshTimer % 60).padStart(2, '0');
-    const el = document.getElementById('autoRefreshCountdown');
-    if (el) el.textContent = `${m}:${s}`;
-  }
-}, 1000);
-
 function exportData() {
   const blob = new Blob([JSON.stringify(DATA, null, 2)], { type: 'application/json' });
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'happyhome_ads_analytics.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
-
-// ---------- PIN Protection (2707) ----------
-const TARGET_HASH = 'c54437a17218bf679a119cb1192f18d55bf383ae8aaf298b8ffb2fb65ae51d1c';
-
-async function sha256(str) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-async function handlePinSubmit(e) {
-  if (e) e.preventDefault();
-  const input = document.getElementById('pinInput').value.trim();
-  const hash = await sha256(input);
-  if (hash === TARGET_HASH) {
-    localStorage.setItem('hph_pin_auth', hash);
-    unlockDashboard();
-  } else {
-    const err = document.getElementById('pinError');
-    if (err) err.classList.remove('hidden');
-    document.getElementById('pinInput').classList.add('border-red-500');
-    document.getElementById('pinInput').value = '';
-  }
-}
-
-function unlockDashboard() {
-  const gate = document.getElementById('pinGate');
-  if (gate) {
-    gate.classList.add('hidden');
-    gate.classList.remove('flex');
-  }
-}
-
-function lockDashboard() {
-  localStorage.removeItem('hph_pin_auth');
-  location.reload();
-}
-
-(function checkPin() {
-  const saved = localStorage.getItem('hph_pin_auth');
-  if (saved === TARGET_HASH) {
-    unlockDashboard();
-  } else {
-    const gate = document.getElementById('pinGate');
-    if (gate) {
-      gate.classList.remove('hidden');
-      gate.classList.add('flex');
-    }
-  }
-})();
 </script>
 </body>
 </html>
