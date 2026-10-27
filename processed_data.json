@@ -317,7 +317,10 @@
         }
       ],
       "frt_minutes": 815,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 48918,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_2192029901748185",
@@ -391,7 +394,10 @@
         }
       ],
       "frt_minutes": 90,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 5381,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1105425788895369",
@@ -477,7 +483,10 @@
         }
       ],
       "frt_minutes": 301,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 18077,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_950061127828100",
@@ -564,7 +573,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 13,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1070393156041805",
@@ -632,7 +644,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 1,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1640384797666342",
@@ -682,7 +697,10 @@
         }
       ],
       "frt_minutes": 24,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 1444,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1473151868016238",
@@ -750,7 +768,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": 3,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_1814146053124023",
@@ -818,7 +839,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 6,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_951846547628387",
@@ -856,7 +880,10 @@
         }
       ],
       "frt_minutes": 77,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 4638,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1094532640023062",
@@ -936,7 +963,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1744361300014623",
@@ -980,7 +1010,10 @@
         }
       ],
       "frt_minutes": 96,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 5768,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1425081053076608",
@@ -1030,7 +1063,10 @@
         }
       ],
       "frt_minutes": 119,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1082842494571870",
@@ -1092,7 +1128,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 4,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_2122202028394070",
@@ -1142,7 +1181,10 @@
         }
       ],
       "frt_minutes": 126,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 7549,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1157581936945740",
@@ -1222,7 +1264,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 5,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1129141456186288",
@@ -1272,7 +1317,10 @@
         }
       ],
       "frt_minutes": 194,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1167488948964572",
@@ -1334,7 +1382,10 @@
         }
       ],
       "frt_minutes": 197,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 11792,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_936718659296014",
@@ -1390,7 +1441,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_1430498989228411",
@@ -1452,7 +1506,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 6,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1687585176328924",
@@ -1508,7 +1565,10 @@
         }
       ],
       "frt_minutes": 234,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 14021,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1770508147583969",
@@ -1570,7 +1630,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_958011574046121",
@@ -1632,7 +1695,10 @@
         }
       ],
       "frt_minutes": 255,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 15325,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1675380510963619",
@@ -1736,7 +1802,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1862290191568911",
@@ -1774,7 +1843,10 @@
         }
       ],
       "frt_minutes": 269,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 16147,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1130306932785146",
@@ -1848,7 +1920,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 10,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1118838837748205",
@@ -1892,7 +1967,10 @@
         }
       ],
       "frt_minutes": 282,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 16946,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_861138437062278",
@@ -1954,7 +2032,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 1,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_4681932548795450",
@@ -2022,7 +2103,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1814455166258446",
@@ -2084,7 +2168,10 @@
         }
       ],
       "frt_minutes": 291,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 17438,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1120894450690339",
@@ -2152,7 +2239,10 @@
         }
       ],
       "frt_minutes": 305,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 18292,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1811777260133041",
@@ -2220,7 +2310,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 1,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1099813902896325",
@@ -2270,7 +2363,10 @@
         }
       ],
       "frt_minutes": 367,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 22042,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1089676727181975",
@@ -2344,7 +2440,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_28269834132650535",
@@ -2394,7 +2493,10 @@
         }
       ],
       "frt_minutes": 317,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_2357621601311955",
@@ -2456,7 +2558,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 6,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_3513785075448505",
@@ -2506,7 +2611,10 @@
         }
       ],
       "frt_minutes": 350,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 20973,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1130327222778534",
@@ -2574,7 +2682,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 12,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_939682002303533",
@@ -2624,7 +2735,10 @@
         }
       ],
       "frt_minutes": 392,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 23522,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1035186001553285",
@@ -2734,7 +2848,10 @@
         }
       ],
       "frt_minutes": 3,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 150,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1166634936025312",
@@ -2784,7 +2901,10 @@
         }
       ],
       "frt_minutes": 408,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 24489,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_28812939335015803",
@@ -2840,7 +2960,10 @@
         }
       ],
       "frt_minutes": 410,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 24610,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1778577013394852",
@@ -2896,7 +3019,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 14,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1105488639040801",
@@ -2946,7 +3072,10 @@
         }
       ],
       "frt_minutes": 510,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 30627,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1484239606906844",
@@ -3008,7 +3137,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1420836906433448",
@@ -3058,7 +3190,10 @@
         }
       ],
       "frt_minutes": 837,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 50246,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_2206205716937584",
@@ -3151,7 +3286,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Đã để lại SĐT"
+      "dropoff_reason": "Đã để lại SĐT (Hot Lead)",
+      "_phone": "0932286060",
+      "frt_seconds": 0,
+      "dropoff_key": "left_phone"
     },
     {
       "id": "t_1153953283868133",
@@ -3194,7 +3332,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 3,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1135976076039464",
@@ -3238,7 +3379,10 @@
         }
       ],
       "frt_minutes": 1550,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 93020,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1145293364743606",
@@ -3293,7 +3437,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 8,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1613457900322197",
@@ -3355,7 +3502,10 @@
         }
       ],
       "frt_minutes": 1693,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 101607,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1611589976550387",
@@ -3465,7 +3615,10 @@
         }
       ],
       "frt_minutes": 540,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 32425,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_2167561287160998",
@@ -3508,7 +3661,10 @@
         }
       ],
       "frt_minutes": 11,
-      "dropoff_reason": "Đã để lại SĐT"
+      "dropoff_reason": "Đã để lại SĐT (Hot Lead)",
+      "_phone": "0936123582",
+      "frt_seconds": 640,
+      "dropoff_key": "left_phone"
     },
     {
       "id": "t_1906700423829279",
@@ -3540,7 +3696,10 @@
         }
       ],
       "frt_minutes": null,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": null,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_1479955220668635",
@@ -3570,7 +3729,10 @@
         }
       ],
       "frt_minutes": null,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": null,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_1649098236684132",
@@ -3600,7 +3762,10 @@
         }
       ],
       "frt_minutes": null,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": null,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_1168943892238308",
@@ -3650,7 +3815,10 @@
         }
       ],
       "frt_minutes": 378,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 22703,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_4474692082771288",
@@ -3736,7 +3904,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_27090744260623768",
@@ -3804,7 +3975,10 @@
         }
       ],
       "frt_minutes": 94,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1128152909689692",
@@ -3913,7 +4087,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1039571365769186",
@@ -3955,7 +4132,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": 4,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_2350168975730190",
@@ -4005,7 +4185,10 @@
         }
       ],
       "frt_minutes": null,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Hỏi ngày / Vướng lịch",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "schedule"
     },
     {
       "id": "t_28823285407338877",
@@ -4055,7 +4238,10 @@
         }
       ],
       "frt_minutes": 465,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 27902,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1158413070203271",
@@ -4105,7 +4291,10 @@
         }
       ],
       "frt_minutes": 460,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 27614,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1830820441392209",
@@ -4203,7 +4392,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1619228276308608",
@@ -4265,7 +4457,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 5,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_954277227332932",
@@ -4351,7 +4546,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1428909819358098",
@@ -4407,7 +4605,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 4,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1917857092508246",
@@ -4469,7 +4670,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 4,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1498342278797452",
@@ -4507,7 +4711,10 @@
         }
       ],
       "frt_minutes": 381,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 22835,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_29482942151336572",
@@ -4557,7 +4764,10 @@
         }
       ],
       "frt_minutes": 362,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 21736,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1515163990444217",
@@ -4637,7 +4847,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 6,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1426106802943836",
@@ -4741,7 +4954,10 @@
         }
       ],
       "frt_minutes": 13,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 804,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1738256380566742",
@@ -4827,7 +5043,10 @@
         }
       ],
       "frt_minutes": 39,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 2327,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_2998622840501078",
@@ -4858,7 +5077,10 @@
         }
       ],
       "frt_minutes": null,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": null,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_1033204856462023",
@@ -4888,7 +5110,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": 3,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_1120807257283327",
@@ -4998,7 +5223,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1080205798219402",
@@ -5048,7 +5276,10 @@
         }
       ],
       "frt_minutes": 266,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 15946,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1695152198942340",
@@ -5096,7 +5327,10 @@
         }
       ],
       "frt_minutes": 253,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 15178,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_2296851924486382",
@@ -5158,7 +5392,10 @@
         }
       ],
       "frt_minutes": 243,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_934757089493556",
@@ -5208,7 +5445,10 @@
         }
       ],
       "frt_minutes": 238,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 14267,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_3136156566716127",
@@ -5246,7 +5486,10 @@
         }
       ],
       "frt_minutes": 213,
-      "dropoff_reason": "Rep chậm (>30p)"
+      "dropoff_reason": "Phản hồi chậm (>30p)",
+      "_phone": null,
+      "frt_seconds": 12783,
+      "dropoff_key": "slow_reply"
     },
     {
       "id": "t_1737603707782559",
@@ -5356,7 +5599,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 5,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_29452065787733602",
@@ -5434,7 +5680,10 @@
         }
       ],
       "frt_minutes": 2,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": 122,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_1595750205054774",
@@ -5539,7 +5788,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Đã để lại SĐT"
+      "dropoff_reason": "Đã để lại SĐT (Hot Lead)",
+      "_phone": "0902275762",
+      "frt_seconds": 0,
+      "dropoff_key": "left_phone"
     },
     {
       "id": "t_1047212591713614",
@@ -5601,7 +5853,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 5,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_2408775359859366",
@@ -5669,7 +5924,10 @@
         }
       ],
       "frt_minutes": 8,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1102780779199658",
@@ -5743,7 +6001,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 6,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1133553252482979",
@@ -5829,7 +6090,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_29760222463575459",
@@ -5861,7 +6125,10 @@
         }
       ],
       "frt_minutes": 10,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 585,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_2235507110693465",
@@ -5959,7 +6226,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 1,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1529300729232275",
@@ -6033,7 +6303,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1438888721780823",
@@ -6119,7 +6392,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 3,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1053225690831703",
@@ -6217,7 +6493,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 2,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1349313783802908",
@@ -6255,7 +6534,10 @@
         }
       ],
       "frt_minutes": 11,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 631,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1598461265360979",
@@ -6341,7 +6623,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 3,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_1125293929886382",
@@ -6402,7 +6687,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 5,
+      "dropoff_key": "price_only"
     },
     {
       "id": "t_3219624878229499",
@@ -6442,7 +6730,10 @@
         }
       ],
       "frt_minutes": 6,
-      "dropoff_reason": "Chưa cung cấp SĐT"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": 0,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_3198075213735674",
@@ -6484,7 +6775,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": 3,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_1139042405467171",
@@ -6526,7 +6820,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chỉ khảo giá rồi im lặng"
+      "dropoff_reason": "Dừng sau tin chào",
+      "_phone": null,
+      "frt_seconds": 3,
+      "dropoff_key": "no_need"
     },
     {
       "id": "t_3446898758815620",
@@ -6594,7 +6891,10 @@
         }
       ],
       "frt_minutes": 0,
-      "dropoff_reason": "Chưa chốt ngày / lịch đoàn"
+      "dropoff_reason": "Tham khảo giá / Chưa chốt",
+      "_phone": null,
+      "frt_seconds": 11,
+      "dropoff_key": "price_only"
     }
   ]
 }
