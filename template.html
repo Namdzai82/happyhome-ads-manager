@@ -815,9 +815,10 @@ let retentionChartInstance = null;
 
 function renderCreativesTab() {
   const container = document.getElementById('creativesGrid');
-  if (!container || !A.creatives) return;
+  const crList = Array.isArray(A.creatives) ? A.creatives : (A.creatives?.list || []);
+  if (!container || !crList.length) return;
 
-  container.innerHTML = A.creatives.map(cr => `
+  container.innerHTML = crList.map(cr => `
     <div class="card p-6 border-slate-200 hover:shadow-md transition">
       <div class="flex items-start justify-between gap-3 pb-4 border-b border-slate-100">
         <div>
@@ -912,7 +913,8 @@ function initRetentionChart() {
   const labels = ['Bắt đầu (100%)', 'Hook 3s đầu', 'Xem 25%', 'Xem 50%', 'Xem 75%', 'Xem hết 100%'];
   const colors = ['#059669', '#2563eb'];
 
-  const datasets = A.creatives.map((cr, idx) => ({
+  const crList = Array.isArray(A.creatives) ? A.creatives : (A.creatives?.list || []);
+  const datasets = crList.map((cr, idx) => ({
     label: cr.name,
     data: [100, Math.round(cr.hook_rate * 100), Math.round(cr.retention.p25 * 100), Math.round(cr.retention.p50 * 100), Math.round(cr.retention.p75 * 100), Math.round(cr.retention.p100 * 100)],
     borderColor: colors[idx % colors.length],
