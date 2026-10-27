@@ -9,617 +9,91 @@
     "status_note": "Tài khoản bị hạn chế do lỗi thanh toán, dừng phân phối từ 26/10/2026"
   },
   "campaigns": [
-    {
-      "id": "1510",
-      "name": "1510 - HH - DI DEN 1",
-      "adset": "HN -45-65+",
-      "ad": "Goi nguoi gia",
-      "budget": "150.000 đ/ngày (ABO)",
-      "start": "2026-10-15",
-      "spend": 1526808,
-      "results": 150,
-      "reach": 7103,
-      "impressions": 11631,
-      "clicks": 997,
-      "link_clicks": 320,
-      "quality": "Dưới TB (20% cuối) / Tương tác trên TB / Chuyển đổi trên TB"
-    },
-    {
-      "id": "1910",
-      "name": "1910 - HH -di den",
-      "adset": "HN - 40-65",
-      "ad": "di den 1",
-      "budget": "150.000 đ/ngày (CBO)",
-      "start": "2026-10-19",
-      "spend": 958730,
-      "results": 87,
-      "reach": 4157,
-      "impressions": 5761,
-      "clicks": 634,
-      "link_clicks": 227,
-      "quality": "Chưa đủ dữ liệu"
-    }
+    {"id": "1510", "name": "1510 - HH - DI DEN 1", "adset": "HN -45-65+", "ad": "Goi nguoi gia", "budget": "150.000 đ/ngày (ABO)", "start": "2026-10-15", "spend": 1526808, "results": 150, "reach": 7103, "impressions": 11631, "clicks": 997, "link_clicks": 320, "quality": "Dưới TB (20% cuối) / Tương tác trên TB / Chuyển đổi trên TB"},
+    {"id": "1910", "name": "1910 - HH -di den", "adset": "HN - 40-65", "ad": "di den 1", "budget": "150.000 đ/ngày (CBO)", "start": "2026-10-19", "spend": 958730, "results": 87, "reach": 4157, "impressions": 5761, "clicks": 634, "link_clicks": 227, "quality": "Chưa đủ dữ liệu"}
   ],
   "same_period": {
     "label": "19-25/10 (cả hai cùng chạy)",
     "rows": [
-      {
-        "id": "1510",
-        "spend": 987818,
-        "results": 107,
-        "impressions": 7240,
-        "link_clicks": 225
-      },
-      {
-        "id": "1910",
-        "spend": 958730,
-        "results": 87,
-        "impressions": 5761,
-        "link_clicks": 227
-      }
+      {"id": "1510", "spend": 987818, "results": 107, "impressions": 7240, "link_clicks": 225},
+      {"id": "1910", "spend": 958730, "results": 87, "impressions": 5761, "link_clicks": 227}
     ]
   },
   "campaign_daily": [
-    {
-      "camp": "1510",
-      "date": "2026-10-15",
-      "spend": 84678,
-      "results": 8,
-      "reach": 529,
-      "impressions": 629,
-      "clicks": 59,
-      "link_clicks": 14
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-16",
-      "spend": 115208,
-      "results": 13,
-      "reach": 925,
-      "impressions": 1127,
-      "clicks": 102,
-      "link_clicks": 27
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-17",
-      "spend": 156619,
-      "results": 11,
-      "reach": 734,
-      "impressions": 838,
-      "clicks": 56,
-      "link_clicks": 14
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-18",
-      "spend": 182485,
-      "results": 11,
-      "reach": 1533,
-      "impressions": 1797,
-      "clicks": 121,
-      "link_clicks": 40
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-19",
-      "spend": 175175,
-      "results": 22,
-      "reach": 1510,
-      "impressions": 1767,
-      "clicks": 133,
-      "link_clicks": 45
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-20",
-      "spend": 144205,
-      "results": 6,
-      "reach": 1023,
-      "impressions": 1229,
-      "clicks": 90,
-      "link_clicks": 23
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-21",
-      "spend": 112876,
-      "results": 7,
-      "reach": 682,
-      "impressions": 846,
-      "clicks": 75,
-      "link_clicks": 25
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-22",
-      "spend": 165358,
-      "results": 12,
-      "reach": 963,
-      "impressions": 1089,
-      "clicks": 106,
-      "link_clicks": 29
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-23",
-      "spend": 228758,
-      "results": 28,
-      "reach": 1103,
-      "impressions": 1202,
-      "clicks": 112,
-      "link_clicks": 37
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-24",
-      "spend": 40933,
-      "results": 13,
-      "reach": 291,
-      "impressions": 308,
-      "clicks": 43,
-      "link_clicks": 24
-    },
-    {
-      "camp": "1510",
-      "date": "2026-10-25",
-      "spend": 120513,
-      "results": 19,
-      "reach": 753,
-      "impressions": 799,
-      "clicks": 100,
-      "link_clicks": 42
-    },
-    {
-      "camp": "1910",
-      "date": "2026-10-19",
-      "spend": 190057,
-      "results": 10,
-      "reach": 850,
-      "impressions": 914,
-      "clicks": 90,
-      "link_clicks": 32
-    },
-    {
-      "camp": "1910",
-      "date": "2026-10-20",
-      "spend": 151543,
-      "results": 9,
-      "reach": 759,
-      "impressions": 930,
-      "clicks": 106,
-      "link_clicks": 29
-    },
-    {
-      "camp": "1910",
-      "date": "2026-10-21",
-      "spend": 92510,
-      "results": 4,
-      "reach": 408,
-      "impressions": 478,
-      "clicks": 63,
-      "link_clicks": 29
-    },
-    {
-      "camp": "1910",
-      "date": "2026-10-22",
-      "spend": 120431,
-      "results": 12,
-      "reach": 579,
-      "impressions": 686,
-      "clicks": 79,
-      "link_clicks": 34
-    },
-    {
-      "camp": "1910",
-      "date": "2026-10-23",
-      "spend": 232830,
-      "results": 17,
-      "reach": 1225,
-      "impressions": 1382,
-      "clicks": 140,
-      "link_clicks": 43
-    },
-    {
-      "camp": "1910",
-      "date": "2026-10-24",
-      "spend": 49770,
-      "results": 9,
-      "reach": 391,
-      "impressions": 437,
-      "clicks": 47,
-      "link_clicks": 17
-    },
-    {
-      "camp": "1910",
-      "date": "2026-10-25",
-      "spend": 121589,
-      "results": 26,
-      "reach": 843,
-      "impressions": 934,
-      "clicks": 109,
-      "link_clicks": 43
-    }
+    {"camp": "1510", "date": "2026-10-15", "spend": 84678, "results": 8, "reach": 529, "impressions": 629, "clicks": 59, "link_clicks": 14},
+    {"camp": "1510", "date": "2026-10-16", "spend": 115208, "results": 13, "reach": 925, "impressions": 1127, "clicks": 102, "link_clicks": 27},
+    {"camp": "1510", "date": "2026-10-17", "spend": 156619, "results": 11, "reach": 734, "impressions": 838, "clicks": 56, "link_clicks": 14},
+    {"camp": "1510", "date": "2026-10-18", "spend": 182485, "results": 11, "reach": 1533, "impressions": 1797, "clicks": 121, "link_clicks": 40},
+    {"camp": "1510", "date": "2026-10-19", "spend": 175175, "results": 22, "reach": 1510, "impressions": 1767, "clicks": 133, "link_clicks": 45},
+    {"camp": "1510", "date": "2026-10-20", "spend": 144205, "results": 6, "reach": 1023, "impressions": 1229, "clicks": 90, "link_clicks": 23},
+    {"camp": "1510", "date": "2026-10-21", "spend": 112876, "results": 7, "reach": 682, "impressions": 846, "clicks": 75, "link_clicks": 25},
+    {"camp": "1510", "date": "2026-10-22", "spend": 165358, "results": 12, "reach": 963, "impressions": 1089, "clicks": 106, "link_clicks": 29},
+    {"camp": "1510", "date": "2026-10-23", "spend": 228758, "results": 28, "reach": 1103, "impressions": 1202, "clicks": 112, "link_clicks": 37},
+    {"camp": "1510", "date": "2026-10-24", "spend": 40933, "results": 13, "reach": 291, "impressions": 308, "clicks": 43, "link_clicks": 24},
+    {"camp": "1510", "date": "2026-10-25", "spend": 120513, "results": 19, "reach": 753, "impressions": 799, "clicks": 100, "link_clicks": 42},
+    {"camp": "1910", "date": "2026-10-19", "spend": 190057, "results": 10, "reach": 850, "impressions": 914, "clicks": 90, "link_clicks": 32},
+    {"camp": "1910", "date": "2026-10-20", "spend": 151543, "results": 9, "reach": 759, "impressions": 930, "clicks": 106, "link_clicks": 29},
+    {"camp": "1910", "date": "2026-10-21", "spend": 92510, "results": 4, "reach": 408, "impressions": 478, "clicks": 63, "link_clicks": 29},
+    {"camp": "1910", "date": "2026-10-22", "spend": 120431, "results": 12, "reach": 579, "impressions": 686, "clicks": 79, "link_clicks": 34},
+    {"camp": "1910", "date": "2026-10-23", "spend": 232830, "results": 17, "reach": 1225, "impressions": 1382, "clicks": 140, "link_clicks": 43},
+    {"camp": "1910", "date": "2026-10-24", "spend": 49770, "results": 9, "reach": 391, "impressions": 437, "clicks": 47, "link_clicks": 17},
+    {"camp": "1910", "date": "2026-10-25", "spend": 121589, "results": 26, "reach": 843, "impressions": 934, "clicks": 109, "link_clicks": 43}
   ],
   "placements": [
-    {
-      "placement": "Reels",
-      "camp": "1510",
-      "spend": 762717,
-      "results": 85,
-      "impressions": 5377,
-      "clicks": 359,
-      "link_clicks": 188
-    },
-    {
-      "placement": "Reels",
-      "camp": "1910",
-      "spend": 374874,
-      "results": 42,
-      "impressions": 1726,
-      "clicks": 126,
-      "link_clicks": 73
-    },
-    {
-      "placement": "Feed",
-      "camp": "1510",
-      "spend": 716481,
-      "results": 60,
-      "impressions": 6111,
-      "clicks": 614,
-      "link_clicks": 110
-    },
-    {
-      "placement": "Feed",
-      "camp": "1910",
-      "spend": 563026,
-      "results": 42,
-      "impressions": 3913,
-      "clicks": 496,
-      "link_clicks": 143
-    },
-    {
-      "placement": "Stories",
-      "camp": "1510",
-      "spend": 46953,
-      "results": 5,
-      "impressions": 137,
-      "clicks": 24,
-      "link_clicks": 22
-    },
-    {
-      "placement": "Stories",
-      "camp": "1910",
-      "spend": 13886,
-      "results": 3,
-      "impressions": 58,
-      "clicks": 6,
-      "link_clicks": 6
-    },
-    {
-      "placement": "Khác",
-      "camp": "1510",
-      "spend": 657,
-      "results": 0,
-      "impressions": 6,
-      "clicks": 0,
-      "link_clicks": 0
-    },
-    {
-      "placement": "Khác",
-      "camp": "1910",
-      "spend": 6944,
-      "results": 0,
-      "impressions": 64,
-      "clicks": 6,
-      "link_clicks": 5
-    }
+    {"placement": "Reels", "camp": "1510", "spend": 762717, "results": 85, "impressions": 5377, "clicks": 359, "link_clicks": 188},
+    {"placement": "Reels", "camp": "1910", "spend": 374874, "results": 42, "impressions": 1726, "clicks": 126, "link_clicks": 73},
+    {"placement": "Feed", "camp": "1510", "spend": 716481, "results": 60, "impressions": 6111, "clicks": 614, "link_clicks": 110},
+    {"placement": "Feed", "camp": "1910", "spend": 563026, "results": 42, "impressions": 3913, "clicks": 496, "link_clicks": 143},
+    {"placement": "Stories", "camp": "1510", "spend": 46953, "results": 5, "impressions": 137, "clicks": 24, "link_clicks": 22},
+    {"placement": "Stories", "camp": "1910", "spend": 13886, "results": 3, "impressions": 58, "clicks": 6, "link_clicks": 6},
+    {"placement": "Khác", "camp": "1510", "spend": 657, "results": 0, "impressions": 6, "clicks": 0, "link_clicks": 0},
+    {"placement": "Khác", "camp": "1910", "spend": 6944, "results": 0, "impressions": 64, "clicks": 6, "link_clicks": 5}
   ],
   "ages": [
-    {
-      "age": "25-34",
-      "camp": "1510",
-      "spend": 54354,
-      "results": 3,
-      "reach": 226,
-      "impressions": 362,
-      "link_clicks": 11
-    },
-    {
-      "age": "35-44",
-      "camp": "1510",
-      "spend": 51650,
-      "results": 2,
-      "reach": 473,
-      "impressions": 694,
-      "link_clicks": 18
-    },
-    {
-      "age": "45-54",
-      "camp": "1510",
-      "spend": 174536,
-      "results": 20,
-      "reach": 1275,
-      "impressions": 1899,
-      "link_clicks": 44
-    },
-    {
-      "age": "55-64",
-      "camp": "1510",
-      "spend": 531299,
-      "results": 57,
-      "reach": 2527,
-      "impressions": 4149,
-      "link_clicks": 113
-    },
-    {
-      "age": "65+",
-      "camp": "1510",
-      "spend": 714969,
-      "results": 68,
-      "reach": 2685,
-      "impressions": 4527,
-      "link_clicks": 134
-    },
-    {
-      "age": "25-34",
-      "camp": "1910",
-      "spend": 33518,
-      "results": 3,
-      "reach": 110,
-      "impressions": 156,
-      "link_clicks": 9
-    },
-    {
-      "age": "35-44",
-      "camp": "1910",
-      "spend": 33889,
-      "results": 3,
-      "reach": 273,
-      "impressions": 349,
-      "link_clicks": 5
-    },
-    {
-      "age": "45-54",
-      "camp": "1910",
-      "spend": 92554,
-      "results": 8,
-      "reach": 643,
-      "impressions": 791,
-      "link_clicks": 19
-    },
-    {
-      "age": "55-64",
-      "camp": "1910",
-      "spend": 302754,
-      "results": 27,
-      "reach": 1450,
-      "impressions": 1965,
-      "link_clicks": 83
-    },
-    {
-      "age": "65+",
-      "camp": "1910",
-      "spend": 496015,
-      "results": 46,
-      "reach": 1700,
-      "impressions": 2500,
-      "link_clicks": 111
-    }
+    {"age": "25-34", "camp": "1510", "spend": 54354, "results": 3, "reach": 226, "impressions": 362, "link_clicks": 11},
+    {"age": "35-44", "camp": "1510", "spend": 51650, "results": 2, "reach": 473, "impressions": 694, "link_clicks": 18},
+    {"age": "45-54", "camp": "1510", "spend": 174536, "results": 20, "reach": 1275, "impressions": 1899, "link_clicks": 44},
+    {"age": "55-64", "camp": "1510", "spend": 531299, "results": 57, "reach": 2527, "impressions": 4149, "link_clicks": 113},
+    {"age": "65+", "camp": "1510", "spend": 714969, "results": 68, "reach": 2685, "impressions": 4527, "link_clicks": 134},
+    {"age": "25-34", "camp": "1910", "spend": 33518, "results": 3, "reach": 110, "impressions": 156, "link_clicks": 9},
+    {"age": "35-44", "camp": "1910", "spend": 33889, "results": 3, "reach": 273, "impressions": 349, "link_clicks": 5},
+    {"age": "45-54", "camp": "1910", "spend": 92554, "results": 8, "reach": 643, "impressions": 791, "link_clicks": 19},
+    {"age": "55-64", "camp": "1910", "spend": 302754, "results": 27, "reach": 1450, "impressions": 1965, "link_clicks": 83},
+    {"age": "65+", "camp": "1910", "spend": 496015, "results": 46, "reach": 1700, "impressions": 2500, "link_clicks": 111}
   ],
   "genders": [
-    {
-      "gender": "Nữ",
-      "camp": "1510",
-      "spend": 1305066,
-      "results": 130,
-      "impressions": 9553
-    },
-    {
-      "gender": "Nam",
-      "camp": "1510",
-      "spend": 214456,
-      "results": 20,
-      "impressions": 2012
-    },
-    {
-      "gender": "Chưa phân loại",
-      "camp": "1510",
-      "spend": 7286,
-      "results": 0,
-      "impressions": 66
-    },
-    {
-      "gender": "Nữ",
-      "camp": "1910",
-      "spend": 804613,
-      "results": 78,
-      "impressions": 4694
-    },
-    {
-      "gender": "Nam",
-      "camp": "1910",
-      "spend": 147733,
-      "results": 9,
-      "impressions": 1025
-    },
-    {
-      "gender": "Chưa phân loại",
-      "camp": "1910",
-      "spend": 6384,
-      "results": 0,
-      "impressions": 42
-    }
+    {"gender": "Nữ", "camp": "1510", "spend": 1305066, "results": 130, "impressions": 9553},
+    {"gender": "Nam", "camp": "1510", "spend": 214456, "results": 20, "impressions": 2012},
+    {"gender": "Chưa phân loại", "camp": "1510", "spend": 7286, "results": 0, "impressions": 66},
+    {"gender": "Nữ", "camp": "1910", "spend": 804613, "results": 78, "impressions": 4694},
+    {"gender": "Nam", "camp": "1910", "spend": 147733, "results": 9, "impressions": 1025},
+    {"gender": "Chưa phân loại", "camp": "1910", "spend": 6384, "results": 0, "impressions": 42}
   ],
   "hours": [
-    {
-      "h": 0,
-      "results": 10,
-      "spend": 51467,
-      "impressions": 373,
-      "link_clicks": 30
-    },
-    {
-      "h": 1,
-      "results": 4,
-      "spend": 17267,
-      "impressions": 97,
-      "link_clicks": 7
-    },
-    {
-      "h": 2,
-      "results": 0,
-      "spend": 13808,
-      "impressions": 78,
-      "link_clicks": 2
-    },
-    {
-      "h": 3,
-      "results": 0,
-      "spend": 13929,
-      "impressions": 98,
-      "link_clicks": 3
-    },
-    {
-      "h": 4,
-      "results": 2,
-      "spend": 35730,
-      "impressions": 218,
-      "link_clicks": 8
-    },
-    {
-      "h": 5,
-      "results": 10,
-      "spend": 86212,
-      "impressions": 541,
-      "link_clicks": 20
-    },
-    {
-      "h": 6,
-      "results": 10,
-      "spend": 134951,
-      "impressions": 794,
-      "link_clicks": 23
-    },
-    {
-      "h": 7,
-      "results": 21,
-      "spend": 150211,
-      "impressions": 945,
-      "link_clicks": 38
-    },
-    {
-      "h": 8,
-      "results": 18,
-      "spend": 159885,
-      "impressions": 1078,
-      "link_clicks": 31
-    },
-    {
-      "h": 9,
-      "results": 7,
-      "spend": 125112,
-      "impressions": 828,
-      "link_clicks": 19
-    },
-    {
-      "h": 10,
-      "results": 16,
-      "spend": 247729,
-      "impressions": 1222,
-      "link_clicks": 47
-    },
-    {
-      "h": 11,
-      "results": 14,
-      "spend": 103867,
-      "impressions": 778,
-      "link_clicks": 27
-    },
-    {
-      "h": 12,
-      "results": 7,
-      "spend": 163552,
-      "impressions": 1111,
-      "link_clicks": 32
-    },
-    {
-      "h": 13,
-      "results": 10,
-      "spend": 112463,
-      "impressions": 908,
-      "link_clicks": 32
-    },
-    {
-      "h": 14,
-      "results": 6,
-      "spend": 79865,
-      "impressions": 598,
-      "link_clicks": 14
-    },
-    {
-      "h": 15,
-      "results": 13,
-      "spend": 192512,
-      "impressions": 1142,
-      "link_clicks": 33
-    },
-    {
-      "h": 16,
-      "results": 26,
-      "spend": 208599,
-      "impressions": 1297,
-      "link_clicks": 39
-    },
-    {
-      "h": 17,
-      "results": 9,
-      "spend": 106566,
-      "impressions": 849,
-      "link_clicks": 19
-    },
-    {
-      "h": 18,
-      "results": 7,
-      "spend": 98604,
-      "impressions": 985,
-      "link_clicks": 23
-    },
-    {
-      "h": 19,
-      "results": 8,
-      "spend": 126268,
-      "impressions": 1019,
-      "link_clicks": 30
-    },
-    {
-      "h": 20,
-      "results": 10,
-      "spend": 84258,
-      "impressions": 797,
-      "link_clicks": 23
-    },
-    {
-      "h": 21,
-      "results": 14,
-      "spend": 85491,
-      "impressions": 842,
-      "link_clicks": 26
-    },
-    {
-      "h": 22,
-      "results": 12,
-      "spend": 65309,
-      "impressions": 556,
-      "link_clicks": 18
-    },
-    {
-      "h": 23,
-      "results": 3,
-      "spend": 21883,
-      "impressions": 238,
-      "link_clicks": 3
-    }
+    {"h": 0, "results": 10, "spend": 51467, "impressions": 373, "link_clicks": 30},
+    {"h": 1, "results": 4, "spend": 17267, "impressions": 97, "link_clicks": 7},
+    {"h": 2, "results": 0, "spend": 13808, "impressions": 78, "link_clicks": 2},
+    {"h": 3, "results": 0, "spend": 13929, "impressions": 98, "link_clicks": 3},
+    {"h": 4, "results": 2, "spend": 35730, "impressions": 218, "link_clicks": 8},
+    {"h": 5, "results": 10, "spend": 86212, "impressions": 541, "link_clicks": 20},
+    {"h": 6, "results": 10, "spend": 134951, "impressions": 794, "link_clicks": 23},
+    {"h": 7, "results": 21, "spend": 150211, "impressions": 945, "link_clicks": 38},
+    {"h": 8, "results": 18, "spend": 159885, "impressions": 1078, "link_clicks": 31},
+    {"h": 9, "results": 7, "spend": 125112, "impressions": 828, "link_clicks": 19},
+    {"h": 10, "results": 16, "spend": 247729, "impressions": 1222, "link_clicks": 47},
+    {"h": 11, "results": 14, "spend": 103867, "impressions": 778, "link_clicks": 27},
+    {"h": 12, "results": 7, "spend": 163552, "impressions": 1111, "link_clicks": 32},
+    {"h": 13, "results": 10, "spend": 112463, "impressions": 908, "link_clicks": 32},
+    {"h": 14, "results": 6, "spend": 79865, "impressions": 598, "link_clicks": 14},
+    {"h": 15, "results": 13, "spend": 192512, "impressions": 1142, "link_clicks": 33},
+    {"h": 16, "results": 26, "spend": 208599, "impressions": 1297, "link_clicks": 39},
+    {"h": 17, "results": 9, "spend": 106566, "impressions": 849, "link_clicks": 19},
+    {"h": 18, "results": 7, "spend": 98604, "impressions": 985, "link_clicks": 23},
+    {"h": 19, "results": 8, "spend": 126268, "impressions": 1019, "link_clicks": 30},
+    {"h": 20, "results": 10, "spend": 84258, "impressions": 797, "link_clicks": 23},
+    {"h": 21, "results": 14, "spend": 85491, "impressions": 842, "link_clicks": 26},
+    {"h": 22, "results": 12, "spend": 65309, "impressions": 556, "link_clicks": 18},
+    {"h": 23, "results": 3, "spend": 21883, "impressions": 238, "link_clicks": 3}
   ],
   "economics": {
     "price_per_pax": 500000,
@@ -628,434 +102,55 @@
     "group_margin_35": 4450000,
     "note": "Giả định từ brand/du-lieu-kinh-doanh-va-ke-hoach-12-thang.md (đoàn 25/35/45 khách lãi gộp ~1,95/4,45/6,95 triệu)"
   },
-  "ad_creatives": [
-    {
-      "id": "Goi_nguoi_gia",
-      "name": "Goi nguoi gia (Quảng cáo người lớn tuổi)",
-      "camp": "1510",
-      "camp_name": "1510 - HH - DI DEN 1",
-      "headline": "🌿 Đi chơi trong tuần mà chưa biết đi đâu, vậy thì Đền Ứng Thiên là một địa điểm không thể bỏ qua...",
-      "body": "Một chuyến về Đồng Bèn, ghé đền Ứng Thiên, hít một chút không khí núi rừng rồi về HappyHome nghỉ ngơi, ăn ngon và vui chơi cả ngày...",
-      "video_id": "883856931164098",
-      "spend": 1526808,
-      "results": 150,
-      "cpr": 10179,
-      "impressions": 11631,
-      "reach": 7103,
-      "clicks": 997,
-      "link_clicks": 320,
-      "ctr_all": 8.57,
-      "ctr_link": 2.75,
-      "cpc_link": 4771,
-      "video_plays": 10640,
-      "video_views_3s": 5753,
-      "video_p25": 2060,
-      "video_p50": 1497,
-      "video_p75": 1159,
-      "video_p100": 792,
-      "hook_rate": 49.5,
-      "completion_rate": 7.4,
-      "quality_ranking": "Dưới TB (20% cuối)",
-      "engagement_ranking": "Trên trung bình",
-      "conversion_ranking": "Trên trung bình",
-      "note": "Thu hút cực mạnh tệp phụ nữ & người cao tuổi 45-65+. CTR cao nhưng Meta đánh giá chất lượng dưới TB do chữ trên ảnh/video nhiều."
-    },
-    {
-      "id": "di_den_1",
-      "name": "di den 1 (Quảng cáo đền 1)",
-      "camp": "1910",
-      "camp_name": "1910 - HH -di den",
-      "headline": "🌿 Đi chơi trong tuần mà chưa biết đi đâu, vậy thì Đền Ứng Thiên là một địa điểm không thể bỏ qua...",
-      "body": "Một chuyến về Đồng Bèn, ghé đền Ứng Thiên, hít một chút không khí núi rừng rồi về HappyHome nghỉ ngơi, ăn ngon và vui chơi cả ngày...",
-      "video_id": "883856931164098",
-      "spend": 958730,
-      "results": 87,
-      "cpr": 11020,
-      "impressions": 5761,
-      "reach": 4157,
-      "clicks": 634,
-      "link_clicks": 227,
-      "ctr_all": 11.01,
-      "ctr_link": 3.94,
-      "cpc_link": 4223,
-      "video_plays": 5236,
-      "video_views_3s": 2923,
-      "video_p25": 1180,
-      "video_p50": 835,
-      "video_p75": 624,
-      "video_p100": 407,
-      "hook_rate": 50.7,
-      "completion_rate": 7.8,
-      "quality_ranking": "Chưa đủ dữ liệu",
-      "engagement_ranking": "Đang học",
-      "conversion_ranking": "Đang học",
-      "note": "CTR liên kết rất cao (3.94%), tỷ lệ xem hoàn tất 7.8%. Chạy dưới chiến dịch ngân sách CBO."
-    }
-  ],
-  "dropoff_summary": {
-    "total": 100,
-    "stats": [
-      {
-        "key": "slow_reply",
-        "label": "Phản hồi chậm (>30p)",
-        "count": 33,
-        "pct": 33,
-        "color": "amber",
-        "icon": "fa-clock-rotate-left",
-        "desc": "Khách nhắn nhưng trang trả lời trễ từ 30 phút - vài giờ làm nguội nhu cầu"
-      },
-      {
-        "key": "schedule",
-        "label": "Hỏi ngày / Vướng lịch",
-        "count": 1,
-        "pct": 1,
-        "color": "blue",
-        "icon": "fa-calendar-xmark",
-        "desc": "Khách hỏi phòng cuối tuần hoặc ngày cận kề nhưng chưa chốt vì chưa sắp xếp được nhóm"
-      },
-      {
-        "key": "no_need",
-        "label": "Dừng sau tin chào",
-        "count": 13,
-        "pct": 13,
-        "color": "slate",
-        "icon": "fa-comment-slash",
-        "desc": "Bấm nút bắt đầu từ quảng cáo nhưng không phản hồi thêm khi bot gửi tin chào"
-      },
-      {
-        "key": "price_only",
-        "label": "Tham khảo giá",
-        "count": 50,
-        "pct": 50,
-        "color": "purple",
-        "icon": "fa-tags",
-        "desc": "Hỏi bảng giá/combo 500k rồi im lặng so sánh với các khu khác"
-      },
-      {
-        "key": "left_phone",
-        "label": "Đã để lại SĐT (Hot)",
-        "count": 3,
-        "pct": 3,
-        "color": "emerald",
-        "icon": "fa-phone-volume",
-        "desc": "Đã cung cấp số điện thoại trực tiếp trong tin nhắn để tư vấn chốt đơn"
-      }
-    ]
-  },
   "creatives": {
-    "list": [
-      {
-        "name": "Goi nguoi gia (Reels & Feed)",
-        "id": "120234120364960309",
-        "spend": 2840000,
-        "impressions": 15732,
-        "clicks": 412,
-        "link_clicks": 257,
-        "ctr": 0.0163,
-        "ctr_all": 0.0262,
-        "results": 18,
-        "cpr": 157777,
-        "video_views_3s": 8086,
-        "hook_rate": 0.514,
-        "retention": {
-          "p25": 0.321,
-          "p50": 0.142,
-          "p75": 0.078,
-          "p100": 0.041
-        },
-        "meta_rankings": {
-          "quality": "Dưới trung bình (Bottom 20%)",
-          "quality_class": "text-amber-700 bg-amber-50 border-amber-200",
-          "engagement": "Trung bình",
-          "engagement_class": "text-blue-700 bg-blue-50 border-blue-200",
-          "conversion": "Trên trung bình (Top 35%)",
-          "conversion_class": "text-emerald-700 bg-emerald-50 border-emerald-200"
-        },
-        "recommendation": "Cắt text trên thumbnail, thêm cảnh cận mặt người cao tuổi cười nói vui vẻ để tăng Quality Ranking của Meta."
-      },
-      {
-        "name": "di den 1 (Reels & Feed)",
-        "id": "120234120364970309",
-        "spend": 4920000,
-        "impressions": 27314,
-        "clicks": 840,
-        "link_clicks": 512,
-        "ctr": 0.0187,
-        "ctr_all": 0.0307,
-        "results": 34,
-        "cpr": 144705,
-        "video_views_3s": 13274,
-        "hook_rate": 0.486,
-        "retention": {
-          "p25": 0.305,
-          "p50": 0.138,
-          "p75": 0.072,
-          "p100": 0.038
-        },
-        "meta_rankings": {
-          "quality": "Trung bình (Average)",
-          "quality_class": "text-blue-700 bg-blue-50 border-blue-200",
-          "engagement": "Trung bình (Average)",
-          "engagement_class": "text-blue-700 bg-blue-50 border-blue-200",
-          "conversion": "Trên trung bình (Top 35%)",
-          "conversion_class": "text-emerald-700 bg-emerald-50 border-emerald-200"
-        },
-        "recommendation": "Creative chủ lực chi tiêu tốt. Cần test thêm biến thể 15s tập trung riêng vào \"Ăn lẩu ven suối + Đền Ứng Thiên\"."
-      }
+    "meta": {
+      "source": "Meta Ads Manager (Insights API cấp quảng cáo), lấy ngày 27/10/2026",
+      "period": "15/10/2026 - 25/10/2026",
+      "video_length_s": 85.728,
+      "same_video": true,
+      "cta": "Gửi tin nhắn (MESSAGE_PAGE)",
+      "format": "Video",
+      "note": "Hai quảng cáo dùng chung một video 85,7 giây và cùng nội dung chữ. Lượt xem 3 giây = action video_view. ThruPlay = xem tới 15 giây hoặc hết video. Phần trăm xem (25/50/75/95/100%) tính trên độ dài video. Theo vị trí: Meta không trả số người tiếp cận và mốc 95%. Meta đếm ThruPlay và các mốc % theo quy tắc riêng nên ThruPlay (15 giây) có thể thấp hơn mốc 25% một chút."
+    },
+    "ads": [
+      {"spend": 1526808, "impressions": 11631, "reach": 7103, "clicks": 997, "link_clicks": 320, "results": 150, "depth2": 62, "engagement": 6165, "reactions": 72, "comments": 5, "video_3s": 5753, "plays": 10640, "thruplay": 2309, "p25": 2060, "p50": 1497, "p75": 1159, "p95": 911, "p100": 792, "v30s": 1769, "avg_watch": 17, "camp": "1510", "ad_id": "120253533466510486", "ad": "Goi nguoi gia", "ranking": ["BELOW_AVERAGE_20", "ABOVE_AVERAGE", "ABOVE_AVERAGE"], "cost_per_thruplay": 661.24},
+      {"spend": 958730, "impressions": 5761, "reach": 4157, "clicks": 634, "link_clicks": 227, "results": 87, "depth2": 40, "engagement": 3200, "reactions": 35, "comments": 4, "video_3s": 2923, "plays": 5068, "thruplay": 1058, "p25": 1121, "p50": 763, "p75": 590, "p95": 465, "p100": 419, "v30s": 815, "avg_watch": 18, "camp": "1910", "ad_id": "120253575295920486", "ad": "di den 1", "ranking": ["UNKNOWN", "UNKNOWN", "UNKNOWN"], "cost_per_thruplay": 906.17}
     ],
     "daily": [
-      {
-        "camp": "1510",
-        "date": "2026-10-15",
-        "plays": 598,
-        "video_3s": 315,
-        "thruplay": 142,
-        "p25": 205,
-        "p50": 95,
-        "p75": 50,
-        "p100": 25,
-        "avg_watch": 12.4,
-        "reactions": 12,
-        "comments": 2
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-16",
-        "plays": 1071,
-        "video_3s": 564,
-        "thruplay": 254,
-        "p25": 367,
-        "p50": 169,
-        "p75": 90,
-        "p100": 45,
-        "avg_watch": 12.4,
-        "reactions": 20,
-        "comments": 4
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-17",
-        "plays": 796,
-        "video_3s": 419,
-        "thruplay": 189,
-        "p25": 272,
-        "p50": 126,
-        "p75": 67,
-        "p100": 34,
-        "avg_watch": 12.4,
-        "reactions": 11,
-        "comments": 3
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-18",
-        "plays": 1707,
-        "video_3s": 899,
-        "thruplay": 405,
-        "p25": 584,
-        "p50": 270,
-        "p75": 144,
-        "p100": 72,
-        "avg_watch": 12.4,
-        "reactions": 24,
-        "comments": 3
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-19",
-        "plays": 1679,
-        "video_3s": 884,
-        "thruplay": 398,
-        "p25": 575,
-        "p50": 265,
-        "p75": 141,
-        "p100": 71,
-        "avg_watch": 12.4,
-        "reactions": 27,
-        "comments": 7
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-20",
-        "plays": 1168,
-        "video_3s": 615,
-        "thruplay": 277,
-        "p25": 400,
-        "p50": 185,
-        "p75": 98,
-        "p100": 49,
-        "avg_watch": 12.4,
-        "reactions": 18,
-        "comments": 2
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-21",
-        "plays": 804,
-        "video_3s": 423,
-        "thruplay": 190,
-        "p25": 275,
-        "p50": 127,
-        "p75": 68,
-        "p100": 34,
-        "avg_watch": 12.4,
-        "reactions": 15,
-        "comments": 2
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-22",
-        "plays": 1035,
-        "video_3s": 545,
-        "thruplay": 245,
-        "p25": 354,
-        "p50": 164,
-        "p75": 87,
-        "p100": 44,
-        "avg_watch": 12.4,
-        "reactions": 21,
-        "comments": 4
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-23",
-        "plays": 1142,
-        "video_3s": 601,
-        "thruplay": 270,
-        "p25": 391,
-        "p50": 180,
-        "p75": 96,
-        "p100": 48,
-        "avg_watch": 12.4,
-        "reactions": 22,
-        "comments": 8
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-24",
-        "plays": 293,
-        "video_3s": 154,
-        "thruplay": 69,
-        "p25": 100,
-        "p50": 46,
-        "p75": 25,
-        "p100": 12,
-        "avg_watch": 12.4,
-        "reactions": 9,
-        "comments": 4
-      },
-      {
-        "camp": "1510",
-        "date": "2026-10-25",
-        "plays": 759,
-        "video_3s": 400,
-        "thruplay": 180,
-        "p25": 260,
-        "p50": 120,
-        "p75": 64,
-        "p100": 32,
-        "avg_watch": 12.4,
-        "reactions": 20,
-        "comments": 6
-      },
-      {
-        "camp": "1910",
-        "date": "2026-10-19",
-        "plays": 868,
-        "video_3s": 457,
-        "thruplay": 206,
-        "p25": 297,
-        "p50": 137,
-        "p75": 73,
-        "p100": 37,
-        "avg_watch": 12.4,
-        "reactions": 18,
-        "comments": 3
-      },
-      {
-        "camp": "1910",
-        "date": "2026-10-20",
-        "plays": 884,
-        "video_3s": 465,
-        "thruplay": 209,
-        "p25": 302,
-        "p50": 140,
-        "p75": 74,
-        "p100": 37,
-        "avg_watch": 12.4,
-        "reactions": 21,
-        "comments": 3
-      },
-      {
-        "camp": "1910",
-        "date": "2026-10-21",
-        "plays": 454,
-        "video_3s": 239,
-        "thruplay": 108,
-        "p25": 155,
-        "p50": 72,
-        "p75": 38,
-        "p100": 19,
-        "avg_watch": 12.4,
-        "reactions": 13,
-        "comments": 1
-      },
-      {
-        "camp": "1910",
-        "date": "2026-10-22",
-        "plays": 652,
-        "video_3s": 343,
-        "thruplay": 154,
-        "p25": 223,
-        "p50": 103,
-        "p75": 55,
-        "p100": 27,
-        "avg_watch": 12.4,
-        "reactions": 16,
-        "comments": 4
-      },
-      {
-        "camp": "1910",
-        "date": "2026-10-23",
-        "plays": 1313,
-        "video_3s": 691,
-        "thruplay": 311,
-        "p25": 449,
-        "p50": 207,
-        "p75": 111,
-        "p100": 55,
-        "avg_watch": 12.4,
-        "reactions": 28,
-        "comments": 5
-      },
-      {
-        "camp": "1910",
-        "date": "2026-10-24",
-        "plays": 415,
-        "video_3s": 219,
-        "thruplay": 99,
-        "p25": 142,
-        "p50": 66,
-        "p75": 35,
-        "p100": 18,
-        "avg_watch": 12.4,
-        "reactions": 9,
-        "comments": 3
-      },
-      {
-        "camp": "1910",
-        "date": "2026-10-25",
-        "plays": 887,
-        "video_3s": 467,
-        "thruplay": 210,
-        "p25": 304,
-        "p50": 140,
-        "p75": 75,
-        "p100": 37,
-        "avg_watch": 12.4,
-        "reactions": 22,
-        "comments": 8
-      }
+      {"spend": 84678, "impressions": 629, "reach": 529, "clicks": 59, "link_clicks": 14, "results": 8, "depth2": 2, "engagement": 344, "reactions": 8, "comments": 1, "video_3s": 321, "plays": 573, "thruplay": 129, "p25": 117, "p50": 82, "p75": 56, "p95": 45, "p100": 42, "v30s": 101, "avg_watch": 16, "camp": "1510", "date": "2026-10-15"},
+      {"spend": 115208, "impressions": 1127, "reach": 925, "clicks": 102, "link_clicks": 27, "results": 13, "depth2": 2, "engagement": 595, "reactions": 8, "comments": 0, "video_3s": 560, "plays": 1044, "thruplay": 241, "p25": 223, "p50": 159, "p75": 125, "p95": 95, "p100": 85, "v30s": 187, "avg_watch": 19, "camp": "1510", "date": "2026-10-16"},
+      {"spend": 156619, "impressions": 838, "reach": 734, "clicks": 56, "link_clicks": 14, "results": 11, "depth2": 3, "engagement": 448, "reactions": 3, "comments": 0, "video_3s": 430, "plays": 776, "thruplay": 181, "p25": 156, "p50": 114, "p75": 91, "p95": 75, "p100": 68, "v30s": 138, "avg_watch": 19, "camp": "1510", "date": "2026-10-17"},
+      {"spend": 182485, "impressions": 1797, "reach": 1533, "clicks": 121, "link_clicks": 40, "results": 11, "depth2": 7, "engagement": 892, "reactions": 10, "comments": 0, "video_3s": 839, "plays": 1643, "thruplay": 313, "p25": 273, "p50": 191, "p75": 140, "p95": 107, "p100": 85, "v30s": 231, "avg_watch": 14, "camp": "1510", "date": "2026-10-18"},
+      {"spend": 175175, "impressions": 1767, "reach": 1510, "clicks": 133, "link_clicks": 45, "results": 22, "depth2": 9, "engagement": 921, "reactions": 3, "comments": 0, "video_3s": 870, "plays": 1643, "thruplay": 356, "p25": 322, "p50": 234, "p75": 191, "p95": 149, "p100": 125, "v30s": 281, "avg_watch": 18, "camp": "1510", "date": "2026-10-19"},
+      {"spend": 190057, "impressions": 914, "reach": 850, "clicks": 90, "link_clicks": 32, "results": 10, "depth2": 4, "engagement": 516, "reactions": 9, "comments": 0, "video_3s": 474, "plays": 805, "thruplay": 174, "p25": 171, "p50": 115, "p75": 92, "p95": 70, "p100": 64, "v30s": 130, "avg_watch": 16, "camp": "1910", "date": "2026-10-19"},
+      {"spend": 144205, "impressions": 1229, "reach": 1023, "clicks": 90, "link_clicks": 23, "results": 6, "depth2": 1, "engagement": 578, "reactions": 5, "comments": 2, "video_3s": 547, "plays": 1107, "thruplay": 224, "p25": 193, "p50": 142, "p75": 108, "p95": 83, "p100": 68, "v30s": 169, "avg_watch": 15, "camp": "1510", "date": "2026-10-20"},
+      {"spend": 151543, "impressions": 930, "reach": 759, "clicks": 106, "link_clicks": 29, "results": 9, "depth2": 3, "engagement": 487, "reactions": 9, "comments": 1, "video_3s": 444, "plays": 799, "thruplay": 153, "p25": 192, "p50": 117, "p75": 86, "p95": 63, "p100": 57, "v30s": 124, "avg_watch": 16, "camp": "1910", "date": "2026-10-20"},
+      {"spend": 112876, "impressions": 846, "reach": 682, "clicks": 75, "link_clicks": 25, "results": 7, "depth2": 3, "engagement": 442, "reactions": 6, "comments": 1, "video_3s": 409, "plays": 788, "thruplay": 148, "p25": 128, "p50": 101, "p75": 74, "p95": 64, "p100": 53, "v30s": 112, "avg_watch": 16, "camp": "1510", "date": "2026-10-21"},
+      {"spend": 92510, "impressions": 478, "reach": 408, "clicks": 63, "link_clicks": 29, "results": 4, "depth2": 3, "engagement": 258, "reactions": 4, "comments": 1, "video_3s": 224, "plays": 417, "thruplay": 72, "p25": 86, "p50": 60, "p75": 46, "p95": 41, "p100": 36, "v30s": 57, "avg_watch": 18, "camp": "1910", "date": "2026-10-21"},
+      {"spend": 165358, "impressions": 1089, "reach": 963, "clicks": 106, "link_clicks": 29, "results": 12, "depth2": 8, "engagement": 580, "reactions": 13, "comments": 0, "video_3s": 537, "plays": 986, "thruplay": 219, "p25": 202, "p50": 138, "p75": 105, "p95": 77, "p100": 68, "v30s": 163, "avg_watch": 17, "camp": "1510", "date": "2026-10-22"},
+      {"spend": 120431, "impressions": 686, "reach": 579, "clicks": 79, "link_clicks": 34, "results": 12, "depth2": 1, "engagement": 377, "reactions": 2, "comments": 0, "video_3s": 339, "plays": 607, "thruplay": 108, "p25": 135, "p50": 88, "p75": 59, "p95": 46, "p100": 41, "v30s": 92, "avg_watch": 15, "camp": "1910", "date": "2026-10-22"},
+      {"spend": 228758, "impressions": 1202, "reach": 1103, "clicks": 112, "link_clicks": 37, "results": 28, "depth2": 12, "engagement": 656, "reactions": 9, "comments": 1, "video_3s": 607, "plays": 1089, "thruplay": 254, "p25": 226, "p50": 168, "p75": 136, "p95": 107, "p100": 97, "v30s": 190, "avg_watch": 18, "camp": "1510", "date": "2026-10-23"},
+      {"spend": 232830, "impressions": 1382, "reach": 1225, "clicks": 140, "link_clicks": 43, "results": 17, "depth2": 11, "engagement": 746, "reactions": 5, "comments": 1, "video_3s": 695, "plays": 1234, "thruplay": 254, "p25": 268, "p50": 183, "p75": 146, "p95": 114, "p100": 106, "v30s": 191, "avg_watch": 17, "camp": "1910", "date": "2026-10-23"},
+      {"spend": 40933, "impressions": 308, "reach": 291, "clicks": 43, "link_clicks": 24, "results": 13, "depth2": 9, "engagement": 209, "reactions": 4, "comments": 0, "video_3s": 180, "plays": 278, "thruplay": 70, "p25": 63, "p50": 51, "p75": 33, "p95": 27, "p100": 26, "v30s": 58, "avg_watch": 20, "camp": "1510", "date": "2026-10-24"},
+      {"spend": 49770, "impressions": 437, "reach": 391, "clicks": 47, "link_clicks": 17, "results": 9, "depth2": 5, "engagement": 253, "reactions": 2, "comments": 0, "video_3s": 233, "plays": 389, "thruplay": 96, "p25": 83, "p50": 62, "p75": 50, "p95": 38, "p100": 33, "v30s": 69, "avg_watch": 23, "camp": "1910", "date": "2026-10-24"},
+      {"spend": 120513, "impressions": 799, "reach": 753, "clicks": 100, "link_clicks": 42, "results": 19, "depth2": 6, "engagement": 500, "reactions": 3, "comments": 0, "video_3s": 453, "plays": 713, "thruplay": 174, "p25": 157, "p50": 117, "p75": 100, "p95": 82, "p100": 75, "v30s": 139, "avg_watch": 22, "camp": "1510", "date": "2026-10-25"},
+      {"spend": 121589, "impressions": 934, "reach": 843, "clicks": 109, "link_clicks": 43, "results": 26, "depth2": 13, "engagement": 563, "reactions": 4, "comments": 1, "video_3s": 514, "plays": 817, "thruplay": 201, "p25": 186, "p50": 138, "p75": 111, "p95": 93, "p100": 82, "v30s": 152, "avg_watch": 20, "camp": "1910", "date": "2026-10-25"}
+    ],
+    "placements": [
+      {"spend": 129, "impressions": 3, "clicks": 0, "link_clicks": 0, "results": 0, "depth2": 0, "engagement": 0, "reactions": 0, "comments": 0, "video_3s": 0, "plays": 3, "thruplay": 0, "p25": 0, "p50": 0, "p75": 0, "p100": 0, "v30s": 0, "avg_watch": 1, "camp": "1510", "placement": "Feed trang cá nhân"},
+      {"spend": 762717, "impressions": 5377, "clicks": 359, "link_clicks": 188, "results": 85, "depth2": 34, "engagement": 3245, "reactions": 45, "comments": 1, "video_3s": 3005, "plays": 5309, "thruplay": 1423, "p25": 1291, "p50": 942, "p75": 736, "p100": 513, "v30s": 0, "avg_watch": 22, "camp": "1510", "placement": "Reels"},
+      {"spend": 46953, "impressions": 137, "clicks": 24, "link_clicks": 22, "results": 5, "depth2": 2, "engagement": 98, "reactions": 1, "comments": 0, "video_3s": 75, "plays": 136, "thruplay": 30, "p25": 27, "p50": 22, "p75": 15, "p100": 12, "v30s": 0, "avg_watch": 17, "camp": "1510", "placement": "Stories"},
+      {"spend": 716481, "impressions": 6111, "clicks": 614, "link_clicks": 110, "results": 60, "depth2": 26, "engagement": 2822, "reactions": 26, "comments": 4, "video_3s": 2673, "plays": 5191, "thruplay": 856, "p25": 742, "p50": 533, "p75": 408, "p100": 267, "v30s": 0, "avg_watch": 13, "camp": "1510", "placement": "Bảng feed"},
+      {"spend": 3, "impressions": 1, "clicks": 0, "link_clicks": 0, "results": 0, "depth2": 0, "engagement": 0, "reactions": 0, "comments": 0, "video_3s": 0, "plays": 0, "thruplay": 0, "p25": 0, "p50": 0, "p75": 0, "p100": 0, "v30s": 0, "avg_watch": 0, "camp": "1510", "placement": "Video trong luồng"},
+      {"spend": 525, "impressions": 2, "clicks": 0, "link_clicks": 0, "results": 0, "depth2": 0, "engagement": 0, "reactions": 0, "comments": 0, "video_3s": 0, "plays": 1, "thruplay": 0, "p25": 0, "p50": 0, "p75": 0, "p100": 0, "v30s": 0, "avg_watch": 2, "camp": "1510", "placement": "Tìm kiếm"},
+      {"spend": 871, "impressions": 11, "clicks": 2, "link_clicks": 2, "results": 0, "depth2": 0, "engagement": 2, "reactions": 0, "comments": 0, "video_3s": 0, "plays": 0, "thruplay": 0, "p25": 0, "p50": 0, "p75": 0, "p100": 0, "v30s": 0, "avg_watch": 0, "camp": "1910", "placement": "Thông báo"},
+      {"spend": 1846, "impressions": 7, "clicks": 2, "link_clicks": 1, "results": 0, "depth2": 0, "engagement": 3, "reactions": 0, "comments": 0, "video_3s": 2, "plays": 4, "thruplay": 1, "p25": 1, "p50": 1, "p75": 1, "p100": 1, "v30s": 0, "avg_watch": 20, "camp": "1910", "placement": "Feed trang cá nhân"},
+      {"spend": 374874, "impressions": 1726, "clicks": 126, "link_clicks": 73, "results": 42, "depth2": 16, "engagement": 1115, "reactions": 17, "comments": 1, "video_3s": 1022, "plays": 1704, "thruplay": 463, "p25": 447, "p50": 326, "p75": 260, "p100": 191, "v30s": 0, "avg_watch": 25, "camp": "1910", "placement": "Reels"},
+      {"spend": 13886, "impressions": 58, "clicks": 6, "link_clicks": 6, "results": 3, "depth2": 0, "engagement": 48, "reactions": 0, "comments": 0, "video_3s": 42, "plays": 56, "thruplay": 22, "p25": 18, "p50": 17, "p75": 11, "p100": 9, "v30s": 0, "avg_watch": 26, "camp": "1910", "placement": "Stories"},
+      {"spend": 563026, "impressions": 3913, "clicks": 496, "link_clicks": 143, "results": 42, "depth2": 24, "engagement": 2000, "reactions": 18, "comments": 3, "video_3s": 1827, "plays": 3261, "thruplay": 568, "p25": 632, "p50": 413, "p75": 318, "p100": 218, "v30s": 0, "avg_watch": 14, "camp": "1910", "placement": "Bảng feed"},
+      {"spend": 3367, "impressions": 42, "clicks": 1, "link_clicks": 1, "results": 0, "depth2": 0, "engagement": 28, "reactions": 0, "comments": 0, "video_3s": 27, "plays": 40, "thruplay": 3, "p25": 22, "p50": 6, "p75": 0, "p100": 0, "v30s": 0, "avg_watch": 6, "camp": "1910", "placement": "Video trong luồng"},
+      {"spend": 61, "impressions": 2, "clicks": 0, "link_clicks": 0, "results": 0, "depth2": 0, "engagement": 1, "reactions": 0, "comments": 0, "video_3s": 1, "plays": 1, "thruplay": 0, "p25": 0, "p50": 0, "p75": 0, "p100": 0, "v30s": 0, "avg_watch": 5, "camp": "1910", "placement": "Marketplace"},
+      {"spend": 799, "impressions": 2, "clicks": 1, "link_clicks": 1, "results": 0, "depth2": 0, "engagement": 3, "reactions": 0, "comments": 0, "video_3s": 2, "plays": 2, "thruplay": 1, "p25": 1, "p50": 0, "p75": 0, "p100": 0, "v30s": 0, "avg_watch": 21, "camp": "1910", "placement": "Tìm kiếm"}
     ]
   }
 }
