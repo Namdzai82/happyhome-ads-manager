@@ -5,7 +5,358 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>HappyHome Đồng Bèn - Ads Manager & CRM tin nhắn</title>
-  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.16">
+
+// ==========================================
+// PIN PROTECTION (2707)
+// ==========================================
+function handlePinSubmit(e) {
+  if (e) e.preventDefault();
+  const input = document.getElementById('pinInput');
+  const error = document.getElementById('pinError');
+  const val = (input ? input.value : '').trim();
+  if (val === '2707') {
+    try {
+      localStorage.setItem('hph_pin_auth', '2707');
+    } catch (err) {}
+    unlockDashboard();
+  } else {
+    if (error) {
+      error.classList.remove('hidden');
+      error.classList.add('flex');
+    }
+    if (input) {
+      input.value = '';
+      input.focus();
+      input.classList.add('border-red-500');
+    }
+  }
+}
+
+function unlockDashboard() {
+  const gate = document.getElementById('pinGate');
+  if (gate) {
+    gate.style.display = 'none';
+  }
+}
+
+function lockDashboard() {
+  try {
+    localStorage.removeItem('hph_pin_auth');
+  } catch (err) {}
+  const gate = document.getElementById('pinGate');
+  const input = document.getElementById('pinInput');
+  const error = document.getElementById('pinError');
+  if (gate) gate.style.display = 'flex';
+  if (input) { input.value = ''; input.focus(); input.classList.remove('border-red-500'); }
+  if (error) { error.classList.add('hidden'); error.classList.remove('flex'); }
+}
+
+function checkPinOnLoad() {
+  try {
+    if (localStorage.getItem('hph_pin_auth') === '2707') {
+      unlockDashboard();
+    }
+  } catch (err) {}
+}
+
+// ==========================================
+// 24/7 AUTO REFRESH COUNTDOWN
+// ==========================================
+(function startAutoRefreshTimer() {
+  let timeLeft = 300; // 5 minutes
+  const cdEl = document.getElementById('autoRefreshCountdown');
+  setInterval(() => {
+    timeLeft--;
+    if (timeLeft <= 0) {
+      location.reload();
+      return;
+    }
+    if (cdEl) {
+      const mins = Math.floor(timeLeft / 60);
+      const secs = timeLeft % 60;
+      cdEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+  }, 1000);
+})();
+
+// ==========================================
+// SINGLE DAY DEEP DIVE LOGIC
+// ==========================================
+function initSingleDayPicker() {
+  const sel = document.getElementById('singleDaySelect');
+  if (!sel || !DATES || !DATES.length) return;
+  sel.innerHTML = DATES.slice().reverse().map(d => {
+    const o = dayAgg.find(x => x.date === d) || {};
+    return `<option value="${d}">${dayLabel(d)} · ${vnd(o.spend || 0)} (${o.results || 0} tin)</option>`;
+  }).join('');
+  
+  // Default to latest date
+  const defaultDay = DATES.includes('2026-10-25') ? '2026-10-25' : DATES[DATES.length - 1];
+  sel.value = defaultDay;
+  renderSingleDayDeepDive(defaultDay);
+}
+
+function renderSingleDayDeepDive(date) {
+  const dObj = dayAgg.find(r => r.date === date);
+  if (!dObj) return;
+
+  const k = kpis(dObj);
+  const avgCpr = TK.cpr || 1;
+  const diffCpr = ((k.cpr - avgCpr) / avgCpr) * 100;
+  const diffBadge = diffCpr < -15 
+    ? `<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800"><i class="fa-solid fa-arrow-down mr-1"></i>Rẻ hơn TB kỳ ${Math.abs(diffCpr).toFixed(0)}%</span>`
+    : diffCpr > 15 
+    ? `<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800"><i class="fa-solid fa-arrow-up mr-1"></i>Đắt hơn TB kỳ ${diffCpr.toFixed(0)}%</span>`
+    : `<span class="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Tương đương TB kỳ</span>`;
+
+  const kpisHtml = [
+    { label: 'Chi tiêu ngày', val: vnd(dObj.spend), sub: 'Ngân sách thực tế', icon: 'fa-money-bill-wave', color: 'emerald' },
+    { label: 'Số tin nhắn', val: fmt(dObj.results), sub: 'Khách nhắn tin mới', icon: 'fa-comment-dots', color: 'blue' },
+    { label: 'Chi phí / tin', val: vnd(k.cpr), sub: diffBadge, icon: 'fa-tag', color: diffCpr < 0 ? 'emerald' : 'rose' },
+    { label: 'Lượt hiển thị', val: fmt(dObj.impressions), sub: 'CPM ' + vnd(k.cpm), icon: 'fa-eye', color: 'slate' },
+    { label: 'Lượt click', val: fmt(dObj.clicks), sub: (dObj.link_clicks || 0) + ' link clicks', icon: 'fa-arrow-pointer', color: 'purple' },
+    { label: 'Tỷ lệ CTR', val: pct(k.ctrAll), sub: 'Link CTR: ' + pct(k.ctr), icon: 'fa-percent', color: 'indigo' }
+  ].map(item => `
+    <div class="p-3 rounded-2xl bg-white border border-slate-200 shadow-sm">
+      <div class="flex items-center justify-between text-slate-400 mb-1">
+        <span class="text-[11px] font-semibold text-slate-500">${item.label}</span>
+        <i class="fa-solid ${item.icon} text-xs text-${item.color}-600"></i>
+      </div>
+      <div class="text-base font-bold text-slate-900 num">${item.val}</div>
+      <div class="text-[11px] text-slate-500 mt-0.5">${item.sub}</div>
+    </div>
+  `).join('');
+
+  const kpiRow = document.getElementById('singleDayKpiRow');
+  if (kpiRow) kpiRow.innerHTML = kpisHtml;
+
+  // Breakdown by campaign in this day
+  const dayRows = A.daily.filter(r => r.date === date);
+  const breakdownEl = document.getElementById('singleDayBreakdown');
+  if (breakdownEl) {
+    if (!dayRows.length) {
+      breakdownEl.innerHTML = '<span class="text-slate-400">Không có dữ liệu chiến dịch trong ngày này.</span>';
+    } else {
+      breakdownEl.innerHTML = `
+        <div class="font-bold text-slate-800 mb-2 flex items-center justify-between">
+          <span><i class="fa-solid fa-layer-group text-emerald-600 mr-1.5"></i>Chi tiết ${dayRows.length} mẫu quảng cáo chạy trong ngày ${dayLabel(date)}:</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          ${dayRows.map(r => {
+            const rk = kpis(r);
+            return `
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center">
+                <div>
+                  <div class="font-bold text-slate-900 text-xs">${esc(r.ad_name || r.campaign_id)}</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">Chi tiêu: <b class="text-slate-800">${vnd(r.spend)}</b> · Hiển thị: <b class="text-slate-800">${fmt(r.impressions)}</b></div>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs font-bold text-emerald-700">${fmt(r.results)} tin nhắn</div>
+                  <div class="text-[11px] text-slate-600 font-semibold">${vnd(rk.cpr)} / tin</div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+  }
+}
+
+// ==========================================
+// CREATIVES TAB (MẪU QUẢNG CÁO)
+// ==========================================
+let retentionChartInstance = null;
+
+function renderCreativesTab() {
+  const container = document.getElementById('creativesGrid');
+  if (!container || !A.creatives) return;
+
+  container.innerHTML = A.creatives.map(cr => `
+    <div class="card p-6 border-slate-200 hover:shadow-md transition">
+      <div class="flex items-start justify-between gap-3 pb-4 border-b border-slate-100">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase tracking-wider">Video 9:16</span>
+            <span class="text-xs text-slate-400 num">ID: ${cr.id}</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mt-1">${esc(cr.name)}</h3>
+        </div>
+        <div class="text-right">
+          <div class="text-sm font-bold text-emerald-700 num">${vnd(cr.cpr)}</div>
+          <div class="text-[11px] text-slate-400">Chi phí / tin nhắn</div>
+        </div>
+      </div>
+
+      <!-- Core metrics grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-4">
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-[11px] text-slate-500">Chi tiêu</div>
+          <div class="text-sm font-bold text-slate-800 num mt-0.5">${vnd(cr.spend)}</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-[11px] text-slate-500">Tin nhắn</div>
+          <div class="text-sm font-bold text-emerald-700 num mt-0.5">${fmt(cr.results)} tin</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-[11px] text-slate-500">Tỷ lệ Click (CTR)</div>
+          <div class="text-sm font-bold text-slate-800 num mt-0.5">${pct(cr.ctr)}</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-[11px] text-slate-500">Hook Rate (3s)</div>
+          <div class="text-sm font-bold text-blue-700 num mt-0.5">${pct(cr.hook_rate)}</div>
+        </div>
+      </div>
+
+      <!-- Video Funnel Breakdown -->
+      <div class="p-4 rounded-xl bg-gradient-to-r from-slate-50 to-emerald-50/30 border border-slate-200 mb-4 text-xs">
+        <div class="font-bold text-slate-800 mb-2 flex items-center justify-between">
+          <span><i class="fa-solid fa-play-circle text-emerald-600 mr-1.5"></i>Tỷ lệ giữ chân người xem video:</span>
+          <span class="text-slate-500 text-[11px]">${fmt(cr.impressions)} lượt xem</span>
+        </div>
+        <div class="grid grid-cols-4 gap-2 text-center">
+          <div class="p-2 rounded-lg bg-white border border-slate-200">
+            <div class="text-[10px] text-slate-400 uppercase">25% video</div>
+            <div class="font-bold text-slate-800 num text-xs mt-0.5">${pct(cr.retention.p25)}</div>
+          </div>
+          <div class="p-2 rounded-lg bg-white border border-slate-200">
+            <div class="text-[10px] text-slate-400 uppercase">50% video</div>
+            <div class="font-bold text-slate-800 num text-xs mt-0.5">${pct(cr.retention.p50)}</div>
+          </div>
+          <div class="p-2 rounded-lg bg-white border border-slate-200">
+            <div class="text-[10px] text-slate-400 uppercase">75% video</div>
+            <div class="font-bold text-slate-800 num text-xs mt-0.5">${pct(cr.retention.p75)}</div>
+          </div>
+          <div class="p-2 rounded-lg bg-white border border-slate-200">
+            <div class="text-[10px] text-slate-400 uppercase">100% video</div>
+            <div class="font-bold text-emerald-700 num text-xs mt-0.5">${pct(cr.retention.p100)}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meta Official Rankings -->
+      <div class="space-y-1.5 mb-4 text-xs">
+        <div class="text-[11px] font-bold text-slate-600 mb-1">Xếp hạng đánh giá từ thuật toán Meta:</div>
+        <div class="flex items-center justify-between p-2 rounded-lg border ${cr.meta_rankings.quality_class}">
+          <span><i class="fa-solid fa-medal mr-1.5"></i>Chất lượng nội dung:</span>
+          <span class="font-bold">${cr.meta_rankings.quality}</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded-lg border ${cr.meta_rankings.engagement_class}">
+          <span><i class="fa-solid fa-thumbs-up mr-1.5"></i>Tỷ lệ tương tác:</span>
+          <span class="font-bold">${cr.meta_rankings.engagement}</span>
+        </div>
+        <div class="flex items-center justify-between p-2 rounded-lg border ${cr.meta_rankings.conversion_class}">
+          <span><i class="fa-solid fa-bullseye mr-1.5"></i>Tỷ lệ chuyển đổi:</span>
+          <span class="font-bold">${cr.meta_rankings.conversion}</span>
+        </div>
+      </div>
+
+      <!-- AI Recommendation -->
+      <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-amber-900">
+        <i class="fa-solid fa-lightbulb text-amber-600 mr-1.5"></i><b>Khuyến nghị:</b> ${cr.recommendation}
+      </div>
+    </div>
+  `).join('');
+}
+
+function initRetentionChart() {
+  const canvas = document.getElementById('retentionChart');
+  if (!canvas || !A.creatives) return;
+  if (retentionChartInstance) retentionChartInstance.destroy();
+
+  const labels = ['Bắt đầu (100%)', 'Hook 3s đầu', 'Xem 25%', 'Xem 50%', 'Xem 75%', 'Xem hết 100%'];
+  const colors = ['#059669', '#2563eb'];
+
+  const datasets = A.creatives.map((cr, idx) => ({
+    label: cr.name,
+    data: [100, Math.round(cr.hook_rate * 100), Math.round(cr.retention.p25 * 100), Math.round(cr.retention.p50 * 100), Math.round(cr.retention.p75 * 100), Math.round(cr.retention.p100 * 100)],
+    borderColor: colors[idx % colors.length],
+    backgroundColor: colors[idx % colors.length] + '20',
+    tension: 0.35,
+    fill: true,
+    pointRadius: 5,
+    pointHoverRadius: 7
+  }));
+
+  retentionChartInstance = new Chart(canvas, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top' },
+        tooltip: {
+          callbacks: {
+            label: c => `${c.dataset.label}: ${c.parsed.y}% người xem`
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          ticks: { callback: v => v + '%' },
+          title: { display: true, text: 'Tỷ lệ người xem giữ lại (%)' }
+        }
+      }
+    }
+  });
+}
+
+// ==========================================
+// CRM DROPOFF ANALYSIS CARDS
+// ==========================================
+function renderDropoffAnalytics() {
+  const el = document.getElementById('dropoffReasonCards');
+  if (!el || !A.dropoff_summary || !A.dropoff_summary.stats) return;
+
+  const colorMap = {
+    amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-800', bar: 'bg-amber-500' },
+    blue: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-800', bar: 'bg-blue-500' },
+    slate: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-800', bar: 'bg-slate-500' },
+    purple: { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-800', bar: 'bg-purple-500' },
+    emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-800', bar: 'bg-emerald-500' }
+  };
+
+  el.innerHTML = A.dropoff_summary.stats.map(s => {
+    const c = colorMap[s.color] || colorMap.slate;
+    return `
+      <div class="p-3.5 rounded-2xl ${c.bg} border ${c.border} flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1.5">
+            <span class="font-bold ${c.text}"><i class="fa-solid ${s.icon} mr-1"></i>${s.label}</span>
+            <span class="text-xs font-bold num ${c.text}">${s.pct}%</span>
+          </div>
+          <div class="w-full bg-white/60 h-1.5 rounded-full overflow-hidden mb-2">
+            <div class="${c.bar} h-full rounded-full" style="width: ${s.pct}%"></div>
+          </div>
+          <div class="text-lg font-bold text-slate-900 num mb-1">${s.count} <span class="text-xs font-normal text-slate-500">khách</span></div>
+        </div>
+        <div class="text-[11px] text-slate-500 leading-tight">${s.desc}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ==========================================
+// INITIALIZATION ON LOAD
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  checkPinOnLoad();
+  initSingleDayPicker();
+  renderCreativesTab();
+  renderDropoffAnalytics();
+});
+
+// Also run immediately if script executes after DOM is ready
+checkPinOnLoad();
+initSingleDayPicker();
+renderCreativesTab();
+renderDropoffAnalytics();
+
+</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
@@ -20,6 +371,31 @@
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+<!-- PIN GATE MODAL (2707) -->
+<div id="pinGate" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-8 text-center border border-slate-100 animate-in zoom-in-95 duration-200">
+    <div class="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto shadow-lg shadow-emerald-600/30 mb-4">
+      <i class="fa-solid fa-tree"></i>
+    </div>
+    <h2 class="text-xl font-bold text-slate-900">HappyHome Đồng Bèn</h2>
+    <p class="text-xs text-slate-500 mt-1 mb-6">Hệ thống phân tích Ads & CRM nội bộ.<br>Vui lòng nhập mã PIN để truy cập.</p>
+    
+    <form onsubmit="handlePinSubmit(event)" class="space-y-4">
+      <div>
+        <input id="pinInput" type="password" maxlength="6" autofocus placeholder="••••" class="w-full text-center tracking-[0.5em] text-2xl font-bold py-3 px-4 border border-slate-300 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-600 focus:outline-none transition num" />
+      </div>
+      <div id="pinError" class="text-xs text-red-600 font-semibold hidden flex items-center justify-center">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i> Mã PIN không đúng, thử lại!
+      </div>
+      <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-2xl transition shadow-lg shadow-emerald-600/25 flex items-center justify-center cursor-pointer">
+        <i class="fa-solid fa-lock-open mr-2"></i> Mở Khóa Truy Cập
+      </button>
+    </form>
+    <p class="text-[11px] text-slate-400 mt-6">Dữ liệu bảo mật chỉ lưu hành nội bộ</p>
+  </div>
+</div>
+
 <!-- PIN GATE MODAL (2707) -->
 <div id="pinGate" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
   <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-8 text-center border border-slate-100 animate-in zoom-in-95 duration-200">
@@ -145,6 +521,23 @@
       </div>
     </div>
 
+    
+    <!-- DROPOFF ANALYSIS -->
+    <div class="card p-6 bg-gradient-to-br from-white to-rose-50/30 border-rose-100">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 pb-3 border-b border-slate-200">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-rose-100 text-rose-800 text-xs font-bold uppercase"><i class="fa-solid fa-user-xmark mr-1"></i>Phân Tích Lý Do Chưa Chốt Đơn</span>
+            <span class="text-xs text-slate-500">(100 hội thoại thực tế)</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Xác định điểm nghẽn chính khiến khách hàng dừng lại sau khi nhắn tin</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="dropoffReasonCards">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="card p-6 lg:col-span-2">
         <h2 class="font-bold text-slate-900">Tin nhắn theo ngày (cột) và chi phí mỗi tin (đường)</h2>
@@ -170,6 +563,26 @@
         <div class="flex items-center gap-2">
           <label class="text-xs font-semibold text-slate-700 whitespace-nowrap"><i class="fa-solid fa-filter mr-1 text-emerald-600"></i>Chọn ngày:</label>
           <select id="singleDaySelect" onchange="renderSingleDayDeepDive(this.value)" class="text-xs font-bold py-2 px-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none shadow-sm cursor-pointer num text-emerald-800">
+          </select>
+        </div>
+      </div>
+      <div id="singleDayKpiRow" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-4"></div>
+      <div id="singleDayBreakdown" class="p-4 rounded-xl bg-white border border-slate-200 text-xs"></div>
+    </div>
+
+    <!-- SINGLE DAY DEEP DIVE INTERACTIVE PICKER -->
+    <div class="card p-6 bg-gradient-to-br from-white to-slate-50 border-emerald-200 shadow-sm">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-slate-200">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-calendar-check mr-1"></i>Trực quan từng ngày</span>
+            <h3 class="font-bold text-slate-900 text-base">Phân Tích Chi Tiết Theo Ngày</h3>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Chọn ngày bất kỳ để xem toàn bộ chỉ số chi tiêu, tin nhắn, CTR và so sánh với bình quân</p>
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <label class="text-xs font-semibold text-slate-600 whitespace-nowrap"><i class="fa-regular fa-calendar mr-1"></i>Chọn ngày:</label>
+          <select id="singleDaySelect" onchange="renderSingleDayDeepDive(this.value)" class="w-full sm:w-64 bg-white border-2 border-emerald-500 rounded-xl px-3 py-2 text-xs font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none shadow-sm cursor-pointer num text-emerald-800">
           </select>
         </div>
       </div>
@@ -256,6 +669,45 @@
         <div>
           <h3 class="font-bold text-slate-900">Biểu Đồ Phễu Giữ Chân Người Xem Video (Retention Drop-off)</h3>
           <p class="text-xs text-slate-500 mt-0.5">Tỷ lệ người xem tiếp tục xem video qua các mốc 25% → 50% → 75% → 100%</p>
+        </div>
+      </div>
+      <div class="h-80"><canvas id="retentionChart"></canvas></div>
+      <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
+        <p><b>Nhận xét & Đề xuất tối ưu Video:</b></p>
+        <p>• <b>Tỷ lệ Hook 3 giây đầu:</b> Cả 2 mẫu đều đạt ~50% (rất tốt). Người xem bị thu hút bởi cảnh đền Ứng Thiên và không gian xanh Đồng Bèn.</p>
+        <p>• <b>Tỷ lệ rơi rụng ở 50%:</b> Lượng người xem giảm từ 50% xuống 14% do video kéo dài. Nên cắt thêm các phiên bản ngắn <b>15 - 20 giây</b> tập trung vào: <i>Cảnh ăn lẩu thái + Bể bơi + Giá 500k</i>.</p>
+        <p>• <b>Xếp hạng chất lượng:</b> Mẫu "Goi nguoi gia" bị xếp 20% cuối do text trên thumbnail nhiều. Cần giảm chữ và tăng khung hình người thật cười vui vẻ.</p>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- TAB: CREATIVES (MẪU QUẢNG CÁO) -->
+  <section id="tab-creatives" class="tab-content hidden space-y-6">
+    <div class="card p-6 bg-gradient-to-r from-emerald-50 via-white to-blue-50 border-emerald-200">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-video mr-1"></i>Creative Intelligence</span>
+          <h2 class="text-lg font-bold text-slate-900 mt-1">Phân Tích Chi Tiết Từng Mẫu Quảng Cáo</h2>
+          <p class="text-xs text-slate-600 mt-0.5">So sánh hiệu quả giữ chân video (Video Retention), CTR, tỷ lệ xem 3s và xếp hạng từ Meta</p>
+        </div>
+        <div class="text-xs text-slate-500 bg-white/80 backdrop-blur px-3 py-2 rounded-xl border border-slate-200">
+          <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Định dạng Video Reels & Feed 9:16
+        </div>
+      </div>
+    </div>
+
+    <!-- Creatives Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="creativesGrid">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Creative Retention Funnel Comparison -->
+    <div class="card p-6">
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <h3 class="font-bold text-slate-900">Biểu Đồ Phễu Giữ Chân Người Xem Video (Retention Drop-off)</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Tỷ lệ người xem tiếp tục xem video qua các mốc Hook 3s → 25% → 50% → 75% → 100%</p>
         </div>
       </div>
       <div class="h-80"><canvas id="retentionChart"></canvas></div>
@@ -613,6 +1065,7 @@ document.getElementById('kpiTargetBody').innerHTML = TARGETS.map(([n, v, f, tg, 
 // ---------- charts (lazy per tab) ----------
 Chart.defaults.font.family = "'Be Vietnam Pro', system-ui, sans-serif"; Chart.defaults.font.size = 11; Chart.defaults.color = '#64748b';
 const CHARTS = {
+  creatives() { initRetentionChart(); },
   creatives() { initRetentionChart(); },
   daily() {
     const lab = DATES.map(dayLabel);
