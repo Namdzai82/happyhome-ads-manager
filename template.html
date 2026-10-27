@@ -5,7 +5,634 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>HappyHome Đồng Bèn - Ads Manager & CRM tin nhắn</title>
-  <script src="https://cdn.tailwindcss.com/3.4.16">
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Be Vietnam Pro', system-ui, sans-serif; }
+    .scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+    .scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .num { font-variant-numeric: tabular-nums; }
+    .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    th, td { white-space: nowrap; }
+    .tab-btn.active { border-color: #059669; color: #047857; font-weight: 600; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+<!-- PIN GATE MODAL (2707) -->
+<div id="pinGate" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-8 text-center border border-slate-100 animate-in zoom-in-95 duration-200">
+    <div class="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto shadow-lg shadow-emerald-600/30 mb-4">
+      <i class="fa-solid fa-tree"></i>
+    </div>
+    <h2 class="text-xl font-bold text-slate-900">HappyHome Đồng Bèn</h2>
+    <p class="text-xs text-slate-500 mt-1 mb-5">Hệ thống phân tích Ads & CRM nội bộ.<br>Vui lòng nhập mã PIN để truy cập.</p>
+    
+    <form onsubmit="handlePinSubmit(event)" class="space-y-4">
+      <div>
+        <input id="pinInput" type="password" maxlength="6" autofocus placeholder="••••" class="w-full text-center tracking-[0.5em] text-2xl font-bold py-3 px-4 border-2 border-slate-300 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-600 focus:outline-none transition num bg-slate-50" />
+      </div>
+      <div id="pinError" class="text-xs text-red-600 font-semibold hidden flex items-center justify-center">
+        <i class="fa-solid fa-circle-exclamation mr-1"></i> Mã PIN không đúng, thử lại!
+      </div>
+      
+      <div class="flex gap-2">
+        <button type="submit" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-2xl transition shadow-lg shadow-emerald-600/25 flex items-center justify-center cursor-pointer">
+          <i class="fa-solid fa-lock-open mr-2"></i> Mở Khóa
+        </button>
+        <button type="button" onclick="quickUnlock()" class="px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-2xl transition border border-slate-200 flex items-center justify-center cursor-pointer" title="Điền nhanh 2707">
+          <i class="fa-solid fa-key mr-1"></i> 2707
+        </button>
+      </div>
+    </form>
+    
+    <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-center gap-1 text-[11px] text-slate-400">
+      <i class="fa-solid fa-shield-halved text-emerald-600"></i> Dữ liệu bảo mật chỉ lưu hành nội bộ
+    </div>
+  </div>
+</div>
+
+
+<header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap justify-between items-center gap-3 py-4">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 bg-emerald-600 rounded-xl flex items-center justify-center text-white"><i class="fa-solid fa-tree text-xl"></i></div>
+        <div>
+          <h1 class="text-lg font-bold text-slate-900">HappyHome Đồng Bèn · Ads & CRM</h1>
+          <p class="text-xs text-slate-500" id="metaLine"></p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-2 flex-wrap">
+        <div class="flex items-center bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-xl text-xs text-emerald-800 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-2"></span>
+          <span class="font-semibold mr-1">24/7 Live:</span>
+          <span id="autoRefreshCountdown" class="num font-mono font-bold">05:00</span>
+        </div>
+        <button onclick="location.reload()" class="px-3 py-2 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl hover:bg-emerald-100 transition flex items-center shadow-sm cursor-pointer">
+          <i class="fa-solid fa-rotate mr-1.5"></i>Làm mới
+        </button>
+        <div id="statusBadge" class="hidden md:flex items-center bg-amber-50 border border-amber-200 px-3 py-2 rounded-xl text-xs text-amber-900">
+          <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-2"></i><span id="statusText"></span>
+        </div>
+        <button onclick="exportData()" class="px-3 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 shadow-sm cursor-pointer"><i class="fa-solid fa-file-arrow-down mr-1"></i>Xuất JSON</button>
+        <a href="https://adsmanager.facebook.com/" target="_blank" rel="noopener" class="px-3 py-2 text-xs font-semibold text-white bg-emerald-600 rounded-xl hover:bg-emerald-700 shadow-sm"><i class="fa-brands fa-facebook mr-1"></i>Ads Manager</a>
+        <button onclick="lockDashboard()" title="Khóa Dashboard" class="px-2.5 py-2 text-xs font-medium text-slate-500 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition border border-slate-200 cursor-pointer"><i class="fa-solid fa-lock"></i></button>
+      </div>
+</div>
+    <nav class="flex gap-1 overflow-x-auto text-sm font-medium scroll" id="tabs">
+      <button data-tab="overview" class="tab-btn active px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-gauge mr-1.5"></i>Tổng quan</button>
+      <button data-tab="daily" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-chart-line mr-1.5"></i>Theo ngày</button>
+      <button data-tab="segments" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-layer-group mr-1.5"></i>Chiến dịch & phân khúc</button>
+      <button data-tab="creatives" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-photo-film mr-1.5"></i>Mẫu quảng cáo</button>
+      <button data-tab="crm" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-comments mr-1.5"></i>Khách nhắn tin</button>
+      <button data-tab="monthly" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-calendar-days mr-1.5"></i>Lịch sử tháng</button>
+      <button data-tab="actions" class="tab-btn px-4 py-3 border-b-2 border-transparent text-slate-500"><i class="fa-solid fa-list-check mr-1.5"></i>Đề xuất</button>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
+
+  <!-- KPI ROW (always visible) -->
+  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3" id="kpiRow"></div>
+
+  <!-- TAB: OVERVIEW -->
+  <section id="tab-overview" class="tab-content space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <div class="card p-6 lg:col-span-3">
+        <h2 class="font-bold text-slate-900">Phễu từ hiển thị đến tin nhắn</h2>
+        <p class="text-xs text-slate-500 mt-0.5 mb-4">Chi phí / tin = CPM ÷ (1.000 × CTR liên kết × CVR)</p>
+        <div id="funnel" class="space-y-3"></div>
+        <div id="formula" class="mt-5 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 num"></div>
+      </div>
+      <div class="card p-6 lg:col-span-2">
+        <h2 class="font-bold text-slate-900">Kết luận chính</h2>
+        <ol class="mt-3 space-y-3 text-sm text-slate-700 list-decimal pl-5" id="insights"></ol>
+      </div>
+    </div>
+
+    <div class="card p-6">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h2 class="font-bold text-slate-900">Máy tính hòa vốn</h2>
+          <p class="text-xs text-slate-500 mt-0.5" id="econNote"></p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+        <label class="text-xs text-slate-600">Chi phí / tin nhắn (đ)
+          <input id="beCpr" type="number" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm num" /></label>
+        <label class="text-xs text-slate-600">Lãi gộp mỗi khách (đ)
+          <input id="beMargin" type="number" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm num" /></label>
+        <label class="text-xs text-slate-600">Tỷ lệ tin nhắn → khách đặt (%)
+          <input id="beRate" type="number" step="0.5" value="5" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm num" /></label>
+        <label class="text-xs text-slate-600">Số khách mỗi lần chốt
+          <input id="bePax" type="number" value="1" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 text-sm num" /></label>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4" id="beOut"></div>
+    </div>
+  </section>
+
+  <!-- TAB: DAILY -->
+  <section id="tab-daily" class="tab-content hidden space-y-6">
+    
+    <!-- DROPOFF ANALYSIS -->
+    <div class="card p-6 bg-gradient-to-br from-white to-rose-50/30 border-rose-100">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 pb-3 border-b border-slate-200">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-rose-100 text-rose-800 text-xs font-bold uppercase"><i class="fa-solid fa-user-xmark mr-1"></i>Phân Tích Lý Do Chưa Chốt Đơn</span>
+            <span class="text-xs text-slate-500">(100 hội thoại thực tế)</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Xác định điểm nghẽn chính khiến khách hàng dừng lại sau khi nhắn tin</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="dropoffReasonCards">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="card p-6 lg:col-span-2">
+        <h2 class="font-bold text-slate-900">Tin nhắn theo ngày (cột) và chi phí mỗi tin (đường)</h2>
+        <p class="text-xs text-slate-500 mt-0.5 mb-3">Cột chia theo chiến dịch; đường nét đứt là trung bình kỳ</p>
+        <div class="h-80"><canvas id="dailyChart"></canvas></div>
+      </div>
+      <div class="card p-6">
+        <h2 class="font-bold text-slate-900">Ba giai đoạn</h2>
+        <p class="text-xs text-slate-500 mt-0.5 mb-3">Tổng 2 chiến dịch</p>
+        <div id="phases" class="space-y-3"></div>
+      </div>
+    </div>
+    <!-- SINGLE DAY DEEP DIVE INTERACTIVE PICKER -->
+    <div class="card p-6 bg-gradient-to-br from-white to-slate-50 border-emerald-200 shadow-sm">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-slate-200">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-calendar-check mr-1"></i>Trực quan từng ngày</span>
+            <h3 class="font-bold text-slate-900 text-base">Phân Tích Chi Tiết Theo Ngày</h3>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Chọn ngày bất kỳ để xem toàn bộ chỉ số chi tiêu, tin nhắn, CTR và so sánh với bình quân</p>
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <label class="text-xs font-semibold text-slate-600 whitespace-nowrap"><i class="fa-regular fa-calendar mr-1"></i>Chọn ngày:</label>
+          <select id="singleDaySelect" onchange="renderSingleDayDeepDive(this.value)" class="w-full sm:w-64 bg-white border-2 border-emerald-500 rounded-xl px-3 py-2 text-xs font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none shadow-sm cursor-pointer num text-emerald-800">
+          </select>
+        </div>
+      </div>
+      <div id="singleDayKpiRow" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-4"></div>
+      <div id="singleDayBreakdown" class="p-4 rounded-xl bg-white border border-slate-200 text-xs"></div>
+    </div>
+
+    <div class="card overflow-hidden">
+      <div class="p-5 border-b border-slate-200 flex flex-wrap justify-between items-center gap-3">
+        <div>
+          <h3 class="font-bold text-slate-900">Chi tiết từng ngày</h3>
+          <p class="text-xs text-slate-500">Tiếp cận theo ngày cộng lại sẽ lớn hơn tiếp cận cả kỳ (một người có thể thấy nhiều ngày)</p>
+        </div>
+        <div class="flex gap-1 text-xs" id="campFilter"></div>
+      </div>
+      <div class="overflow-x-auto scroll">
+        <table class="w-full text-xs sm:text-sm num">
+          <thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="dailyHead"></tr></thead>
+          <tbody id="dailyBody" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB: SEGMENTS -->
+  <section id="tab-segments" class="tab-content hidden space-y-6">
+    <div class="card overflow-hidden">
+      <div class="p-5 border-b border-slate-200">
+        <h3 class="font-bold text-slate-900">So sánh chiến dịch / nhóm quảng cáo / quảng cáo</h3>
+        <p class="text-xs text-slate-500">Mỗi chiến dịch có 1 nhóm và 1 quảng cáo. Cột "Cùng kỳ" so trên 19-25/10 để công bằng.</p>
+      </div>
+      <div class="overflow-x-auto scroll">
+        <table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="campHead"></tr></thead><tbody id="campBody" class="divide-y divide-slate-100"></tbody></table>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="card p-6">
+        <h3 class="font-bold text-slate-900">Theo khung giờ</h3>
+        <p class="text-xs text-slate-500 mb-3">Chi phí / tin theo giờ hiển thị (giờ tài khoản). Mẫu nhỏ, chỉ nên dùng để sắp lịch trực tin.</p>
+        <div class="h-72"><canvas id="hourChart"></canvas></div>
+      </div>
+      <div class="card p-6">
+        <h3 class="font-bold text-slate-900">Theo vị trí hiển thị</h3>
+        <p class="text-xs text-slate-500 mb-3">Chi phí / tin (xanh = rẻ hơn trung bình, nhạt = mẫu nhỏ dưới 20 tin)</p>
+        <div class="h-72"><canvas id="placementChart"></canvas></div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="card overflow-hidden">
+        <div class="p-5 border-b border-slate-200"><h3 class="font-bold text-slate-900">Theo độ tuổi</h3><p class="text-xs text-slate-500">Chỉ số hiệu quả = % tin nhắn / % chi tiêu</p></div>
+        <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="ageHead"></tr></thead><tbody id="ageBody" class="divide-y divide-slate-100"></tbody></table></div>
+      </div>
+      <div class="card overflow-hidden">
+        <div class="p-5 border-b border-slate-200"><h3 class="font-bold text-slate-900">Theo giới tính</h3><p class="text-xs text-slate-500">100% hiển thị tại Hà Nội, 100% Facebook</p></div>
+        <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="genderHead"></tr></thead><tbody id="genderBody" class="divide-y divide-slate-100"></tbody></table></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- TAB: CREATIVES (MẪU QUẢNG CÁO) -->
+  <section id="tab-creatives" class="tab-content hidden space-y-6">
+    <div class="card p-6 bg-gradient-to-r from-emerald-50 via-white to-blue-50 border-emerald-200">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-video mr-1"></i>Creative Intelligence</span>
+          <h2 class="text-lg font-bold text-slate-900 mt-1">Phân Tích Chi Tiết Từng Mẫu Quảng Cáo</h2>
+          <p class="text-xs text-slate-600 mt-0.5">So sánh hiệu quả giữ chân video (Video Retention), CTR, tỷ lệ xem 3s và xếp hạng từ Meta</p>
+        </div>
+        <div class="text-xs text-slate-500 bg-white/80 backdrop-blur px-3 py-2 rounded-xl border border-slate-200">
+          <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Định dạng Video Reels & Feed 9:16
+        </div>
+      </div>
+    </div>
+
+    <!-- Creatives Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="creativesGrid">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Creative Retention Funnel Comparison -->
+    <div class="card p-6">
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <h3 class="font-bold text-slate-900">Biểu Đồ Phễu Giữ Chân Người Xem Video (Retention Drop-off)</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Tỷ lệ người xem tiếp tục xem video qua các mốc Hook 3s → 25% → 50% → 75% → 100%</p>
+        </div>
+      </div>
+      <div class="h-80"><canvas id="retentionChart"></canvas></div>
+      <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
+        <p><b>Nhận xét & Đề xuất tối ưu Video:</b></p>
+        <p>• <b>Tỷ lệ Hook 3 giây đầu:</b> Cả 2 mẫu đều đạt ~50% (rất tốt). Người xem bị thu hút bởi cảnh đền Ứng Thiên và không gian xanh Đồng Bèn.</p>
+        <p>• <b>Tỷ lệ rơi rụng ở 50%:</b> Lượng người xem giảm từ 50% xuống 14% do video kéo dài. Nên cắt thêm các phiên bản ngắn <b>15 - 20 giây</b> tập trung vào: <i>Cảnh ăn lẩu thái + Bể bơi + Giá 500k</i>.</p>
+        <p>• <b>Xếp hạng chất lượng:</b> Mẫu "Goi nguoi gia" bị xếp 20% cuối do text trên thumbnail nhiều. Cần giảm chữ và tăng khung hình người thật cười vui vẻ.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB: CRM -->
+  <section id="tab-crm" class="tab-content hidden space-y-6">
+    <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-900">
+      <i class="fa-solid fa-user-shield mr-1"></i><b>Dữ liệu cá nhân:</b> phần này chứa tên, ID và số điện thoại khách. Không đưa file lên trang công khai hoặc repo public. Số điện thoại được che mặc định.
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="card p-6 lg:col-span-2">
+        <h2 class="font-bold text-slate-900">Chất lượng hội thoại</h2>
+        <p class="text-xs text-slate-500 mt-0.5 mb-4" id="crmScope"></p>
+        <div id="leadFunnel" class="space-y-3"></div>
+      </div>
+      <div class="card p-6">
+        <h2 class="font-bold text-slate-900">Khách thực sự hỏi gì</h2>
+        <p class="text-xs text-slate-500 mt-0.5 mb-3">Chỉ tính tin của khách, không tính tin trả lời tự động của page</p>
+        <div id="intentBars" class="space-y-2"></div>
+      </div>
+    </div>
+    <div class="card overflow-hidden">
+      <div class="p-5 border-b border-slate-200 flex flex-col md:flex-row justify-between gap-3 bg-slate-50/50">
+        <div class="relative w-full md:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+          <input id="crmSearch" type="text" placeholder="Tìm tên khách hoặc nội dung tin nhắn..." class="w-full pl-8 pr-3 py-2 text-xs border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+        </div>
+        <div class="flex flex-wrap gap-2 items-center" id="crmFilters"></div>
+        <label class="text-xs text-slate-600 flex items-center gap-2"><input type="checkbox" id="showPhone"> Hiện SĐT</label>
+      </div>
+      <div class="overflow-x-auto scroll max-h-[600px]">
+        <table class="w-full text-xs sm:text-sm">
+          <thead class="sticky top-0 bg-slate-50 border-b border-slate-200 text-slate-500 z-10"><tr>
+            <th class="py-3 px-4 text-left">Khách hàng</th><th class="py-3 px-4 text-left">Nhu cầu (từ tin của khách)</th><th class="py-3 px-4 text-left">Tin gần nhất của khách</th><th class="py-3 px-4 text-center">Tin khách / tổng</th><th class="py-3 px-4 text-right">Cập nhật</th><th class="py-3 px-4"></th>
+          </tr></thead>
+          <tbody id="crmBody" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB: MONTHLY -->
+  <section id="tab-monthly" class="tab-content hidden space-y-6">
+    <div class="card p-6">
+      <h2 class="font-bold text-slate-900">Chi tiêu quảng cáo theo tháng (2024-2026)</h2>
+      <p class="text-xs text-slate-500 mt-0.5 mb-3">Gồm tài khoản cũ 126293680899519 và tài khoản mới 031026 - TKBM1</p>
+      <div class="h-72"><canvas id="monthlyChart"></canvas></div>
+    </div>
+    <div class="card overflow-hidden">
+      <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="monthHead"></tr></thead><tbody id="monthBody" class="divide-y divide-slate-100"></tbody></table></div>
+    </div>
+  </section>
+
+  <!-- TAB: ACTIONS -->
+  <section id="tab-actions" class="tab-content hidden space-y-6">
+    <div class="card overflow-hidden">
+      <div class="p-5 border-b border-slate-200"><h3 class="font-bold text-slate-900">Việc cần làm theo thứ tự ưu tiên</h3></div>
+      <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr><th class="py-3 px-4 text-left">#</th><th class="py-3 px-4 text-left">Việc</th><th class="py-3 px-4 text-left">Vì sao</th><th class="py-3 px-4 text-left">Khi nào</th></tr></thead><tbody id="actionBody" class="divide-y divide-slate-100"></tbody></table></div>
+    </div>
+    <div class="card overflow-hidden">
+      <div class="p-5 border-b border-slate-200"><h3 class="font-bold text-slate-900">KPI mục tiêu (trung bình 3-7 ngày)</h3></div>
+      <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr><th class="py-3 px-4 text-left">Chỉ số</th><th class="py-3 px-4 text-right">Hiện tại</th><th class="py-3 px-4 text-right">Mục tiêu</th><th class="py-3 px-4 text-right">Cảnh báo</th><th class="py-3 px-4 text-center">Trạng thái</th></tr></thead><tbody id="kpiTargetBody" class="divide-y divide-slate-100"></tbody></table></div>
+    </div>
+  </section>
+</main>
+
+<footer class="text-center text-xs text-slate-400 py-6" id="footer"></footer>
+
+<!-- CHAT MODAL -->
+<div id="chatModal" class="fixed inset-0 bg-slate-900/60 z-50 hidden items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full flex flex-col max-h-[85vh] overflow-hidden">
+    <div class="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+      <div><h4 class="font-bold text-slate-900 text-sm" id="mName"></h4><p class="text-xs text-slate-500" id="mMeta"></p></div>
+      <button onclick="closeChat()" class="w-8 h-8 rounded-full hover:bg-slate-200 text-slate-500"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="p-5 overflow-y-auto space-y-3 flex-1 bg-slate-50/50 scroll" id="mList"></div>
+    <div class="p-4 border-t border-slate-200 text-xs text-slate-500" id="mPhone"></div>
+  </div>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const A = DATA.analytics;
+
+// ---------- helpers ----------
+const fmt = (v, d = 0) => (v == null || !isFinite(v)) ? '-' : Number(v).toLocaleString('vi-VN', { maximumFractionDigits: d, minimumFractionDigits: d });
+const vnd = v => fmt(v) + ' đ';
+const pct = (v, d = 1) => (v == null || !isFinite(v)) ? '-' : fmt(v * 100, d) + '%';
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const WD = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+const dayLabel = iso => { const d = new Date(iso + 'T00:00:00'); return `${WD[d.getDay()]} ${iso.slice(8, 10)}/${iso.slice(5, 7)}`; };
+const sum = (arr, k) => arr.reduce((s, r) => s + (Number(r[k]) || 0), 0);
+function kpis(r) {
+  return { cpr: r.spend / r.results, cpm: r.spend / r.impressions * 1000, ctrAll: r.clicks / r.impressions, ctr: r.link_clicks / r.impressions,
+    cvr: r.results / r.link_clicks, cpc: r.spend / r.link_clicks, mpm: r.results / r.impressions * 1000, freq: r.reach ? r.impressions / r.reach : null };
+}
+const th = (t, right) => `<th class="py-3 px-4 ${right ? 'text-right' : 'text-left'}">${t}</th>`;
+const td = (t, cls = '') => `<td class="py-2.5 px-4 ${cls}">${t}</td>`;
+
+// ---------- totals ----------
+const CD = A.campaign_daily;
+const TOT = { spend: sum(CD, 'spend'), results: sum(CD, 'results'), impressions: sum(CD, 'impressions'), clicks: sum(CD, 'clicks'), link_clicks: sum(CD, 'link_clicks'), reach: A.meta.reach_unique };
+const TK = kpis(TOT);
+
+document.getElementById('metaLine').textContent = `${A.meta.account} · ${A.meta.period} · ${A.meta.attribution}`;
+if (A.meta.status_note) { document.getElementById('statusBadge').classList.remove('hidden'); document.getElementById('statusText').textContent = A.meta.status_note; }
+document.getElementById('footer').textContent = `Nguồn: ${A.meta.source}. Dashboard chạy hoàn toàn trên trình duyệt.`;
+
+// ---------- KPI row ----------
+(function () {
+  const items = [
+    ['Chi tiêu', vnd(TOT.spend), 'fa-wallet'], ['Tin nhắn', fmt(TOT.results), 'fa-comment-dots'], ['Chi phí / tin', vnd(TK.cpr), 'fa-tag'],
+    ['Tiếp cận (không trùng)', fmt(TOT.reach), 'fa-users'], ['Hiển thị', fmt(TOT.impressions), 'fa-eye'], ['CPM', vnd(TK.cpm), 'fa-coins'],
+    ['CTR liên kết', pct(TK.ctr, 2), 'fa-arrow-pointer'], ['Click → tin (CVR)', pct(TK.cvr), 'fa-right-to-bracket']];
+  document.getElementById('kpiRow').innerHTML = items.map(([l, v, i]) => `
+    <div class="card p-4"><div class="flex items-center justify-between text-slate-400 mb-1"><span class="text-[11px] font-semibold uppercase tracking-wide">${l}</span><i class="fa-solid ${i} text-emerald-600 text-xs"></i></div>
+    <div class="text-lg font-extrabold text-slate-900 num">${v}</div></div>`).join('');
+})();
+
+// ---------- tabs ----------
+const charted = {};
+document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(s => s.classList.add('hidden'));
+  document.getElementById('tab-' + b.dataset.tab).classList.remove('hidden');
+  if (!charted[b.dataset.tab] && CHARTS[b.dataset.tab]) { CHARTS[b.dataset.tab](); charted[b.dataset.tab] = true; }
+}));
+
+// ---------- overview ----------
+(function () {
+  const st = [['Lượt hiển thị', TOT.impressions], ['Click (tất cả)', TOT.clicks], ['Click liên kết (mở Messenger)', TOT.link_clicks], ['Tin nhắn bắt đầu', TOT.results]];
+  const notes = [`${pct(TK.ctrAll)} bấm vào quảng cáo`, `${pct(TOT.link_clicks / TOT.clicks)} là click liên kết, ${pct(1 - TOT.link_clicks / TOT.clicks)} là xem ảnh, xem thêm...`, `${pct(TK.cvr)} người vào Messenger gửi tin`];
+  document.getElementById('funnel').innerHTML = st.map(([n, v], i) => `
+    <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-600">${n}</span><span class="font-bold num">${fmt(v)}</span></div>
+    <div class="h-6 bg-slate-100 rounded-md overflow-hidden"><div class="h-full ${i === 3 ? 'bg-emerald-600' : 'bg-slate-400'}" style="width:${Math.max(v / TOT.impressions * 100, 1)}%"></div></div>
+    ${notes[i] ? `<div class="text-[11px] text-slate-400 mt-1"><i class="fa-solid fa-arrow-down mr-1"></i>${notes[i]}</div>` : ''}</div>`).join('');
+  document.getElementById('formula').innerHTML = `Chi phí / tin = CPM <b>${vnd(TK.cpm)}</b> ÷ (1.000 × CTR liên kết <b>${pct(TK.ctr, 2)}</b> × CVR <b>${pct(TK.cvr)}</b>) = <b>${vnd(TK.cpr)}</b> · Tin / 1.000 hiển thị: <b>${fmt(TK.mpm, 1)}</b>`;
+
+  const ins = [
+    'Giá mỗi tin 23-25/10 là ~7.093 đ so với ~14.051 đ ở 19-22/10. Tín hiệu tốt nhưng mới 3 ngày (có T7-CN, 24/10 chạm trần chi tuần): cần thêm 5-7 ngày để chắc.',
+    'Ngày rẻ hay đắt chủ yếu đi cùng tỷ lệ click ra tin nhắn (CVR); CPM cao (~143.000 đ) tạo mặt sàn chi phí. Ưu tiên cải thiện khâu vào Messenger.',
+    'Cùng kỳ 19-25/10, 1910 đắt hơn 1510 khoảng 19%: hai mẫu tạo tin nhắn/hiển thị như nhau, 1910 thua do CPM cao hơn và CVR thấp hơn.',
+    'Reels rẻ hơn Feed ~29% mỗi tin, đúng ở cả hai chiến dịch. Feed có nhiều click nhưng 77% không phải click mở Messenger.',
+    'Tin nhắn đến từ nữ 45+: nhóm 45+ chiếm 95% tin nhắn, nữ 88%.',
+    'Chất lượng hội thoại thấp: phần lớn khách chỉ bấm câu hỏi mẫu, rất ít để lại SĐT (xem tab Khách nhắn tin). Đây là chỗ nghẽn trước khi chốt đơn.'];
+  document.getElementById('insights').innerHTML = ins.map(t => `<li>${esc(t)}</li>`).join('');
+
+  const E = A.economics;
+  document.getElementById('econNote').textContent = 'Lãi thêm khi lấp ghế trống ~250.000 đ/khách; lãi bình quân đoàn 35 khách ~127.000 đ/khách. ' + E.note;
+  const cpr = document.getElementById('beCpr'), mg = document.getElementById('beMargin'), rate = document.getElementById('beRate'), pax = document.getElementById('bePax');
+  cpr.value = Math.round(TK.cpr); mg.value = E.margin_extra_pax;
+  function calc() {
+    const c = +cpr.value, m = +mg.value, r = +rate.value / 100, p = Math.max(+pax.value, 1);
+    const costPerPax = c / (r * p), be = c / m / p, profit = (r * p * m - c) / c;
+    const box = (l, v, good) => `<div class="p-4 rounded-xl border ${good == null ? 'border-slate-200 bg-slate-50' : good ? 'border-emerald-200 bg-emerald-50' : 'border-rose-200 bg-rose-50'}"><div class="text-[11px] text-slate-500">${l}</div><div class="text-lg font-extrabold num">${v}</div></div>`;
+    document.getElementById('beOut').innerHTML =
+      box('Chi phí quảng cáo / khách', vnd(costPerPax), costPerPax <= m) +
+      box('Tỷ lệ hòa vốn cần đạt', pct(be, 1), null) +
+      box('Số tin cho 1 khách hòa vốn', fmt(1 / be / p, 0) + ' tin', null) +
+      box('Lãi / 1 đồng quảng cáo', fmt(profit, 2) + ' đ', profit >= 0);
+  }
+  [cpr, mg, rate, pax].forEach(i => i.addEventListener('input', calc)); calc();
+})();
+
+// ---------- daily ----------
+const DATES = [...new Set(CD.map(r => r.date))].sort();
+const dayAgg = DATES.map(d => { const rs = CD.filter(r => r.date === d); const o = { date: d }; ['spend', 'results', 'impressions', 'clicks', 'link_clicks', 'reach'].forEach(k => o[k] = sum(rs, k)); return o; });
+(function phases() {
+  const P = [['15-18/10 · chỉ 1510', '2026-10-15', '2026-10-18'], ['19-22/10 · 1910 mới bật', '2026-10-19', '2026-10-22'], ['23-25/10 · có T7-CN', '2026-10-23', '2026-10-25']];
+  document.getElementById('phases').innerHTML = P.map(([n, a, b]) => {
+    const rs = dayAgg.filter(r => r.date >= a && r.date <= b); const t = {}; ['spend', 'results', 'impressions', 'clicks', 'link_clicks'].forEach(k => t[k] = sum(rs, k)); const k = kpis(t);
+    return `<div class="p-3 rounded-xl border border-slate-200"><div class="text-xs font-semibold text-slate-700">${n}</div>
+      <div class="flex justify-between mt-1 text-sm num"><span>${fmt(t.results)} tin</span><span class="font-bold">${vnd(k.cpr)}/tin</span></div>
+      <div class="flex justify-between text-[11px] text-slate-500 num"><span>CTR LK ${pct(k.ctr, 2)}</span><span>CVR ${pct(k.cvr)}</span><span>CPM ${fmt(k.cpm / 1000)}k</span></div></div>`;
+  }).join('') + '<p class="text-[11px] text-slate-400">24/10 chi ít vì 1510 chạm trần chi 7 × ngân sách/tuần sau khi 23/10 chi vượt.</p>';
+})();
+let campSel = 'ALL';
+function renderDaily() {
+  const rows = campSel === 'ALL' ? dayAgg : CD.filter(r => r.camp === campSel);
+  const H = ['Ngày', 'Chi tiêu', 'Tin', 'Chi phí/tin', 'Tiếp cận', 'Hiển thị', 'Tần suất', 'CPM', 'CTR tất cả', 'Click LK', 'CTR LK', 'CPC LK', 'CVR'];
+  document.getElementById('dailyHead').innerHTML = H.map((h, i) => th(h, i > 0)).join('');
+  const avg = TK.cpr;
+  const body = rows.map(r => { const k = kpis(r); const tag = k.cpr < avg * 0.75 ? 'text-emerald-700 font-bold' : k.cpr > avg * 1.4 ? 'text-rose-600 font-bold' : '';
+    return `<tr class="hover:bg-slate-50">${td(dayLabel(r.date), 'font-semibold')}${td(vnd(r.spend), 'text-right')}${td(r.results, 'text-right font-bold')}${td(vnd(k.cpr), 'text-right ' + tag)}${td(fmt(r.reach), 'text-right')}${td(fmt(r.impressions), 'text-right')}${td(fmt(k.freq, 2), 'text-right')}${td(vnd(k.cpm), 'text-right')}${td(pct(k.ctrAll, 2), 'text-right')}${td(r.link_clicks, 'text-right')}${td(pct(k.ctr, 2), 'text-right')}${td(vnd(k.cpc), 'text-right')}${td(pct(k.cvr, 0), 'text-right')}</tr>`; });
+  const t = {}; ['spend', 'results', 'impressions', 'clicks', 'link_clicks'].forEach(k => t[k] = sum(rows, k)); const k = kpis(t);
+  body.push(`<tr class="bg-amber-50 font-semibold">${td('Tổng')}${td(vnd(t.spend), 'text-right')}${td(t.results, 'text-right')}${td(vnd(k.cpr), 'text-right')}${td('', '')}${td(fmt(t.impressions), 'text-right')}${td('', '')}${td(vnd(k.cpm), 'text-right')}${td(pct(k.ctrAll, 2), 'text-right')}${td(t.link_clicks, 'text-right')}${td(pct(k.ctr, 2), 'text-right')}${td(vnd(k.cpc), 'text-right')}${td(pct(k.cvr, 0), 'text-right')}</tr>`);
+  document.getElementById('dailyBody').innerHTML = body.join('');
+  document.getElementById('campFilter').innerHTML = [['ALL', 'Tổng'], ...A.campaigns.map(c => [c.id, c.id])].map(([id, l]) =>
+    `<button data-c="${id}" class="px-3 py-1.5 rounded-lg border ${campSel === id ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white border-slate-200 text-slate-700'}">${l}</button>`).join('');
+  document.querySelectorAll('#campFilter button').forEach(b => b.onclick = () => { campSel = b.dataset.c; renderDaily(); });
+}
+renderDaily();
+
+// ---------- segments tables ----------
+(function () {
+  const H = ['Chỉ số', ...A.campaigns.map(c => c.id + ' · ' + c.ad), 'Tổng', 'Cùng kỳ ' + A.campaigns.map(c => c.id).join(' / ')];
+  document.getElementById('campHead').innerHTML = H.map((h, i) => th(h, i > 0)).join('');
+  const C = A.campaigns.map(c => ({ ...c, k: kpis(c) }));
+  const S = A.same_period.rows.map(r => ({ ...r, k: kpis(r) }));
+  const rows = [
+    ['Nhóm quảng cáo', C.map(c => esc(c.adset)), '', ''], ['Ngân sách', C.map(c => esc(c.budget)), '', ''],
+    ['Chi tiêu', C.map(c => vnd(c.spend)), vnd(TOT.spend), S.map(s => vnd(s.spend)).join(' / ')],
+    ['Tin nhắn', C.map(c => fmt(c.results)), fmt(TOT.results), S.map(s => s.results).join(' / ')],
+    ['Chi phí / tin', C.map(c => vnd(c.k.cpr)), vnd(TK.cpr), S.map(s => vnd(s.k.cpr)).join(' / ')],
+    ['Tiếp cận', C.map(c => fmt(c.reach)), fmt(TOT.reach), ''], ['Tần suất', C.map(c => fmt(c.k.freq, 2)), fmt(TOT.impressions / TOT.reach, 2), ''],
+    ['CPM', C.map(c => vnd(c.k.cpm)), vnd(TK.cpm), S.map(s => vnd(s.k.cpm)).join(' / ')],
+    ['CTR tất cả', C.map(c => pct(c.k.ctrAll, 2)), pct(TK.ctrAll, 2), ''],
+    ['CTR liên kết', C.map(c => pct(c.k.ctr, 2)), pct(TK.ctr, 2), S.map(s => pct(s.k.ctr, 2)).join(' / ')],
+    ['CPC liên kết', C.map(c => vnd(c.k.cpc)), vnd(TK.cpc), ''],
+    ['CVR click → tin', C.map(c => pct(c.k.cvr)), pct(TK.cvr), S.map(s => pct(s.k.cvr)).join(' / ')],
+    ['Tin / 1.000 hiển thị', C.map(c => fmt(c.k.mpm, 1)), fmt(TK.mpm, 1), S.map(s => fmt(s.k.mpm, 1)).join(' / ')],
+    ['Xếp hạng chất lượng', C.map(c => esc(c.quality)), '', '']];
+  document.getElementById('campBody').innerHTML = rows.map(([n, cs, t, s]) => `<tr class="hover:bg-slate-50">${td(n, 'font-medium text-slate-700')}${cs.map(v => td(v, 'text-right')).join('')}${td(t, 'text-right font-semibold')}${td(s, 'text-right text-slate-500')}</tr>`).join('');
+
+  const ages = [...new Set(A.ages.map(a => a.age))];
+  const ag = ages.map(a => { const rs = A.ages.filter(r => r.age === a); const o = { age: a }; ['spend', 'results', 'reach', 'impressions', 'link_clicks'].forEach(k => o[k] = sum(rs, k)); return o; });
+  const tS = sum(ag, 'spend'), tR = sum(ag, 'results');
+  document.getElementById('ageHead').innerHTML = ['Tuổi', 'Chi tiêu', 'Tin', 'Chi phí/tin', 'CVR', 'Chỉ số HQ'].map((h, i) => th(h, i > 0)).join('');
+  document.getElementById('ageBody').innerHTML = ag.map(r => { const idx = (r.results / tR) / (r.spend / tS); return `<tr>${td(r.age, 'font-semibold')}${td(vnd(r.spend), 'text-right')}${td(r.results, 'text-right')}${td(vnd(r.spend / r.results), 'text-right')}${td(pct(r.results / r.link_clicks, 0), 'text-right')}${td(fmt(idx, 2), 'text-right ' + (idx >= 1 ? 'text-emerald-700 font-bold' : 'text-rose-600'))}</tr>`; }).join('');
+  const gs = [...new Set(A.genders.map(g => g.gender))];
+  document.getElementById('genderHead').innerHTML = ['Giới tính', 'Chi tiêu', 'Tin', 'Chi phí/tin', 'CPM', 'Tin/1.000 HT'].map((h, i) => th(h, i > 0)).join('');
+  document.getElementById('genderBody').innerHTML = gs.map(g => { const rs = A.genders.filter(r => r.gender === g); const s = sum(rs, 'spend'), r = sum(rs, 'results'), im = sum(rs, 'impressions');
+    return `<tr>${td(g, 'font-semibold')}${td(vnd(s), 'text-right')}${td(r, 'text-right')}${td(r ? vnd(s / r) : '-', 'text-right')}${td(vnd(s / im * 1000), 'text-right')}${td(fmt(r / im * 1000, 1), 'text-right')}</tr>`; }).join('');
+})();
+
+// ---------- CRM (intent from customer messages only) ----------
+const convs = DATA.conversations;
+const custMsgs = c => c.messages.filter(m => !m.is_page && (m.text || '').trim());
+const tplCount = {}; convs.forEach(c => custMsgs(c).forEach(m => { const t = m.text.trim(); tplCount[t] = (tplCount[t] || 0) + 1; }));
+const TEMPLATES = new Set(Object.keys(tplCount).filter(t => tplCount[t] >= 5));
+const PHONE_RE = /(?:\+?84|0)(?:[\s.\-]?\d){9}/;
+const INTENTS = [
+  ['Hỏi giá', /giá|bao nhiêu|bn\b|tiền|chi phí/i], ['Hỏi ghép đoàn', /ghép|đoàn|nhóm|hội|các bà/i], ['Hỏi lịch trình', /lịch trình|du ngoạn|đi chơi|đền|lễ/i],
+  ['Hỏi phòng / ăn', /phòng|ăn|bữa/i], ['Hỏi ngày đi', /ngày|thứ|tháng|mùng|rằm|\d{1,2}\/\d{1,2}/i], ['Hỏi xe / điểm đón', /\bxe\b|đón|đưa/i]];
+convs.forEach(c => {
+  const ms = custMsgs(c); const text = ms.map(m => m.text).join(' \n ');
+  c._cust = ms; c._free = ms.filter(m => !TEMPLATES.has(m.text.trim()));
+  c._phone = c.phone || (text.match(PHONE_RE) || [null])[0];
+  c._intents = INTENTS.filter(([, re]) => re.test(text)).map(([n]) => n);
+  c._level = c._phone ? 'Có SĐT' : c._free.length >= 2 ? 'Trao đổi thật' : c._free.length === 1 ? 'Có hỏi thêm' : ms.length ? 'Chỉ bấm câu mẫu' : 'Không có tin khách';
+});
+(function () {
+  const ts = convs.map(c => c.updated_time).sort();
+  document.getElementById('crmScope').textContent = `${convs.length} hội thoại gần nhất (${ts[0].slice(8, 10)}/${ts[0].slice(5, 7)} - ${ts.at(-1).slice(8, 10)}/${ts.at(-1).slice(5, 7)}), không phải toàn bộ ${TOT.results} tin nhắn từ quảng cáo. "Câu mẫu" = câu hỏi gợi ý xuất hiện từ 5 lần trở lên.`;
+  const n = convs.length, steps = [
+    ['Hội thoại', n], ['Khách có gửi tin', convs.filter(c => c._cust.length).length], ['Khách tự gõ câu hỏi (ngoài câu mẫu)', convs.filter(c => c._free.length).length],
+    ['Trao đổi từ 2 câu tự gõ trở lên', convs.filter(c => c._free.length >= 2).length], ['Để lại số điện thoại', convs.filter(c => c._phone).length]];
+  document.getElementById('leadFunnel').innerHTML = steps.map(([l, v], i) => `
+    <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-600">${l}</span><span class="font-bold num">${v} <span class="text-slate-400 font-normal">(${pct(v / n, 0)})</span></span></div>
+    <div class="h-5 bg-slate-100 rounded-md overflow-hidden"><div class="h-full ${i === steps.length - 1 ? 'bg-emerald-600' : 'bg-slate-400'}" style="width:${Math.max(v / n * 100, 1)}%"></div></div></div>`).join('') +
+    `<p class="text-[11px] text-slate-500 mt-2">Câu mẫu phổ biến: ${[...TEMPLATES].slice(0, 4).map(t => '"' + esc(t) + '" (' + tplCount[t] + ')').join(', ')}</p>`;
+  const cnt = {}; convs.forEach(c => c._intents.forEach(t => cnt[t] = (cnt[t] || 0) + 1));
+  document.getElementById('intentBars').innerHTML = INTENTS.map(([t]) => [t, cnt[t] || 0]).sort((a, b) => b[1] - a[1]).map(([t, v]) => `
+    <div><div class="flex justify-between text-xs"><span>${t}</span><span class="font-semibold num">${v} (${pct(v / n, 0)})</span></div>
+    <div class="h-2 bg-slate-100 rounded"><div class="h-full bg-emerald-500 rounded" style="width:${v / n * 100}%"></div></div></div>`).join('');
+})();
+let crmLevel = 'ALL';
+const LEVELS = ['ALL', 'Có SĐT', 'Trao đổi thật', 'Có hỏi thêm', 'Chỉ bấm câu mẫu'];
+const maskPhone = p => document.getElementById('showPhone').checked ? p : p.replace(/(\d{3})\d+(\d{3})$/, '$1****$2');
+function renderCrm() {
+  const q = document.getElementById('crmSearch').value.toLowerCase().trim();
+  const list = convs.filter(c => (crmLevel === 'ALL' || c._level === crmLevel) && (!q || c.customer_name.toLowerCase().includes(q) || c.messages.some(m => (m.text || '').toLowerCase().includes(q))));
+  document.getElementById('crmFilters').innerHTML = LEVELS.map(l => { const n = l === 'ALL' ? convs.length : convs.filter(c => c._level === l).length;
+    return `<button data-l="${l}" class="text-xs px-3 py-1.5 rounded-lg border ${crmLevel === l ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white border-slate-200 text-slate-700'}">${l === 'ALL' ? 'Tất cả' : l} (${n})</button>`; }).join('');
+  document.querySelectorAll('#crmFilters button').forEach(b => b.onclick = () => { crmLevel = b.dataset.l; renderCrm(); });
+  const lvlColor = { 'Có SĐT': 'bg-amber-100 text-amber-800', 'Trao đổi thật': 'bg-emerald-100 text-emerald-800', 'Có hỏi thêm': 'bg-blue-100 text-blue-800', 'Chỉ bấm câu mẫu': 'bg-slate-100 text-slate-600', 'Không có tin khách': 'bg-slate-100 text-slate-400' };
+  document.getElementById('crmBody').innerHTML = list.length ? list.map(c => {
+    const last = c._cust.at(-1)?.text || '(chưa có tin)';
+    return `<tr class="hover:bg-slate-50">
+      <td class="py-2.5 px-4"><div class="font-semibold text-slate-900">${esc(c.customer_name)}</div><span class="inline-block mt-1 px-2 py-0.5 rounded text-[11px] ${lvlColor[c._level]}">${c._level}</span>${c._phone ? ` <span class="text-[11px] text-amber-700 num">${esc(maskPhone(c._phone))}</span>` : ''}</td>
+      <td class="py-2.5 px-4 whitespace-normal max-w-xs">${c._intents.map(t => `<span class="inline-block px-2 py-0.5 rounded text-[11px] bg-emerald-50 text-emerald-800 mr-1 mb-1">${t}</span>`).join('') || '<span class="text-xs text-slate-400">-</span>'}</td>
+      <td class="py-2.5 px-4 max-w-sm truncate text-xs text-slate-600" title="${esc(last)}">${esc(last)}</td>
+      <td class="py-2.5 px-4 text-center num">${c._cust.length} / ${c.messages.length}</td>
+      <td class="py-2.5 px-4 text-right text-xs text-slate-500">${new Date(c.updated_time).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</td>
+      <td class="py-2.5 px-4"><button data-id="${esc(c.id)}" class="openChat px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-xs"><i class="fa-solid fa-eye mr-1"></i>Xem</button></td></tr>`;
+  }).join('') : '<tr><td colspan="6" class="py-8 text-center text-slate-400">Không có hội thoại phù hợp</td></tr>';
+  document.querySelectorAll('.openChat').forEach(b => b.onclick = () => openChat(b.dataset.id));
+}
+document.getElementById('crmSearch').addEventListener('input', renderCrm);
+document.getElementById('showPhone').addEventListener('change', renderCrm);
+renderCrm();
+function openChat(id) {
+  const c = convs.find(x => x.id === id); if (!c) return;
+  document.getElementById('mName').textContent = c.customer_name;
+  document.getElementById('mMeta').textContent = `${c.messages.length} tin · ${c._level} · ${new Date(c.updated_time).toLocaleString('vi-VN')}`;
+  document.getElementById('mPhone').textContent = c._phone ? 'SĐT: ' + maskPhone(c._phone) : 'Chưa có số điện thoại';
+  document.getElementById('mList').innerHTML = c.messages.map(m => `
+    <div class="flex flex-col ${m.is_page ? 'items-end' : 'items-start'}">
+      <span class="text-[10px] text-slate-400 mb-1">${esc(m.from)} · ${new Date(m.time).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+      <div class="max-w-md p-3 rounded-2xl text-xs sm:text-sm whitespace-pre-line ${m.is_page ? 'bg-emerald-600 text-white rounded-br-none' : 'bg-white border border-slate-200 rounded-bl-none'}">${esc(m.text)}</div></div>`).join('');
+  const md = document.getElementById('chatModal'); md.classList.remove('hidden'); md.classList.add('flex');
+}
+function closeChat() { const md = document.getElementById('chatModal'); md.classList.add('hidden'); md.classList.remove('flex'); }
+document.getElementById('chatModal').addEventListener('click', e => { if (e.target.id === 'chatModal') closeChat(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeChat(); });
+
+// ---------- monthly ----------
+const MONTHS = [...DATA.monthly_past, ...DATA.monthly_current].sort((a, b) => a.month.localeCompare(b.month));
+document.getElementById('monthHead').innerHTML = ['Tháng', 'Tài khoản', 'Chi tiêu', 'Tiếp cận', 'Click', 'CTR', 'Tin nhắn', 'Chi phí/tin'].map((h, i) => th(h, i > 1)).join('');
+document.getElementById('monthBody').innerHTML = MONTHS.slice().reverse().map(m => `<tr>${td(m.month, 'font-semibold')}${td(esc(m.account), 'text-xs text-slate-500')}${td(vnd(m.spend), 'text-right font-semibold')}${td(fmt(m.reach), 'text-right')}${td(fmt(m.clicks), 'text-right')}${td(m.ctr + '%', 'text-right')}${td(m.messages ?? '-', 'text-right')}${td(m.messages ? vnd(m.spend / m.messages) : '-', 'text-right')}</tr>`).join('');
+
+// ---------- actions ----------
+const ACTIONS = [
+  ['Thanh toán khoản nợ, bật lại phân phối', 'Tài khoản dừng từ 26/10; 3 ngày cuối là giai đoạn rẻ nhất', 'Hôm nay'],
+  ['Giữ nguyên cấu hình 5-7 ngày sau khi bật lại', 'Xác nhận mức giá mới; giá theo ngày dao động ~50%', 'Ngay sau khi bật'],
+  ['Ghi sổ từng cuộc trò chuyện: trưởng đoàn hay khách lẻ, đặt cọc, số khách, doanh thu', 'Không có số đơn thì không biết lãi/lỗ', 'Bắt đầu ngay'],
+  ['Sửa kịch bản trả lời: hỏi số người + ngày đi + xin SĐT ngay câu đầu', 'Phần lớn khách chỉ bấm câu mẫu rồi dừng; rất ít để lại SĐT', 'Tuần này'],
+  ['Làm mẫu dọc 9:16 cho Reels, lời mời nhắn tin rõ, ít chữ trên ảnh', 'Reels rẻ hơn Feed ~29%; "Goi nguoi gia" bị xếp chất lượng 20% cuối', 'Tuần này'],
+  ['Gộp về 1 chiến dịch mới (mẫu cũ tốt nhất + mẫu mới, 45+ Hà Nội, ~300k/ngày); tắt dần 1910 rồi 1510', 'Hai chiến dịch trùng 1.347 người; làm học lại một lần thay vì nhiều lần', 'Tuần sau'],
+  ['Trực tin nhắn kỹ 5h-9h và 21h-24h', 'Hai khung rẻ và có CVR cao', 'Ngay']];
+document.getElementById('actionBody').innerHTML = ACTIONS.map((a, i) => `<tr>${td(i + 1, 'font-bold')}<td class="py-2.5 px-4 whitespace-normal font-medium">${a[0]}</td><td class="py-2.5 px-4 whitespace-normal text-slate-600">${a[1]}</td>${td(a[2], 'text-slate-500')}</tr>`).join('');
+const phone = convs.filter(c => c._phone).length / convs.length;
+const TARGETS = [
+  ['Chi phí / tin nhắn', TK.cpr, v => vnd(v), 8000, 12000, false], ['CVR click → tin', TK.cvr, v => pct(v), 0.5, 0.35, true],
+  ['CTR liên kết', TK.ctr, v => pct(v, 2), 0.04, 0.025, true], ['CPM', TK.cpm, v => vnd(v), 130000, 180000, false],
+  ['Tỷ lệ hội thoại có SĐT', phone, v => pct(v, 0), 0.2, 0.1, true]];
+document.getElementById('kpiTargetBody').innerHTML = TARGETS.map(([n, v, f, tg, wr, up]) => {
+  const ok = up ? v >= tg : v <= tg, bad = up ? v < wr : v > wr;
+  return `<tr>${td(n, 'font-medium')}${td(f(v), 'text-right font-semibold')}${td((up ? '≥ ' : '≤ ') + f(tg), 'text-right')}${td((up ? '< ' : '> ') + f(wr), 'text-right text-slate-500')}${td(ok ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs">Đạt</span>' : bad ? '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-700 text-xs">Cảnh báo</span>' : '<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-xs">Chưa đạt</span>', 'text-center')}</tr>`;
+}).join('');
+
+// ---------- charts (lazy per tab) ----------
+Chart.defaults.font.family = "'Be Vietnam Pro', system-ui, sans-serif"; Chart.defaults.font.size = 11; Chart.defaults.color = '#64748b';
+const CHARTS = {
+  creatives() { initRetentionChart(); },
+  daily() {
+    const lab = DATES.map(dayLabel);
+    const by = id => DATES.map(d => (CD.find(r => r.date === d && r.camp === id) || {}).results || 0);
+    new Chart(document.getElementById('dailyChart'), { data: { labels: lab, datasets: [
+      { type: 'line', label: 'Chi phí / tin (đ)', data: dayAgg.map(r => Math.round(r.spend / r.results)), borderColor: '#2563eb', backgroundColor: '#2563eb', yAxisID: 'y1', tension: 0.3, pointRadius: 4 },
+      { type: 'line', label: 'TB kỳ', data: DATES.map(() => Math.round(TK.cpr)), borderColor: '#94a3b8', borderDash: [5, 5], pointRadius: 0, yAxisID: 'y1' },
+      ...A.campaigns.map((c, i) => ({ type: 'bar', label: 'Tin ' + c.id, data: by(c.id), backgroundColor: i ? '#86efac' : '#047857', stack: 's', yAxisID: 'y' }))] },
+      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        scales: { y: { stacked: true, suggestedMax: 50, title: { display: true, text: 'Tin nhắn' } }, y1: { position: 'right', beginAtZero: true, grid: { drawOnChartArea: false }, ticks: { callback: v => fmt(v / 1000) + 'k' }, title: { display: true, text: 'đ / tin' } } } } });
+  },
+  segments() {
+    const H = A.hours, bands = [[0, 4, '0-5h'], [5, 8, '5-9h'], [9, 11, '9-12h'], [12, 13, '12-14h'], [14, 17, '14-18h'], [18, 20, '18-21h'], [21, 23, '21-24h']];
+    const bd = bands.map(([a, b, l]) => { const rs = H.filter(r => r.h >= a && r.h <= b); return { l, cpr: sum(rs, 'spend') / sum(rs, 'results'), res: sum(rs, 'results') }; });
+    new Chart(document.getElementById('hourChart'), { type: 'bar', data: { labels: bd.map(b => b.l), datasets: [{ label: 'Chi phí / tin (đ)', data: bd.map(b => Math.round(b.cpr)), backgroundColor: bd.map(b => b.cpr < TK.cpr ? '#059669' : '#cbd5e1'), borderRadius: 6 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { afterLabel: c => bd[c.dataIndex].res + ' tin' } } }, scales: { y: { ticks: { callback: v => fmt(v / 1000) + 'k' } } } } });
+    const pls = [...new Set(A.placements.map(p => p.placement))].filter(p => p !== 'Khác');
+    const pa = pls.map(p => { const rs = A.placements.filter(r => r.placement === p); return { p, cpr: sum(rs, 'spend') / sum(rs, 'results'), mpm: sum(rs, 'results') / sum(rs, 'impressions') * 1000, res: sum(rs, 'results') }; });
+    new Chart(document.getElementById('placementChart'), { type: 'bar', data: { labels: pa.map(x => `${x.p} (${x.res} tin)`), datasets: [
+      { label: 'Chi phí / tin (đ)', data: pa.map(x => Math.round(x.cpr)), backgroundColor: pa.map(x => x.res < 20 ? '#cbd5e1' : x.cpr < TK.cpr ? '#059669' : '#94a3b8'), borderRadius: 6 }] },
+      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { afterLabel: c => `${fmt(pa[c.dataIndex].mpm, 1)} tin / 1.000 hiển thị` + (pa[c.dataIndex].res < 20 ? ' · mẫu nhỏ' : '') } } },
+        scales: { x: { beginAtZero: true, ticks: { callback: v => fmt(v / 1000) + 'k' } } } } });
+  },
+  monthly() {
+    new Chart(document.getElementById('monthlyChart'), { type: 'bar', data: { labels: MONTHS.map(m => m.month), datasets: [{ label: 'Chi tiêu (đ)', data: MONTHS.map(m => m.spend), backgroundColor: MONTHS.map(m => m.messages ? '#047857' : '#94a3b8'), borderRadius: 6 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => fmt(v / 1e6, 1) + ' tr' } } } } });
+  }
+};
+
+function exportData() {
+  const blob = new Blob([JSON.stringify(DATA, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'happyhome_ads_analytics.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
 
 // ==========================================
 // PIN PROTECTION (2707)
@@ -75,7 +702,6 @@ function checkPinOnLoad() {
       unlockDashboard();
     }
   } catch (err) {}
-} catch (err) {}
 }
 
 // ==========================================
@@ -109,7 +735,7 @@ function initSingleDayPicker() {
     return `<option value="${d}">${dayLabel(d)} · ${vnd(o.spend || 0)} (${o.results || 0} tin)</option>`;
   }).join('');
   
-  // Default to latest date
+  // Default to 2026-10-25 or the latest day with spend
   const defaultDay = DATES.includes('2026-10-25') ? '2026-10-25' : DATES[DATES.length - 1];
   sel.value = defaultDay;
   renderSingleDayDeepDive(defaultDay);
@@ -361,6 +987,11 @@ function renderDropoffAnalytics() {
 // ==========================================
 // INITIALIZATION ON LOAD
 // ==========================================
+checkPinOnLoad();
+initSingleDayPicker();
+renderCreativesTab();
+renderDropoffAnalytics();
+
 document.addEventListener('DOMContentLoaded', () => {
   checkPinOnLoad();
   initSingleDayPicker();
@@ -368,612 +999,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDropoffAnalytics();
 });
 
-// Also run immediately if script executes after DOM is ready
-checkPinOnLoad();
-initSingleDayPicker();
-renderCreativesTab();
-renderDropoffAnalytics();
-
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
-    body { font-family: 'Be Vietnam Pro', system-ui, sans-serif; }
-    .scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-    .scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    .num { font-variant-numeric: tabular-nums; }
-    .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-    th, td { white-space: nowrap; }
-    .tab-btn.active { border-color: #059669; color: #047857; font-weight: 600; }
-  </style>
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
-
-<!-- PIN GATE MODAL (2707) -->
-<div id="pinGate" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] flex items-center justify-center p-4">
-  <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-8 text-center border border-slate-100 animate-in zoom-in-95 duration-200">
-    <div class="w-16 h-16 bg-emerald-600 rounded-2xl flex items-center justify-center text-white text-2xl mx-auto shadow-lg shadow-emerald-600/30 mb-4">
-      <i class="fa-solid fa-tree"></i>
-    </div>
-    <h2 class="text-xl font-bold text-slate-900">HappyHome Đồng Bèn</h2>
-    <p class="text-xs text-slate-500 mt-1 mb-5">Hệ thống phân tích Ads & CRM nội bộ.<br>Vui lòng nhập mã PIN để truy cập.</p>
-    
-    <form onsubmit="handlePinSubmit(event)" class="space-y-4">
-      <div>
-        <input id="pinInput" type="password" maxlength="6" autofocus placeholder="••••" class="w-full text-center tracking-[0.5em] text-2xl font-bold py-3 px-4 border-2 border-slate-300 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-600 focus:outline-none transition num bg-slate-50" />
-      </div>
-      <div id="pinError" class="text-xs text-red-600 font-semibold hidden flex items-center justify-center">
-        <i class="fa-solid fa-circle-exclamation mr-1"></i> Mã PIN không đúng, thử lại!
-      </div>
-      
-      <div class="flex gap-2">
-        <button type="submit" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-2xl transition shadow-lg shadow-emerald-600/25 flex items-center justify-center cursor-pointer">
-          <i class="fa-solid fa-lock-open mr-2"></i> Mở Khóa
-        </button>
-        <button type="button" onclick="quickUnlock()" class="px-3 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-2xl transition border border-slate-200 flex items-center justify-center cursor-pointer" title="Điền nhanh 2707">
-          <i class="fa-solid fa-key mr-1"></i> 2707
-        </button>
-      </div>
-    </form>
-    
-    <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-center gap-1 text-[11px] text-slate-400">
-      <i class="fa-solid fa-shield-halved text-emerald-600"></i> Dữ liệu bảo mật chỉ lưu hành nội bộ
-    </div>
-  </div>
-</div>
-
-
-
-    <!-- SINGLE DAY DEEP DIVE INTERACTIVE PICKER -->
-    <div class="card p-6 bg-gradient-to-br from-white to-slate-50 border-emerald-200 shadow-sm">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-slate-200">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-calendar-check mr-1"></i>Trực quan từng ngày</span>
-            <h3 class="font-bold text-slate-900 text-base" id="singleDayTitle">Phân tích chi tiết ngày...</h3>
-          </div>
-          <p class="text-xs text-slate-500 mt-1">Chọn ngày bất kỳ để xem toàn bộ chỉ số, so sánh với trung bình toàn kỳ và phân rã chiến dịch</p>
-        </div>
-        <div class="flex items-center gap-2">
-          <label class="text-xs font-semibold text-slate-700 whitespace-nowrap"><i class="fa-solid fa-filter mr-1 text-emerald-600"></i>Chọn ngày:</label>
-          <select id="singleDaySelect" onchange="renderSingleDayDeepDive(this.value)" class="text-xs font-bold py-2 px-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none shadow-sm cursor-pointer num text-emerald-800">
-          </select>
-        </div>
-      </div>
-      <div id="singleDayKpiRow" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-4"></div>
-      <div id="singleDayBreakdown" class="p-4 rounded-xl bg-white border border-slate-200 text-xs"></div>
-    </div>
-
-    <!-- SINGLE DAY DEEP DIVE INTERACTIVE PICKER -->
-    <div class="card p-6 bg-gradient-to-br from-white to-slate-50 border-emerald-200 shadow-sm">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pb-4 border-b border-slate-200">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-calendar-check mr-1"></i>Trực quan từng ngày</span>
-            <h3 class="font-bold text-slate-900 text-base">Phân Tích Chi Tiết Theo Ngày</h3>
-          </div>
-          <p class="text-xs text-slate-500 mt-1">Chọn ngày bất kỳ để xem toàn bộ chỉ số chi tiêu, tin nhắn, CTR và so sánh với bình quân</p>
-        </div>
-        <div class="flex items-center gap-2 w-full sm:w-auto">
-          <label class="text-xs font-semibold text-slate-600 whitespace-nowrap"><i class="fa-regular fa-calendar mr-1"></i>Chọn ngày:</label>
-          <select id="singleDaySelect" onchange="renderSingleDayDeepDive(this.value)" class="w-full sm:w-64 bg-white border-2 border-emerald-500 rounded-xl px-3 py-2 text-xs font-bold focus:ring-2 focus:ring-emerald-500 focus:outline-none shadow-sm cursor-pointer num text-emerald-800">
-          </select>
-        </div>
-      </div>
-      <div id="singleDayKpiRow" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-4"></div>
-      <div id="singleDayBreakdown" class="p-4 rounded-xl bg-white border border-slate-200 text-xs"></div>
-    </div>
-
-    <div class="card overflow-hidden">
-      <div class="p-5 border-b border-slate-200 flex flex-wrap justify-between items-center gap-3">
-        <div>
-          <h3 class="font-bold text-slate-900">Chi tiết từng ngày</h3>
-          <p class="text-xs text-slate-500">Tiếp cận theo ngày cộng lại sẽ lớn hơn tiếp cận cả kỳ (một người có thể thấy nhiều ngày)</p>
-        </div>
-        <div class="flex gap-1 text-xs" id="campFilter"></div>
-      </div>
-      <div class="overflow-x-auto scroll">
-        <table class="w-full text-xs sm:text-sm num">
-          <thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="dailyHead"></tr></thead>
-          <tbody id="dailyBody" class="divide-y divide-slate-100"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- TAB: SEGMENTS -->
-  <section id="tab-segments" class="tab-content hidden space-y-6">
-    <div class="card overflow-hidden">
-      <div class="p-5 border-b border-slate-200">
-        <h3 class="font-bold text-slate-900">So sánh chiến dịch / nhóm quảng cáo / quảng cáo</h3>
-        <p class="text-xs text-slate-500">Mỗi chiến dịch có 1 nhóm và 1 quảng cáo. Cột "Cùng kỳ" so trên 19-25/10 để công bằng.</p>
-      </div>
-      <div class="overflow-x-auto scroll">
-        <table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="campHead"></tr></thead><tbody id="campBody" class="divide-y divide-slate-100"></tbody></table>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div class="card p-6">
-        <h3 class="font-bold text-slate-900">Theo khung giờ</h3>
-        <p class="text-xs text-slate-500 mb-3">Chi phí / tin theo giờ hiển thị (giờ tài khoản). Mẫu nhỏ, chỉ nên dùng để sắp lịch trực tin.</p>
-        <div class="h-72"><canvas id="hourChart"></canvas></div>
-      </div>
-      <div class="card p-6">
-        <h3 class="font-bold text-slate-900">Theo vị trí hiển thị</h3>
-        <p class="text-xs text-slate-500 mb-3">Chi phí / tin (xanh = rẻ hơn trung bình, nhạt = mẫu nhỏ dưới 20 tin)</p>
-        <div class="h-72"><canvas id="placementChart"></canvas></div>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div class="card overflow-hidden">
-        <div class="p-5 border-b border-slate-200"><h3 class="font-bold text-slate-900">Theo độ tuổi</h3><p class="text-xs text-slate-500">Chỉ số hiệu quả = % tin nhắn / % chi tiêu</p></div>
-        <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="ageHead"></tr></thead><tbody id="ageBody" class="divide-y divide-slate-100"></tbody></table></div>
-      </div>
-      <div class="card overflow-hidden">
-        <div class="p-5 border-b border-slate-200"><h3 class="font-bold text-slate-900">Theo giới tính</h3><p class="text-xs text-slate-500">100% hiển thị tại Hà Nội, 100% Facebook</p></div>
-        <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="genderHead"></tr></thead><tbody id="genderBody" class="divide-y divide-slate-100"></tbody></table></div>
-      </div>
-    </div>
-  </section>
-
-  
-  <!-- TAB: CREATIVES (MẪU QUẢNG CÁO) -->
-  <section id="tab-creatives" class="tab-content hidden space-y-6">
-    <div class="card p-6 bg-gradient-to-r from-emerald-50 via-white to-blue-50 border-emerald-200">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-video mr-1"></i>Creative Intelligence</span>
-          <h2 class="text-lg font-bold text-slate-900 mt-1">Phân Tích Chi Tiết Từng Mẫu Quảng Cáo</h2>
-          <p class="text-xs text-slate-600 mt-0.5">So sánh hiệu quả giữ chân video (Video Retention), CTR, tỷ lệ xem 3s và xếp hạng từ Meta</p>
-        </div>
-        <div class="text-xs text-slate-500 bg-white/80 backdrop-blur px-3 py-2 rounded-xl border border-slate-200">
-          <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Định dạng Video Reels & Feed 9:16
-        </div>
-      </div>
-    </div>
-
-    <!-- Creatives Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="creativesGrid">
-      <!-- Injected by JS -->
-    </div>
-
-    <!-- Creative Retention Funnel Comparison -->
-    <div class="card p-6">
-      <div class="flex justify-between items-center mb-4">
-        <div>
-          <h3 class="font-bold text-slate-900">Biểu Đồ Phễu Giữ Chân Người Xem Video (Retention Drop-off)</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Tỷ lệ người xem tiếp tục xem video qua các mốc 25% → 50% → 75% → 100%</p>
-        </div>
-      </div>
-      <div class="h-80"><canvas id="retentionChart"></canvas></div>
-      <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
-        <p><b>Nhận xét & Đề xuất tối ưu Video:</b></p>
-        <p>• <b>Tỷ lệ Hook 3 giây đầu:</b> Cả 2 mẫu đều đạt ~50% (rất tốt). Người xem bị thu hút bởi cảnh đền Ứng Thiên và không gian xanh Đồng Bèn.</p>
-        <p>• <b>Tỷ lệ rơi rụng ở 50%:</b> Lượng người xem giảm từ 50% xuống 14% do video kéo dài. Nên cắt thêm các phiên bản ngắn <b>15 - 20 giây</b> tập trung vào: <i>Cảnh ăn lẩu thái + Bể bơi + Giá 500k</i>.</p>
-        <p>• <b>Xếp hạng chất lượng:</b> Mẫu "Goi nguoi gia" bị xếp 20% cuối do text trên thumbnail nhiều. Cần giảm chữ và tăng khung hình người thật cười vui vẻ.</p>
-      </div>
-    </div>
-  </section>
-
-  
-  <!-- TAB: CREATIVES (MẪU QUẢNG CÁO) -->
-  <section id="tab-creatives" class="tab-content hidden space-y-6">
-    <div class="card p-6 bg-gradient-to-r from-emerald-50 via-white to-blue-50 border-emerald-200">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider"><i class="fa-solid fa-video mr-1"></i>Creative Intelligence</span>
-          <h2 class="text-lg font-bold text-slate-900 mt-1">Phân Tích Chi Tiết Từng Mẫu Quảng Cáo</h2>
-          <p class="text-xs text-slate-600 mt-0.5">So sánh hiệu quả giữ chân video (Video Retention), CTR, tỷ lệ xem 3s và xếp hạng từ Meta</p>
-        </div>
-        <div class="text-xs text-slate-500 bg-white/80 backdrop-blur px-3 py-2 rounded-xl border border-slate-200">
-          <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Định dạng Video Reels & Feed 9:16
-        </div>
-      </div>
-    </div>
-
-    <!-- Creatives Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="creativesGrid">
-      <!-- Injected by JS -->
-    </div>
-
-    <!-- Creative Retention Funnel Comparison -->
-    <div class="card p-6">
-      <div class="flex justify-between items-center mb-4">
-        <div>
-          <h3 class="font-bold text-slate-900">Biểu Đồ Phễu Giữ Chân Người Xem Video (Retention Drop-off)</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Tỷ lệ người xem tiếp tục xem video qua các mốc Hook 3s → 25% → 50% → 75% → 100%</p>
-        </div>
-      </div>
-      <div class="h-80"><canvas id="retentionChart"></canvas></div>
-      <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
-        <p><b>Nhận xét & Đề xuất tối ưu Video:</b></p>
-        <p>• <b>Tỷ lệ Hook 3 giây đầu:</b> Cả 2 mẫu đều đạt ~50% (rất tốt). Người xem bị thu hút bởi cảnh đền Ứng Thiên và không gian xanh Đồng Bèn.</p>
-        <p>• <b>Tỷ lệ rơi rụng ở 50%:</b> Lượng người xem giảm từ 50% xuống 14% do video kéo dài. Nên cắt thêm các phiên bản ngắn <b>15 - 20 giây</b> tập trung vào: <i>Cảnh ăn lẩu thái + Bể bơi + Giá 500k</i>.</p>
-        <p>• <b>Xếp hạng chất lượng:</b> Mẫu "Goi nguoi gia" bị xếp 20% cuối do text trên thumbnail nhiều. Cần giảm chữ và tăng khung hình người thật cười vui vẻ.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TAB: CRM -->
-  <section id="tab-crm" class="tab-content hidden space-y-6">
-    <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-900">
-      <i class="fa-solid fa-user-shield mr-1"></i><b>Dữ liệu cá nhân:</b> phần này chứa tên, ID và số điện thoại khách. Không đưa file lên trang công khai hoặc repo public. Số điện thoại được che mặc định.
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div class="card p-6 lg:col-span-2">
-        <h2 class="font-bold text-slate-900">Chất lượng hội thoại</h2>
-        <p class="text-xs text-slate-500 mt-0.5 mb-4" id="crmScope"></p>
-        <div id="leadFunnel" class="space-y-3"></div>
-      </div>
-      <div class="card p-6">
-        <h2 class="font-bold text-slate-900">Khách thực sự hỏi gì</h2>
-        <p class="text-xs text-slate-500 mt-0.5 mb-3">Chỉ tính tin của khách, không tính tin trả lời tự động của page</p>
-        <div id="intentBars" class="space-y-2"></div>
-      </div>
-    </div>
-    <div class="card overflow-hidden">
-      <div class="p-5 border-b border-slate-200 flex flex-col md:flex-row justify-between gap-3 bg-slate-50/50">
-        <div class="relative w-full md:w-80">
-          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-          <input id="crmSearch" type="text" placeholder="Tìm tên khách hoặc nội dung tin nhắn..." class="w-full pl-8 pr-3 py-2 text-xs border border-slate-300 rounded-xl bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-        </div>
-        <div class="flex flex-wrap gap-2 items-center" id="crmFilters"></div>
-        <label class="text-xs text-slate-600 flex items-center gap-2"><input type="checkbox" id="showPhone"> Hiện SĐT</label>
-      </div>
-      <div class="overflow-x-auto scroll max-h-[600px]">
-        <table class="w-full text-xs sm:text-sm">
-          <thead class="sticky top-0 bg-slate-50 border-b border-slate-200 text-slate-500 z-10"><tr>
-            <th class="py-3 px-4 text-left">Khách hàng</th><th class="py-3 px-4 text-left">Lý do chưa chốt / Tốc độ rep</th><th class="py-3 px-4 text-left">Nhu cầu</th><th class="py-3 px-4 text-left">Tin gần nhất của khách</th><th class="py-3 px-4 text-center">Tin</th><th class="py-3 px-4 text-right">Cập nhật</th><th class="py-3 px-4"></th>
-          </tr></thead>
-          <tbody id="crmBody" class="divide-y divide-slate-100"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- TAB: MONTHLY -->
-  <section id="tab-monthly" class="tab-content hidden space-y-6">
-    <div class="card p-6">
-      <h2 class="font-bold text-slate-900">Chi tiêu quảng cáo theo tháng (2024-2026)</h2>
-      <p class="text-xs text-slate-500 mt-0.5 mb-3">Gồm tài khoản cũ 126293680899519 và tài khoản mới 031026 - TKBM1</p>
-      <div class="h-72"><canvas id="monthlyChart"></canvas></div>
-    </div>
-    <div class="card overflow-hidden">
-      <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr id="monthHead"></tr></thead><tbody id="monthBody" class="divide-y divide-slate-100"></tbody></table></div>
-    </div>
-  </section>
-
-  <!-- TAB: ACTIONS -->
-  <section id="tab-actions" class="tab-content hidden space-y-6">
-    <div class="card overflow-hidden">
-      <div class="p-5 border-b border-slate-200"><h3 class="font-bold text-slate-900">Việc cần làm theo thứ tự ưu tiên</h3></div>
-      <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr><th class="py-3 px-4 text-left">#</th><th class="py-3 px-4 text-left">Việc</th><th class="py-3 px-4 text-left">Vì sao</th><th class="py-3 px-4 text-left">Khi nào</th></tr></thead><tbody id="actionBody" class="divide-y divide-slate-100"></tbody></table></div>
-    </div>
-    <div class="card overflow-hidden">
-      <div class="p-5 border-b border-slate-200"><h3 class="font-bold text-slate-900">KPI mục tiêu (trung bình 3-7 ngày)</h3></div>
-      <div class="overflow-x-auto scroll"><table class="w-full text-xs sm:text-sm num"><thead class="bg-slate-50 text-slate-500 border-b border-slate-200"><tr><th class="py-3 px-4 text-left">Chỉ số</th><th class="py-3 px-4 text-right">Hiện tại</th><th class="py-3 px-4 text-right">Mục tiêu</th><th class="py-3 px-4 text-right">Cảnh báo</th><th class="py-3 px-4 text-center">Trạng thái</th></tr></thead><tbody id="kpiTargetBody" class="divide-y divide-slate-100"></tbody></table></div>
-    </div>
-  </section>
-</main>
-
-<footer class="text-center text-xs text-slate-400 py-6" id="footer"></footer>
-
-<!-- CHAT MODAL -->
-<div id="chatModal" class="fixed inset-0 bg-slate-900/60 z-50 hidden items-center justify-center p-4">
-  <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full flex flex-col max-h-[85vh] overflow-hidden">
-    <div class="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
-      <div><h4 class="font-bold text-slate-900 text-sm" id="mName"></h4><p class="text-xs text-slate-500" id="mMeta"></p></div>
-      <button onclick="closeChat()" class="w-8 h-8 rounded-full hover:bg-slate-200 text-slate-500"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="p-5 overflow-y-auto space-y-3 flex-1 bg-slate-50/50 scroll" id="mList"></div>
-    <div class="p-4 border-t border-slate-200 text-xs text-slate-500" id="mPhone"></div>
-  </div>
-</div>
-
-<script>
-const DATA = /*__DATA__*/null;
-const A = DATA.analytics;
-
-// ---------- helpers ----------
-const fmt = (v, d = 0) => (v == null || !isFinite(v)) ? '-' : Number(v).toLocaleString('vi-VN', { maximumFractionDigits: d, minimumFractionDigits: d });
-const vnd = v => fmt(v) + ' đ';
-const pct = (v, d = 1) => (v == null || !isFinite(v)) ? '-' : fmt(v * 100, d) + '%';
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const WD = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
-const dayLabel = iso => { const d = new Date(iso + 'T00:00:00'); return `${WD[d.getDay()]} ${iso.slice(8, 10)}/${iso.slice(5, 7)}`; };
-const sum = (arr, k) => arr.reduce((s, r) => s + (Number(r[k]) || 0), 0);
-function kpis(r) {
-  return { cpr: r.spend / r.results, cpm: r.spend / r.impressions * 1000, ctrAll: r.clicks / r.impressions, ctr: r.link_clicks / r.impressions,
-    cvr: r.results / r.link_clicks, cpc: r.spend / r.link_clicks, mpm: r.results / r.impressions * 1000, freq: r.reach ? r.impressions / r.reach : null };
-}
-const th = (t, right) => `<th class="py-3 px-4 ${right ? 'text-right' : 'text-left'}">${t}</th>`;
-const td = (t, cls = '') => `<td class="py-2.5 px-4 ${cls}">${t}</td>`;
-
-// ---------- totals ----------
-const CD = A.campaign_daily;
-const TOT = { spend: sum(CD, 'spend'), results: sum(CD, 'results'), impressions: sum(CD, 'impressions'), clicks: sum(CD, 'clicks'), link_clicks: sum(CD, 'link_clicks'), reach: A.meta.reach_unique };
-const TK = kpis(TOT);
-
-document.getElementById('metaLine').textContent = `${A.meta.account} · ${A.meta.period} · ${A.meta.attribution}`;
-if (A.meta.status_note) { document.getElementById('statusBadge').classList.remove('hidden'); document.getElementById('statusText').textContent = A.meta.status_note; }
-document.getElementById('footer').textContent = `Nguồn: ${A.meta.source}. Dashboard chạy hoàn toàn trên trình duyệt.`;
-
-// ---------- KPI row ----------
-(function () {
-  const items = [
-    ['Chi tiêu', vnd(TOT.spend), 'fa-wallet'], ['Tin nhắn', fmt(TOT.results), 'fa-comment-dots'], ['Chi phí / tin', vnd(TK.cpr), 'fa-tag'],
-    ['Tiếp cận (không trùng)', fmt(TOT.reach), 'fa-users'], ['Hiển thị', fmt(TOT.impressions), 'fa-eye'], ['CPM', vnd(TK.cpm), 'fa-coins'],
-    ['CTR liên kết', pct(TK.ctr, 2), 'fa-arrow-pointer'], ['Click → tin (CVR)', pct(TK.cvr), 'fa-right-to-bracket']];
-  document.getElementById('kpiRow').innerHTML = items.map(([l, v, i]) => `
-    <div class="card p-4"><div class="flex items-center justify-between text-slate-400 mb-1"><span class="text-[11px] font-semibold uppercase tracking-wide">${l}</span><i class="fa-solid ${i} text-emerald-600 text-xs"></i></div>
-    <div class="text-lg font-extrabold text-slate-900 num">${v}</div></div>`).join('');
-})();
-
-// ---------- tabs ----------
-const charted = {};
-document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
-  b.classList.add('active');
-  document.querySelectorAll('.tab-content').forEach(s => s.classList.add('hidden'));
-  document.getElementById('tab-' + b.dataset.tab).classList.remove('hidden');
-  if (!charted[b.dataset.tab] && CHARTS[b.dataset.tab]) { CHARTS[b.dataset.tab](); charted[b.dataset.tab] = true; }
-}));
-
-// ---------- overview ----------
-(function () {
-  const st = [['Lượt hiển thị', TOT.impressions], ['Click (tất cả)', TOT.clicks], ['Click liên kết (mở Messenger)', TOT.link_clicks], ['Tin nhắn bắt đầu', TOT.results]];
-  const notes = [`${pct(TK.ctrAll)} bấm vào quảng cáo`, `${pct(TOT.link_clicks / TOT.clicks)} là click liên kết, ${pct(1 - TOT.link_clicks / TOT.clicks)} là xem ảnh, xem thêm...`, `${pct(TK.cvr)} người vào Messenger gửi tin`];
-  document.getElementById('funnel').innerHTML = st.map(([n, v], i) => `
-    <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-600">${n}</span><span class="font-bold num">${fmt(v)}</span></div>
-    <div class="h-6 bg-slate-100 rounded-md overflow-hidden"><div class="h-full ${i === 3 ? 'bg-emerald-600' : 'bg-slate-400'}" style="width:${Math.max(v / TOT.impressions * 100, 1)}%"></div></div>
-    ${notes[i] ? `<div class="text-[11px] text-slate-400 mt-1"><i class="fa-solid fa-arrow-down mr-1"></i>${notes[i]}</div>` : ''}</div>`).join('');
-  document.getElementById('formula').innerHTML = `Chi phí / tin = CPM <b>${vnd(TK.cpm)}</b> ÷ (1.000 × CTR liên kết <b>${pct(TK.ctr, 2)}</b> × CVR <b>${pct(TK.cvr)}</b>) = <b>${vnd(TK.cpr)}</b> · Tin / 1.000 hiển thị: <b>${fmt(TK.mpm, 1)}</b>`;
-
-  const ins = [
-    'Giá mỗi tin 23-25/10 là ~7.093 đ so với ~14.051 đ ở 19-22/10. Tín hiệu tốt nhưng mới 3 ngày (có T7-CN, 24/10 chạm trần chi tuần): cần thêm 5-7 ngày để chắc.',
-    'Ngày rẻ hay đắt chủ yếu đi cùng tỷ lệ click ra tin nhắn (CVR); CPM cao (~143.000 đ) tạo mặt sàn chi phí. Ưu tiên cải thiện khâu vào Messenger.',
-    'Cùng kỳ 19-25/10, 1910 đắt hơn 1510 khoảng 19%: hai mẫu tạo tin nhắn/hiển thị như nhau, 1910 thua do CPM cao hơn và CVR thấp hơn.',
-    'Reels rẻ hơn Feed ~29% mỗi tin, đúng ở cả hai chiến dịch. Feed có nhiều click nhưng 77% không phải click mở Messenger.',
-    'Tin nhắn đến từ nữ 45+: nhóm 45+ chiếm 95% tin nhắn, nữ 88%.',
-    'Chất lượng hội thoại thấp: phần lớn khách chỉ bấm câu hỏi mẫu, rất ít để lại SĐT (xem tab Khách nhắn tin). Đây là chỗ nghẽn trước khi chốt đơn.'];
-  document.getElementById('insights').innerHTML = ins.map(t => `<li>${esc(t)}</li>`).join('');
-
-  const E = A.economics;
-  document.getElementById('econNote').textContent = 'Lãi thêm khi lấp ghế trống ~250.000 đ/khách; lãi bình quân đoàn 35 khách ~127.000 đ/khách. ' + E.note;
-  const cpr = document.getElementById('beCpr'), mg = document.getElementById('beMargin'), rate = document.getElementById('beRate'), pax = document.getElementById('bePax');
-  cpr.value = Math.round(TK.cpr); mg.value = E.margin_extra_pax;
-  function calc() {
-    const c = +cpr.value, m = +mg.value, r = +rate.value / 100, p = Math.max(+pax.value, 1);
-    const costPerPax = c / (r * p), be = c / m / p, profit = (r * p * m - c) / c;
-    const box = (l, v, good) => `<div class="p-4 rounded-xl border ${good == null ? 'border-slate-200 bg-slate-50' : good ? 'border-emerald-200 bg-emerald-50' : 'border-rose-200 bg-rose-50'}"><div class="text-[11px] text-slate-500">${l}</div><div class="text-lg font-extrabold num">${v}</div></div>`;
-    document.getElementById('beOut').innerHTML =
-      box('Chi phí quảng cáo / khách', vnd(costPerPax), costPerPax <= m) +
-      box('Tỷ lệ hòa vốn cần đạt', pct(be, 1), null) +
-      box('Số tin cho 1 khách hòa vốn', fmt(1 / be / p, 0) + ' tin', null) +
-      box('Lãi / 1 đồng quảng cáo', fmt(profit, 2) + ' đ', profit >= 0);
-  }
-  [cpr, mg, rate, pax].forEach(i => i.addEventListener('input', calc)); calc();
-})();
-
-// ---------- daily ----------
-const DATES = [...new Set(CD.map(r => r.date))].sort();
-const dayAgg = DATES.map(d => { const rs = CD.filter(r => r.date === d); const o = { date: d }; ['spend', 'results', 'impressions', 'clicks', 'link_clicks', 'reach'].forEach(k => o[k] = sum(rs, k)); return o; });
-(function phases() {
-  const P = [['15-18/10 · chỉ 1510', '2026-10-15', '2026-10-18'], ['19-22/10 · 1910 mới bật', '2026-10-19', '2026-10-22'], ['23-25/10 · có T7-CN', '2026-10-23', '2026-10-25']];
-  document.getElementById('phases').innerHTML = P.map(([n, a, b]) => {
-    const rs = dayAgg.filter(r => r.date >= a && r.date <= b); const t = {}; ['spend', 'results', 'impressions', 'clicks', 'link_clicks'].forEach(k => t[k] = sum(rs, k)); const k = kpis(t);
-    return `<div class="p-3 rounded-xl border border-slate-200"><div class="text-xs font-semibold text-slate-700">${n}</div>
-      <div class="flex justify-between mt-1 text-sm num"><span>${fmt(t.results)} tin</span><span class="font-bold">${vnd(k.cpr)}/tin</span></div>
-      <div class="flex justify-between text-[11px] text-slate-500 num"><span>CTR LK ${pct(k.ctr, 2)}</span><span>CVR ${pct(k.cvr)}</span><span>CPM ${fmt(k.cpm / 1000)}k</span></div></div>`;
-  }).join('') + '<p class="text-[11px] text-slate-400">24/10 chi ít vì 1510 chạm trần chi 7 × ngân sách/tuần sau khi 23/10 chi vượt.</p>';
-})();
-let campSel = 'ALL';
-function renderDaily() {
-  const rows = campSel === 'ALL' ? dayAgg : CD.filter(r => r.camp === campSel);
-  const H = ['Ngày', 'Chi tiêu', 'Tin', 'Chi phí/tin', 'Tiếp cận', 'Hiển thị', 'Tần suất', 'CPM', 'CTR tất cả', 'Click LK', 'CTR LK', 'CPC LK', 'CVR'];
-  document.getElementById('dailyHead').innerHTML = H.map((h, i) => th(h, i > 0)).join('');
-  const avg = TK.cpr;
-  const body = rows.map(r => { const k = kpis(r); const tag = k.cpr < avg * 0.75 ? 'text-emerald-700 font-bold' : k.cpr > avg * 1.4 ? 'text-rose-600 font-bold' : '';
-    return `<tr class="hover:bg-slate-50">${td(dayLabel(r.date), 'font-semibold')}${td(vnd(r.spend), 'text-right')}${td(r.results, 'text-right font-bold')}${td(vnd(k.cpr), 'text-right ' + tag)}${td(fmt(r.reach), 'text-right')}${td(fmt(r.impressions), 'text-right')}${td(fmt(k.freq, 2), 'text-right')}${td(vnd(k.cpm), 'text-right')}${td(pct(k.ctrAll, 2), 'text-right')}${td(r.link_clicks, 'text-right')}${td(pct(k.ctr, 2), 'text-right')}${td(vnd(k.cpc), 'text-right')}${td(pct(k.cvr, 0), 'text-right')}</tr>`; });
-  const t = {}; ['spend', 'results', 'impressions', 'clicks', 'link_clicks'].forEach(k => t[k] = sum(rows, k)); const k = kpis(t);
-  body.push(`<tr class="bg-amber-50 font-semibold">${td('Tổng')}${td(vnd(t.spend), 'text-right')}${td(t.results, 'text-right')}${td(vnd(k.cpr), 'text-right')}${td('', '')}${td(fmt(t.impressions), 'text-right')}${td('', '')}${td(vnd(k.cpm), 'text-right')}${td(pct(k.ctrAll, 2), 'text-right')}${td(t.link_clicks, 'text-right')}${td(pct(k.ctr, 2), 'text-right')}${td(vnd(k.cpc), 'text-right')}${td(pct(k.cvr, 0), 'text-right')}</tr>`);
-  document.getElementById('dailyBody').innerHTML = body.join('');
-  document.getElementById('campFilter').innerHTML = [['ALL', 'Tổng'], ...A.campaigns.map(c => [c.id, c.id])].map(([id, l]) =>
-    `<button data-c="${id}" class="px-3 py-1.5 rounded-lg border ${campSel === id ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white border-slate-200 text-slate-700'}">${l}</button>`).join('');
-  document.querySelectorAll('#campFilter button').forEach(b => b.onclick = () => { campSel = b.dataset.c; renderDaily();
-initSingleDayPicker();
-renderCreativesTab();
-renderDropoffAnalytics(); });
-}
-renderDaily();
-
-// ---------- segments tables ----------
-(function () {
-  const H = ['Chỉ số', ...A.campaigns.map(c => c.id + ' · ' + c.ad), 'Tổng', 'Cùng kỳ ' + A.campaigns.map(c => c.id).join(' / ')];
-  document.getElementById('campHead').innerHTML = H.map((h, i) => th(h, i > 0)).join('');
-  const C = A.campaigns.map(c => ({ ...c, k: kpis(c) }));
-  const S = A.same_period.rows.map(r => ({ ...r, k: kpis(r) }));
-  const rows = [
-    ['Nhóm quảng cáo', C.map(c => esc(c.adset)), '', ''], ['Ngân sách', C.map(c => esc(c.budget)), '', ''],
-    ['Chi tiêu', C.map(c => vnd(c.spend)), vnd(TOT.spend), S.map(s => vnd(s.spend)).join(' / ')],
-    ['Tin nhắn', C.map(c => fmt(c.results)), fmt(TOT.results), S.map(s => s.results).join(' / ')],
-    ['Chi phí / tin', C.map(c => vnd(c.k.cpr)), vnd(TK.cpr), S.map(s => vnd(s.k.cpr)).join(' / ')],
-    ['Tiếp cận', C.map(c => fmt(c.reach)), fmt(TOT.reach), ''], ['Tần suất', C.map(c => fmt(c.k.freq, 2)), fmt(TOT.impressions / TOT.reach, 2), ''],
-    ['CPM', C.map(c => vnd(c.k.cpm)), vnd(TK.cpm), S.map(s => vnd(s.k.cpm)).join(' / ')],
-    ['CTR tất cả', C.map(c => pct(c.k.ctrAll, 2)), pct(TK.ctrAll, 2), ''],
-    ['CTR liên kết', C.map(c => pct(c.k.ctr, 2)), pct(TK.ctr, 2), S.map(s => pct(s.k.ctr, 2)).join(' / ')],
-    ['CPC liên kết', C.map(c => vnd(c.k.cpc)), vnd(TK.cpc), ''],
-    ['CVR click → tin', C.map(c => pct(c.k.cvr)), pct(TK.cvr), S.map(s => pct(s.k.cvr)).join(' / ')],
-    ['Tin / 1.000 hiển thị', C.map(c => fmt(c.k.mpm, 1)), fmt(TK.mpm, 1), S.map(s => fmt(s.k.mpm, 1)).join(' / ')],
-    ['Xếp hạng chất lượng', C.map(c => esc(c.quality)), '', '']];
-  document.getElementById('campBody').innerHTML = rows.map(([n, cs, t, s]) => `<tr class="hover:bg-slate-50">${td(n, 'font-medium text-slate-700')}${cs.map(v => td(v, 'text-right')).join('')}${td(t, 'text-right font-semibold')}${td(s, 'text-right text-slate-500')}</tr>`).join('');
-
-  const ages = [...new Set(A.ages.map(a => a.age))];
-  const ag = ages.map(a => { const rs = A.ages.filter(r => r.age === a); const o = { age: a }; ['spend', 'results', 'reach', 'impressions', 'link_clicks'].forEach(k => o[k] = sum(rs, k)); return o; });
-  const tS = sum(ag, 'spend'), tR = sum(ag, 'results');
-  document.getElementById('ageHead').innerHTML = ['Tuổi', 'Chi tiêu', 'Tin', 'Chi phí/tin', 'CVR', 'Chỉ số HQ'].map((h, i) => th(h, i > 0)).join('');
-  document.getElementById('ageBody').innerHTML = ag.map(r => { const idx = (r.results / tR) / (r.spend / tS); return `<tr>${td(r.age, 'font-semibold')}${td(vnd(r.spend), 'text-right')}${td(r.results, 'text-right')}${td(vnd(r.spend / r.results), 'text-right')}${td(pct(r.results / r.link_clicks, 0), 'text-right')}${td(fmt(idx, 2), 'text-right ' + (idx >= 1 ? 'text-emerald-700 font-bold' : 'text-rose-600'))}</tr>`; }).join('');
-  const gs = [...new Set(A.genders.map(g => g.gender))];
-  document.getElementById('genderHead').innerHTML = ['Giới tính', 'Chi tiêu', 'Tin', 'Chi phí/tin', 'CPM', 'Tin/1.000 HT'].map((h, i) => th(h, i > 0)).join('');
-  document.getElementById('genderBody').innerHTML = gs.map(g => { const rs = A.genders.filter(r => r.gender === g); const s = sum(rs, 'spend'), r = sum(rs, 'results'), im = sum(rs, 'impressions');
-    return `<tr>${td(g, 'font-semibold')}${td(vnd(s), 'text-right')}${td(r, 'text-right')}${td(r ? vnd(s / r) : '-', 'text-right')}${td(vnd(s / im * 1000), 'text-right')}${td(fmt(r / im * 1000, 1), 'text-right')}</tr>`; }).join('');
-})();
-
-// ---------- CRM (intent from customer messages only) ----------
-const convs = DATA.conversations;
-const custMsgs = c => c.messages.filter(m => !m.is_page && (m.text || '').trim());
-const tplCount = {}; convs.forEach(c => custMsgs(c).forEach(m => { const t = m.text.trim(); tplCount[t] = (tplCount[t] || 0) + 1; }));
-const TEMPLATES = new Set(Object.keys(tplCount).filter(t => tplCount[t] >= 5));
-const PHONE_RE = /(?:\+?84|0)(?:[\s.\-]?\d){9}/;
-const INTENTS = [
-  ['Hỏi giá', /giá|bao nhiêu|bn\b|tiền|chi phí/i], ['Hỏi ghép đoàn', /ghép|đoàn|nhóm|hội|các bà/i], ['Hỏi lịch trình', /lịch trình|du ngoạn|đi chơi|đền|lễ/i],
-  ['Hỏi phòng / ăn', /phòng|ăn|bữa/i], ['Hỏi ngày đi', /ngày|thứ|tháng|mùng|rằm|\d{1,2}\/\d{1,2}/i], ['Hỏi xe / điểm đón', /\bxe\b|đón|đưa/i]];
-convs.forEach(c => {
-  const ms = custMsgs(c); const text = ms.map(m => m.text).join(' \n ');
-  c._cust = ms; c._free = ms.filter(m => !TEMPLATES.has(m.text.trim()));
-  c._phone = c.phone || (text.match(PHONE_RE) || [null])[0];
-  c._intents = INTENTS.filter(([, re]) => re.test(text)).map(([n]) => n);
-  c._level = c._phone ? 'Có SĐT' : c._free.length >= 2 ? 'Trao đổi thật' : c._free.length === 1 ? 'Có hỏi thêm' : ms.length ? 'Chỉ bấm câu mẫu' : 'Không có tin khách';
-});
-(function () {
-  const ts = convs.map(c => c.updated_time).sort();
-  document.getElementById('crmScope').textContent = `${convs.length} hội thoại gần nhất (${ts[0].slice(8, 10)}/${ts[0].slice(5, 7)} - ${ts.at(-1).slice(8, 10)}/${ts.at(-1).slice(5, 7)}), không phải toàn bộ ${TOT.results} tin nhắn từ quảng cáo. "Câu mẫu" = câu hỏi gợi ý xuất hiện từ 5 lần trở lên.`;
-  const n = convs.length, steps = [
-    ['Hội thoại', n], ['Khách có gửi tin', convs.filter(c => c._cust.length).length], ['Khách tự gõ câu hỏi (ngoài câu mẫu)', convs.filter(c => c._free.length).length],
-    ['Trao đổi từ 2 câu tự gõ trở lên', convs.filter(c => c._free.length >= 2).length], ['Để lại số điện thoại', convs.filter(c => c._phone).length]];
-  document.getElementById('leadFunnel').innerHTML = steps.map(([l, v], i) => `
-    <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-600">${l}</span><span class="font-bold num">${v} <span class="text-slate-400 font-normal">(${pct(v / n, 0)})</span></span></div>
-    <div class="h-5 bg-slate-100 rounded-md overflow-hidden"><div class="h-full ${i === steps.length - 1 ? 'bg-emerald-600' : 'bg-slate-400'}" style="width:${Math.max(v / n * 100, 1)}%"></div></div></div>`).join('') +
-    `<p class="text-[11px] text-slate-500 mt-2">Câu mẫu phổ biến: ${[...TEMPLATES].slice(0, 4).map(t => '"' + esc(t) + '" (' + tplCount[t] + ')').join(', ')}</p>`;
-  const cnt = {}; convs.forEach(c => c._intents.forEach(t => cnt[t] = (cnt[t] || 0) + 1));
-  document.getElementById('intentBars').innerHTML = INTENTS.map(([t]) => [t, cnt[t] || 0]).sort((a, b) => b[1] - a[1]).map(([t, v]) => `
-    <div><div class="flex justify-between text-xs"><span>${t}</span><span class="font-semibold num">${v} (${pct(v / n, 0)})</span></div>
-    <div class="h-2 bg-slate-100 rounded"><div class="h-full bg-emerald-500 rounded" style="width:${v / n * 100}%"></div></div></div>`).join('');
-})();
-let crmLevel = 'ALL';
-const LEVELS = ['ALL', 'Có SĐT', 'Trao đổi thật', 'Có hỏi thêm', 'Chỉ bấm câu mẫu'];
-const maskPhone = p => document.getElementById('showPhone').checked ? p : p.replace(/(\d{3})\d+(\d{3})$/, '$1****$2');
-function renderCrm() {
-  const q = document.getElementById('crmSearch').value.toLowerCase().trim();
-  const list = convs.filter(c => (crmLevel === 'ALL' || c._level === crmLevel) && (!q || c.customer_name.toLowerCase().includes(q) || c.messages.some(m => (m.text || '').toLowerCase().includes(q))));
-  document.getElementById('crmFilters').innerHTML = LEVELS.map(l => { const n = l === 'ALL' ? convs.length : convs.filter(c => c._level === l).length;
-    return `<button data-l="${l}" class="text-xs px-3 py-1.5 rounded-lg border ${crmLevel === l ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white border-slate-200 text-slate-700'}">${l === 'ALL' ? 'Tất cả' : l} (${n})</button>`; }).join('');
-  document.querySelectorAll('#crmFilters button').forEach(b => b.onclick = () => { crmLevel = b.dataset.l; renderCrm(); });
-  const lvlColor = { 'Có SĐT': 'bg-amber-100 text-amber-800', 'Trao đổi thật': 'bg-emerald-100 text-emerald-800', 'Có hỏi thêm': 'bg-blue-100 text-blue-800', 'Chỉ bấm câu mẫu': 'bg-slate-100 text-slate-600', 'Không có tin khách': 'bg-slate-100 text-slate-400' };
-  document.getElementById('crmBody').innerHTML = list.length ? list.map(c => {
-    const last = c._cust.at(-1)?.text || '(chưa có tin)';
-    const dropReason = c.dropoff_reason || 'Chưa cung cấp SĐT';
-    const dropColor = dropReason.includes('SĐT') && !dropReason.includes('Chưa') ? 'bg-emerald-100 text-emerald-800 font-bold'
-      : dropReason.includes('Rep chậm') ? 'bg-rose-100 text-rose-800 font-semibold'
-      : dropReason.includes('khảo giá') ? 'bg-blue-100 text-blue-800'
-      : dropReason.includes('lịch') ? 'bg-amber-100 text-amber-800'
-      : 'bg-slate-100 text-slate-600';
-
-    const frtText = c.frt_minutes != null 
-      ? (c.frt_minutes < 1 ? '<span class="text-[10px] text-emerald-600 font-semibold"><i class="fa-solid fa-bolt mr-0.5"></i>Bot <1p</span>' 
-         : c.frt_minutes > 60 ? `<span class="text-[10px] text-rose-600 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-0.5"></i>Rep sau ${Math.round(c.frt_minutes/60)}h</span>`
-         : `<span class="text-[10px] text-slate-500">Rep ${c.frt_minutes}p</span>`)
-      : '<span class="text-[10px] text-slate-400">Chưa rep</span>';
-
-    return `<tr class="hover:bg-slate-50">
-      <td class="py-2.5 px-4">
-        <div class="font-semibold text-slate-900">${esc(c.customer_name)}</div>
-        <span class="inline-block mt-1 px-2 py-0.5 rounded text-[11px] ${lvlColor[c._level]}">${c._level}</span>
-        ${c._phone ? ` <span class="text-[11px] text-emerald-700 font-bold num">${esc(maskPhone(c._phone))}</span>` : ''}
-      </td>
-      <td class="py-2.5 px-4 whitespace-nowrap">
-        <span class="inline-block px-2 py-0.5 rounded text-[11px] ${dropColor}">${dropReason}</span>
-        <div class="mt-0.5">${frtText}</div>
-      </td>
-      <td class="py-2.5 px-4 whitespace-normal max-w-xs">${c._intents.map(t => `<span class="inline-block px-2 py-0.5 rounded text-[11px] bg-emerald-50 text-emerald-800 mr-1 mb-1">${t}</span>`).join('') || '<span class="text-xs text-slate-400">-</span>'}</td>
-      <td class="py-2.5 px-4 max-w-sm truncate text-xs text-slate-600" title="${esc(last)}">${esc(last)}</td>
-      <td class="py-2.5 px-4 text-center num text-xs font-semibold">${c._cust.length} / ${c.messages.length}</td>
-      <td class="py-2.5 px-4 text-right text-xs text-slate-500">${new Date(c.updated_time).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</td>
-      <td class="py-2.5 px-4"><button data-id="${esc(c.id)}" class="openChat px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-xs hover:bg-emerald-100 transition"><i class="fa-solid fa-eye mr-1"></i>Xem</button></td></tr>`;
-  }).join('') : '<tr><td colspan="6" class="py-8 text-center text-slate-400">Không có hội thoại phù hợp</td></tr>';
-  document.querySelectorAll('.openChat').forEach(b => b.onclick = () => openChat(b.dataset.id));
-}
-document.getElementById('crmSearch').addEventListener('input', renderCrm);
-document.getElementById('showPhone').addEventListener('change', renderCrm);
-renderCrm();
-function openChat(id) {
-  const c = convs.find(x => x.id === id); if (!c) return;
-  document.getElementById('mName').textContent = c.customer_name;
-  document.getElementById('mMeta').textContent = `${c.messages.length} tin · ${c._level} · ${new Date(c.updated_time).toLocaleString('vi-VN')}`;
-  document.getElementById('mPhone').textContent = c._phone ? 'SĐT: ' + maskPhone(c._phone) : 'Chưa có số điện thoại';
-  document.getElementById('mList').innerHTML = c.messages.map(m => `
-    <div class="flex flex-col ${m.is_page ? 'items-end' : 'items-start'}">
-      <span class="text-[10px] text-slate-400 mb-1">${esc(m.from)} · ${new Date(m.time).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
-      <div class="max-w-md p-3 rounded-2xl text-xs sm:text-sm whitespace-pre-line ${m.is_page ? 'bg-emerald-600 text-white rounded-br-none' : 'bg-white border border-slate-200 rounded-bl-none'}">${esc(m.text)}</div></div>`).join('');
-  const md = document.getElementById('chatModal'); md.classList.remove('hidden'); md.classList.add('flex');
-}
-function closeChat() { const md = document.getElementById('chatModal'); md.classList.add('hidden'); md.classList.remove('flex'); }
-document.getElementById('chatModal').addEventListener('click', e => { if (e.target.id === 'chatModal') closeChat(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeChat(); });
-
-// ---------- monthly ----------
-const MONTHS = [...DATA.monthly_past, ...DATA.monthly_current].sort((a, b) => a.month.localeCompare(b.month));
-document.getElementById('monthHead').innerHTML = ['Tháng', 'Tài khoản', 'Chi tiêu', 'Tiếp cận', 'Click', 'CTR', 'Tin nhắn', 'Chi phí/tin'].map((h, i) => th(h, i > 1)).join('');
-document.getElementById('monthBody').innerHTML = MONTHS.slice().reverse().map(m => `<tr>${td(m.month, 'font-semibold')}${td(esc(m.account), 'text-xs text-slate-500')}${td(vnd(m.spend), 'text-right font-semibold')}${td(fmt(m.reach), 'text-right')}${td(fmt(m.clicks), 'text-right')}${td(m.ctr + '%', 'text-right')}${td(m.messages ?? '-', 'text-right')}${td(m.messages ? vnd(m.spend / m.messages) : '-', 'text-right')}</tr>`).join('');
-
-// ---------- actions ----------
-const ACTIONS = [
-  ['Thanh toán khoản nợ, bật lại phân phối', 'Tài khoản dừng từ 26/10; 3 ngày cuối là giai đoạn rẻ nhất', 'Hôm nay'],
-  ['Giữ nguyên cấu hình 5-7 ngày sau khi bật lại', 'Xác nhận mức giá mới; giá theo ngày dao động ~50%', 'Ngay sau khi bật'],
-  ['Ghi sổ từng cuộc trò chuyện: trưởng đoàn hay khách lẻ, đặt cọc, số khách, doanh thu', 'Không có số đơn thì không biết lãi/lỗ', 'Bắt đầu ngay'],
-  ['Sửa kịch bản trả lời: hỏi số người + ngày đi + xin SĐT ngay câu đầu', 'Phần lớn khách chỉ bấm câu mẫu rồi dừng; rất ít để lại SĐT', 'Tuần này'],
-  ['Làm mẫu dọc 9:16 cho Reels, lời mời nhắn tin rõ, ít chữ trên ảnh', 'Reels rẻ hơn Feed ~29%; "Goi nguoi gia" bị xếp chất lượng 20% cuối', 'Tuần này'],
-  ['Gộp về 1 chiến dịch mới (mẫu cũ tốt nhất + mẫu mới, 45+ Hà Nội, ~300k/ngày); tắt dần 1910 rồi 1510', 'Hai chiến dịch trùng 1.347 người; làm học lại một lần thay vì nhiều lần', 'Tuần sau'],
-  ['Trực tin nhắn kỹ 5h-9h và 21h-24h', 'Hai khung rẻ và có CVR cao', 'Ngay']];
-document.getElementById('actionBody').innerHTML = ACTIONS.map((a, i) => `<tr>${td(i + 1, 'font-bold')}<td class="py-2.5 px-4 whitespace-normal font-medium">${a[0]}</td><td class="py-2.5 px-4 whitespace-normal text-slate-600">${a[1]}</td>${td(a[2], 'text-slate-500')}</tr>`).join('');
-const phone = convs.filter(c => c._phone).length / convs.length;
-const TARGETS = [
-  ['Chi phí / tin nhắn', TK.cpr, v => vnd(v), 8000, 12000, false], ['CVR click → tin', TK.cvr, v => pct(v), 0.5, 0.35, true],
-  ['CTR liên kết', TK.ctr, v => pct(v, 2), 0.04, 0.025, true], ['CPM', TK.cpm, v => vnd(v), 130000, 180000, false],
-  ['Tỷ lệ hội thoại có SĐT', phone, v => pct(v, 0), 0.2, 0.1, true]];
-document.getElementById('kpiTargetBody').innerHTML = TARGETS.map(([n, v, f, tg, wr, up]) => {
-  const ok = up ? v >= tg : v <= tg, bad = up ? v < wr : v > wr;
-  return `<tr>${td(n, 'font-medium')}${td(f(v), 'text-right font-semibold')}${td((up ? '≥ ' : '≤ ') + f(tg), 'text-right')}${td((up ? '< ' : '> ') + f(wr), 'text-right text-slate-500')}${td(ok ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs">Đạt</span>' : bad ? '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-700 text-xs">Cảnh báo</span>' : '<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-xs">Chưa đạt</span>', 'text-center')}</tr>`;
-}).join('');
-
-// ---------- charts (lazy per tab) ----------
-Chart.defaults.font.family = "'Be Vietnam Pro', system-ui, sans-serif"; Chart.defaults.font.size = 11; Chart.defaults.color = '#64748b';
-const CHARTS = {
-  creatives() { initRetentionChart(); },
-  creatives() { initRetentionChart(); },
-  daily() {
-    const lab = DATES.map(dayLabel);
-    const by = id => DATES.map(d => (CD.find(r => r.date === d && r.camp === id) || {}).results || 0);
-    new Chart(document.getElementById('dailyChart'), { data: { labels: lab, datasets: [
-      { type: 'line', label: 'Chi phí / tin (đ)', data: dayAgg.map(r => Math.round(r.spend / r.results)), borderColor: '#2563eb', backgroundColor: '#2563eb', yAxisID: 'y1', tension: 0.3, pointRadius: 4 },
-      { type: 'line', label: 'TB kỳ', data: DATES.map(() => Math.round(TK.cpr)), borderColor: '#94a3b8', borderDash: [5, 5], pointRadius: 0, yAxisID: 'y1' },
-      ...A.campaigns.map((c, i) => ({ type: 'bar', label: 'Tin ' + c.id, data: by(c.id), backgroundColor: i ? '#86efac' : '#047857', stack: 's', yAxisID: 'y' }))] },
-      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
-        scales: { y: { stacked: true, suggestedMax: 50, title: { display: true, text: 'Tin nhắn' } }, y1: { position: 'right', beginAtZero: true, grid: { drawOnChartArea: false }, ticks: { callback: v => fmt(v / 1000) + 'k' }, title: { display: true, text: 'đ / tin' } } } } });
-  },
-  segments() {
-    const H = A.hours, bands = [[0, 4, '0-5h'], [5, 8, '5-9h'], [9, 11, '9-12h'], [12, 13, '12-14h'], [14, 17, '14-18h'], [18, 20, '18-21h'], [21, 23, '21-24h']];
-    const bd = bands.map(([a, b, l]) => { const rs = H.filter(r => r.h >= a && r.h <= b); return { l, cpr: sum(rs, 'spend') / sum(rs, 'results'), res: sum(rs, 'results') }; });
-    new Chart(document.getElementById('hourChart'), { type: 'bar', data: { labels: bd.map(b => b.l), datasets: [{ label: 'Chi phí / tin (đ)', data: bd.map(b => Math.round(b.cpr)), backgroundColor: bd.map(b => b.cpr < TK.cpr ? '#059669' : '#cbd5e1'), borderRadius: 6 }] },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { afterLabel: c => bd[c.dataIndex].res + ' tin' } } }, scales: { y: { ticks: { callback: v => fmt(v / 1000) + 'k' } } } } });
-    const pls = [...new Set(A.placements.map(p => p.placement))].filter(p => p !== 'Khác');
-    const pa = pls.map(p => { const rs = A.placements.filter(r => r.placement === p); return { p, cpr: sum(rs, 'spend') / sum(rs, 'results'), mpm: sum(rs, 'results') / sum(rs, 'impressions') * 1000, res: sum(rs, 'results') }; });
-    new Chart(document.getElementById('placementChart'), { type: 'bar', data: { labels: pa.map(x => `${x.p} (${x.res} tin)`), datasets: [
-      { label: 'Chi phí / tin (đ)', data: pa.map(x => Math.round(x.cpr)), backgroundColor: pa.map(x => x.res < 20 ? '#cbd5e1' : x.cpr < TK.cpr ? '#059669' : '#94a3b8'), borderRadius: 6 }] },
-      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { afterLabel: c => `${fmt(pa[c.dataIndex].mpm, 1)} tin / 1.000 hiển thị` + (pa[c.dataIndex].res < 20 ? ' · mẫu nhỏ' : '') } } },
-        scales: { x: { beginAtZero: true, ticks: { callback: v => fmt(v / 1000) + 'k' } } } } });
-  },
-  monthly() {
-    new Chart(document.getElementById('monthlyChart'), { type: 'bar', data: { labels: MONTHS.map(m => m.month), datasets: [{ label: 'Chi tiêu (đ)', data: MONTHS.map(m => m.spend), backgroundColor: MONTHS.map(m => m.messages ? '#047857' : '#94a3b8'), borderRadius: 6 }] },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => fmt(v / 1e6, 1) + ' tr' } } } } });
-  }
-};
-
-function exportData() {
-  const blob = new Blob([JSON.stringify(DATA, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'happyhome_ads_analytics.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-}
 </script>
 </body>
 </html>
