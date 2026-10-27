@@ -691,5 +691,115 @@
       "conversion_ranking": "Đang học",
       "note": "CTR liên kết rất cao (3.94%), tỷ lệ xem hoàn tất 7.8%. Chạy dưới chiến dịch ngân sách CBO."
     }
+  ],
+  "dropoff_summary": {
+    "total": 100,
+    "stats": [
+      {
+        "key": "slow_reply",
+        "label": "Phản hồi chậm (>30p)",
+        "count": 33,
+        "pct": 33,
+        "color": "amber",
+        "icon": "fa-clock-rotate-left",
+        "desc": "Khách nhắn nhưng trang trả lời trễ từ 30 phút - vài giờ làm nguội nhu cầu"
+      },
+      {
+        "key": "schedule",
+        "label": "Hỏi ngày / Vướng lịch",
+        "count": 1,
+        "pct": 1,
+        "color": "blue",
+        "icon": "fa-calendar-xmark",
+        "desc": "Khách hỏi phòng cuối tuần hoặc ngày cận kề nhưng chưa chốt vì chưa sắp xếp được nhóm"
+      },
+      {
+        "key": "no_need",
+        "label": "Dừng sau tin chào",
+        "count": 13,
+        "pct": 13,
+        "color": "slate",
+        "icon": "fa-comment-slash",
+        "desc": "Bấm nút bắt đầu từ quảng cáo nhưng không phản hồi thêm khi bot gửi tin chào"
+      },
+      {
+        "key": "price_only",
+        "label": "Tham khảo giá",
+        "count": 50,
+        "pct": 50,
+        "color": "purple",
+        "icon": "fa-tags",
+        "desc": "Hỏi bảng giá/combo 500k rồi im lặng so sánh với các khu khác"
+      },
+      {
+        "key": "left_phone",
+        "label": "Đã để lại SĐT (Hot)",
+        "count": 3,
+        "pct": 3,
+        "color": "emerald",
+        "icon": "fa-phone-volume",
+        "desc": "Đã cung cấp số điện thoại trực tiếp trong tin nhắn để tư vấn chốt đơn"
+      }
+    ]
+  },
+  "creatives": [
+    {
+      "name": "Goi nguoi gia (Reels & Feed)",
+      "id": "120234120364960309",
+      "spend": 2840000,
+      "impressions": 15732,
+      "clicks": 412,
+      "link_clicks": 257,
+      "ctr": 0.0163,
+      "ctr_all": 0.0262,
+      "results": 18,
+      "cpr": 157777,
+      "video_views_3s": 8086,
+      "hook_rate": 0.514,
+      "retention": {
+        "p25": 0.321,
+        "p50": 0.142,
+        "p75": 0.078,
+        "p100": 0.041
+      },
+      "meta_rankings": {
+        "quality": "Dưới trung bình (Bottom 20%)",
+        "quality_class": "text-amber-700 bg-amber-50 border-amber-200",
+        "engagement": "Trung bình",
+        "engagement_class": "text-blue-700 bg-blue-50 border-blue-200",
+        "conversion": "Trên trung bình (Top 35%)",
+        "conversion_class": "text-emerald-700 bg-emerald-50 border-emerald-200"
+      },
+      "recommendation": "Cắt text trên thumbnail, thêm cảnh cận mặt người cao tuổi cười nói vui vẻ để tăng Quality Ranking của Meta."
+    },
+    {
+      "name": "di den 1 (Reels & Feed)",
+      "id": "120234120364970309",
+      "spend": 4920000,
+      "impressions": 27314,
+      "clicks": 840,
+      "link_clicks": 512,
+      "ctr": 0.0187,
+      "ctr_all": 0.0307,
+      "results": 34,
+      "cpr": 144705,
+      "video_views_3s": 13274,
+      "hook_rate": 0.486,
+      "retention": {
+        "p25": 0.305,
+        "p50": 0.138,
+        "p75": 0.072,
+        "p100": 0.038
+      },
+      "meta_rankings": {
+        "quality": "Trung bình (Average)",
+        "quality_class": "text-blue-700 bg-blue-50 border-blue-200",
+        "engagement": "Trung bình (Average)",
+        "engagement_class": "text-blue-700 bg-blue-50 border-blue-200",
+        "conversion": "Trên trung bình (Top 35%)",
+        "conversion_class": "text-emerald-700 bg-emerald-50 border-emerald-200"
+      },
+      "recommendation": "Creative chủ lực chi tiêu tốt. Cần test thêm biến thể 15s tập trung riêng vào \"Ăn lẩu ven suối + Đền Ứng Thiên\"."
+    }
   ]
 }
