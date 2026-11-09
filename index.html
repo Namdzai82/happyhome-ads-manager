@@ -317,6 +317,7 @@
       <div><h4 class="font-bold text-slate-900 text-sm" id="mName"></h4><p class="text-xs text-slate-500" id="mMeta"></p></div>
       <button onclick="closeChat()" class="w-8 h-8 rounded-full hover:bg-slate-200 text-slate-500"><i class="fa-solid fa-xmark"></i></button>
     </div>
+    <div id="mPayment" class="hidden px-4 py-2.5 bg-purple-50 border-b border-purple-100 text-xs text-purple-900 font-medium items-center justify-between"></div>
     <div class="p-5 overflow-y-auto space-y-3 flex-1 bg-slate-50/50 scroll" id="mList"></div>
     <div class="p-4 border-t border-slate-200 text-xs text-slate-500" id="mPhone"></div>
   </div>
@@ -705,6 +706,53 @@ convs.forEach(c => {
   }));
 });
 const customerPhone = ms => { for (const m of ms) for (const p of (m.text.match(PHONE_RE_G) || [])) { const n = normPhone(p); if (!PAGE_PHONES.has(n)) return n; } return null; };
+
+const parsePaymentAmount = text => {
+  const compoundMatch = text.match(/(\d+)\s*(?:tr|triệu)\s*(\d+)(?:\s*(?:k|nghìn|ngàn))?/i);
+  if (compoundMatch) {
+    let main = Number(compoundMatch[1]) * 1000000;
+    let sub = Number(compoundMatch[2]);
+    if (sub < 10) sub *= 100000;
+    else if (sub < 100) sub *= 10000;
+    else if (sub < 1000) sub *= 1000;
+    return main + sub;
+  }
+  const stdMatch = text.match(/(?<!%|\d)(\d{1,3}(?:[.,]\d{3})+|\d+(?:[.,]\d+)?)\s*(k|tr|triệu|trieu|nghìn|ngan|đ|đồng|dong|vnd)(?![a-zA-Z0-9])/i);
+  if (stdMatch) {
+    let numStr = stdMatch[1];
+    const unit = stdMatch[2].toLowerCase();
+    if (unit === 'k' || unit === 'nghìn' || unit === 'ngan') return Number(numStr.replace(/[.,]/g, '')) * 1000;
+    if (unit === 'tr' || unit === 'triệu' || unit === 'trieu') return Math.round(Number(numStr.replace(',', '.')) * 1000000);
+    if (unit === 'đ' || unit === 'đồng' || unit === 'dong' || unit === 'vnd') return Number(numStr.replace(/[.,]/g, ''));
+  }
+  return null;
+};
+
+const detectPayment = messages => {
+  const norm = s => String(s || '').toLowerCase().normalize('NFC');
+  const PAID_ACTION_RE = /(?:(?:đã|vừa|mới)\s*(?:chuyển|ck|cọc|đặt cọc|thanh toán|bắn tiền|gửi tiền|gửi cọc|tt)\b)|(?:\b(?:chuyển|cọc|ck|bắn tiền|thanh toán|tt)\s*(?:rồi|xong|nha|nhé|nhe|ạ|luôn)\b)|(?:\bđã\s*(?:nhận|nhận được)\s*(?:tiền|cọc|ck|thanh toán|khoản cọc|chuyển khoản)\b)|(?:\bxác nhận\s*(?:đã\s*)?(?:nhận|cọc|chuyển khoản|thanh toán|tiền cọc)\b)|(?:\b(?:bên em|khách sạn|resort|em)\s*(?:đã\s*)?nhận\s+(?:được\s+)?(?:\d|tiền|cọc|ck))/i;
+  const BILL_RE = /\b(?:biên lai|hóa đơn|bill|giao dịch thành công|ủy nhiệm chi|chụp màn hình ck|ảnh ck|bill ck)\b|(?:(?:gửi|xem|đây là)\s*(?:bill|biên lai|ảnh chuyển khoản|ảnh ck))/i;
+  const PCT_100_RE = /(?:cọc|thanh toán|tt|chuyển)\s*(?:hết|100%|toàn bộ|đủ)|(?:đã|vừa)\s*(?:thanh toán|chuyển|ck)\s*(?:hết|100%|toàn bộ|đủ)/i;
+  const PCT_50_RE = /(?:cọc|thanh toán|tt|chuyển)\s*(?:50%|nửa|một nửa|nửa tiền)|(?:đã|vừa)\s*(?:thanh toán|chuyển|ck)\s*(?:50%|nửa)/i;
+
+  let hasPayment = false, paymentStatus = null, amount = null, evidence = [];
+  for (const m of (messages || [])) {
+    const text = norm(m.text || '');
+    if (!text) continue;
+    const isPaid = PAID_ACTION_RE.test(text), isBill = BILL_RE.test(text), is100 = PCT_100_RE.test(text), is50 = PCT_50_RE.test(text);
+    if (isPaid || isBill || is100 || is50) {
+      hasPayment = true;
+      evidence.push({ from: m.from, is_page: !!m.is_page, text: m.text, time: m.time });
+      if (is100) paymentStatus = 'Cọc 100%';
+      else if (is50 && (!paymentStatus || paymentStatus === 'Đã cọc' || paymentStatus === 'Gửi bill CK')) paymentStatus = 'Cọc 50%';
+      else if (!paymentStatus) paymentStatus = isPaid ? 'Đã cọc' : 'Gửi bill CK';
+      const parsedAmt = parsePaymentAmount(text);
+      if (parsedAmt && parsedAmt >= 10000) amount = parsedAmt;
+    }
+  }
+  return { hasPayment, paymentStatus, amount, evidence };
+};
+
 const INTENTS = [
   ['Hỏi giá', /giá|bao nhiêu|bn\b|tiền|chi phí/i], ['Hỏi ghép đoàn', /ghép|đoàn|nhóm|hội|các bà/i], ['Hỏi lịch trình', /lịch trình|du ngoạn|đi chơi|đền|lễ/i],
   ['Hỏi phòng / ăn', /phòng|ăn|bữa/i], ['Hỏi ngày đi', /ngày|thứ|tháng|mùng|rằm|\d{1,2}\/\d{1,2}/i], ['Hỏi xe / điểm đón', /\bxe\b|đón|đưa/i]];
@@ -713,6 +761,7 @@ convs.forEach(c => {
   c._cust = ms; c._free = ms.filter(m => !TEMPLATES.has(m.text.trim()));
   c._phone = customerPhone(ms); // chỉ số khách tự gửi, bỏ trường phone tính sẵn (trước đây lẫn hotline của page)
   c._intents = INTENTS.filter(([, re]) => re.test(text)).map(([n]) => n);
+  c._payment = detectPayment(c.messages);
   c._level = c._phone ? 'Có SĐT' : c._free.length >= 2 ? 'Trao đổi thật' : c._free.length === 1 ? 'Có hỏi thêm' : ms.length ? 'Chỉ bấm câu mẫu' : 'Không có tin khách';
 });
 (function () {
@@ -720,10 +769,11 @@ convs.forEach(c => {
   document.getElementById('crmScope').textContent = `${convs.length} hội thoại gần nhất (${ts[0].slice(8, 10)}/${ts[0].slice(5, 7)} - ${ts.at(-1).slice(8, 10)}/${ts.at(-1).slice(5, 7)}), không phải toàn bộ ${TOT.results} tin nhắn từ quảng cáo. "Câu mẫu" = câu hỏi gợi ý xuất hiện từ 5 lần trở lên. SĐT chỉ tính số do khách tự gửi${PAGE_PHONES.size ? `; đã loại ${PAGE_PHONES.size} số do page gửi (hotline, số liên hệ)` : ''}.`;
   const n = convs.length, steps = [
     ['Hội thoại', n], ['Khách có gửi tin', convs.filter(c => c._cust.length).length], ['Khách tự gõ câu hỏi (ngoài câu mẫu)', convs.filter(c => c._free.length).length],
-    ['Trao đổi từ 2 câu tự gõ trở lên', convs.filter(c => c._free.length >= 2).length], ['Để lại số điện thoại', convs.filter(c => c._phone).length]];
+    ['Trao đổi từ 2 câu tự gõ trở lên', convs.filter(c => c._free.length >= 2).length], ['Để lại số điện thoại', convs.filter(c => c._phone).length],
+    ['Đã cọc / thanh toán', convs.filter(c => c._payment && c._payment.hasPayment).length]];
   document.getElementById('leadFunnel').innerHTML = steps.map(([l, v], i) => `
     <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-600">${l}</span><span class="font-bold num">${v} <span class="text-slate-400 font-normal">(${pct(v / n, 0)})</span></span></div>
-    <div class="h-5 bg-slate-100 rounded-md overflow-hidden"><div class="h-full ${i === steps.length - 1 ? 'bg-emerald-600' : 'bg-slate-400'}" style="width:${Math.max(v / n * 100, 1)}%"></div></div></div>`).join('') +
+    <div class="h-5 bg-slate-100 rounded-md overflow-hidden"><div class="h-full ${i === steps.length - 1 ? 'bg-purple-600' : (i === steps.length - 2 ? 'bg-emerald-600' : 'bg-slate-400')}" style="width:${Math.max(v / n * 100, 1)}%"></div></div></div>`).join('') +
     `<p class="text-[11px] text-slate-500 mt-2">Câu mẫu phổ biến: ${[...TEMPLATES].slice(0, 4).map(t => '"' + esc(t) + '" (' + tplCount[t] + ')').join(', ')}</p>`;
   const cnt = {}; convs.forEach(c => c._intents.forEach(t => cnt[t] = (cnt[t] || 0) + 1));
   document.getElementById('intentBars').innerHTML = INTENTS.map(([t]) => [t, cnt[t] || 0]).sort((a, b) => b[1] - a[1]).map(([t, v]) => `
@@ -731,19 +781,28 @@ convs.forEach(c => {
     <div class="h-2 bg-slate-100 rounded"><div class="h-full bg-emerald-500 rounded" style="width:${v / n * 100}%"></div></div></div>`).join('');
 })();
 let crmLevel = 'ALL';
-const LEVELS = ['ALL', 'Có SĐT', 'Trao đổi thật', 'Có hỏi thêm', 'Chỉ bấm câu mẫu'];
+const LEVELS = ['ALL', 'Đã cọc / CK', 'Có SĐT', 'Trao đổi thật', 'Có hỏi thêm', 'Chỉ bấm câu mẫu'];
 const maskPhone = p => document.getElementById('showPhone').checked ? p : p.replace(/(\d{3})\d+(\d{3})$/, '$1****$2');
 function renderCrm() {
   const q = document.getElementById('crmSearch').value.toLowerCase().trim();
-  const list = convs.filter(c => (crmLevel === 'ALL' || c._level === crmLevel) && (!q || c.customer_name.toLowerCase().includes(q) || c.messages.some(m => (m.text || '').toLowerCase().includes(q))));
-  document.getElementById('crmFilters').innerHTML = LEVELS.map(l => { const n = l === 'ALL' ? convs.length : convs.filter(c => c._level === l).length;
-    return `<button data-l="${l}" class="text-xs px-3 py-1.5 rounded-lg border ${crmLevel === l ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white border-slate-200 text-slate-700'}">${l === 'ALL' ? 'Tất cả' : l} (${n})</button>`; }).join('');
+  const list = convs.filter(c => {
+    const matchLevel = crmLevel === 'ALL' ? true : (crmLevel === 'Đã cọc / CK' ? (c._payment && c._payment.hasPayment) : c._level === crmLevel);
+    const matchQ = !q || c.customer_name.toLowerCase().includes(q) || c.messages.some(m => (m.text || '').toLowerCase().includes(q));
+    return matchLevel && matchQ;
+  });
+  document.getElementById('crmFilters').innerHTML = LEVELS.map(l => {
+    const n = l === 'ALL' ? convs.length : (l === 'Đã cọc / CK' ? convs.filter(c => c._payment && c._payment.hasPayment).length : convs.filter(c => c._level === l).length);
+    return `<button data-l="${l}" class="text-xs px-3 py-1.5 rounded-lg border ${crmLevel === l ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white border-slate-200 text-slate-700'}">${l === 'ALL' ? 'Tất cả' : l} (${n})</button>`;
+  }).join('');
   document.querySelectorAll('#crmFilters button').forEach(b => b.onclick = () => { crmLevel = b.dataset.l; renderCrm(); });
   const lvlColor = { 'Có SĐT': 'bg-amber-100 text-amber-800', 'Trao đổi thật': 'bg-emerald-100 text-emerald-800', 'Có hỏi thêm': 'bg-blue-100 text-blue-800', 'Chỉ bấm câu mẫu': 'bg-slate-100 text-slate-600', 'Không có tin khách': 'bg-slate-100 text-slate-400' };
   document.getElementById('crmBody').innerHTML = list.length ? list.map(c => {
     const last = c._cust.at(-1)?.text || '(chưa có tin)';
     return `<tr class="hover:bg-slate-50">
-      <td class="py-2.5 px-4"><div class="font-semibold text-slate-900">${esc(c.customer_name)}</div><span class="inline-block mt-1 px-2 py-0.5 rounded text-[11px] ${lvlColor[c._level]}">${c._level}</span>${c._phone ? ` <span class="text-[11px] text-amber-700 num">${esc(maskPhone(c._phone))}</span>` : ''}</td>
+      <td class="py-2.5 px-4"><div class="font-semibold text-slate-900">${esc(c.customer_name)}</div>
+        <span class="inline-block mt-1 px-2 py-0.5 rounded text-[11px] ${lvlColor[c._level]}">${c._level}</span>
+        ${c._payment && c._payment.hasPayment ? ` <span class="inline-block mt-1 px-2 py-0.5 rounded text-[11px] bg-purple-100 text-purple-800 font-bold"><i class="fa-solid fa-receipt mr-1"></i>${c._payment.paymentStatus}${c._payment.amount ? ' (' + fmt(c._payment.amount) + 'đ)' : ''}</span>` : ''}
+        ${c._phone ? ` <span class="text-[11px] text-amber-700 num">${esc(maskPhone(c._phone))}</span>` : ''}</td>
       <td class="py-2.5 px-4 whitespace-normal max-w-xs">${c._intents.map(t => `<span class="inline-block px-2 py-0.5 rounded text-[11px] bg-emerald-50 text-emerald-800 mr-1 mb-1">${t}</span>`).join('') || '<span class="text-xs text-slate-400">-</span>'}</td>
       <td class="py-2.5 px-4 max-w-sm truncate text-xs text-slate-600" title="${esc(last)}">${esc(last)}</td>
       <td class="py-2.5 px-4 text-center num">${c._cust.length} / ${c.messages.length}</td>
@@ -759,7 +818,17 @@ function openChat(id) {
   const c = convs.find(x => x.id === id); if (!c) return;
   document.getElementById('mName').textContent = c.customer_name;
   document.getElementById('mMeta').textContent = `${c.messages.length} tin · ${c._level} · ${new Date(c.updated_time).toLocaleString('vi-VN')}`;
-  document.getElementById('mPhone').textContent = c._phone ? 'SĐT: ' + maskPhone(c._phone) : 'Chưa có số điện thoại';
+  document.getElementById('mPhone').innerHTML = `${c._phone ? 'SĐT: <b class="text-slate-700">' + maskPhone(c._phone) + '</b>' : 'Chưa có số điện thoại'}${c._payment && c._payment.amount ? ' &bull; Đã cọc/CK: <b class="text-purple-700">' + vnd(c._payment.amount) + '</b>' : ''}`;
+  const mPay = document.getElementById('mPayment');
+  if (c._payment && c._payment.hasPayment) {
+    mPay.classList.remove('hidden');
+    mPay.classList.add('flex');
+    mPay.innerHTML = `<span><i class="fa-solid fa-receipt mr-1.5 text-purple-600"></i>Tiến độ thanh toán: <b>${c._payment.paymentStatus}</b>${c._payment.amount ? ' &bull; Số tiền: <b>' + vnd(c._payment.amount) + '</b>' : ''}</span><span class="text-[10px] bg-purple-200/80 text-purple-900 px-2 py-0.5 rounded-full font-semibold">Tự động nhận diện</span>`;
+  } else {
+    mPay.classList.add('hidden');
+    mPay.classList.remove('flex');
+    mPay.innerHTML = '';
+  }
   document.getElementById('mList').innerHTML = c.messages.map(m => `
     <div class="flex flex-col ${m.is_page ? 'items-end' : 'items-start'}">
       <span class="text-[10px] text-slate-400 mb-1">${esc(m.from)} · ${new Date(m.time).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
